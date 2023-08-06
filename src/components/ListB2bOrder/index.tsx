@@ -7,7 +7,6 @@ import * as S from './styles';
 
 interface IProps {
   item: IB2bRelation;
-  index: string;
 
   confirmation: () => void;
   recuse: () => void;
@@ -16,7 +15,6 @@ interface IProps {
 
 export function ListB2bOrder({
   item,
-  index,
   confirmation,
   recuse,
   load = false,
@@ -44,7 +42,7 @@ export function ListB2bOrder({
             )}
           </S.recusar>
           <S.confirm disabled={load} onPress={confirmation}>
-            {load && item.id === index ? (
+            {load ? (
               <ActivityIndicator />
             ) : (
               <S.buttonText>CONFIRMAR</S.buttonText>
