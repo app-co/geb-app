@@ -1,0 +1,141 @@
+import { useNavigation } from '@react-navigation/native';
+import { Box, Center, HStack, TextArea } from 'native-base';
+import React from 'react';
+import { Alert, Modal, ScrollView, TouchableOpacity } from 'react-native';
+
+import { Button } from '../../../components/Button';
+import { Header } from '../../../components/Header';
+import theme from '../../../global/styles/theme';
+import { useAuth } from '../../../hooks/useAuth';
+import { api } from '../../../services/api';
+import { _donates } from '../../../utils/donativos';
+import * as S from './styles';
+
+interface I {
+  item: string;
+}
+
+export function Donates() {
+  const { user } = useAuth();
+  const { goBack } = useNavigation();
+
+  const [modal, setModal] = React.useState(false);
+
+  const [itensDonates, setItensDonates] = React.useState<I[]>([
+    { item: 'Nenhum item foi selecionado' },
+  ]);
+
+  const handleSave = React.useCallback(async () => {
+    const data = {
+      prestador_id: user.id,
+      objto: {
+        itens: itensDonates,
+      },
+      type: 'DONATE',
+    };
+
+    await api.post('/relation-create', data).then(h => {
+      Alert.alert('Sucesso!', 'Agradecemos sua preocupação com o próximo');
+      goBack();
+    });
+  }, [goBack, itensDonates, user.id]);
+
+  const handleSelect = React.useCallback(
+    async (index: I) => {
+      const findindex = itensDonates.findIndex(i => i.item === index.item);
+      const arrSelect = [...itensDonates];
+
+      if (findindex !== -1) {
+        arrSelect.splice(findindex, 1);
+      } else {
+        arrSelect.push(index);
+      }
+
+      setItensDonates(
+        arrSelect.filter(h => h.item !== 'Nenhum item foi selecionado'),
+      );
+    },
+    [itensDonates],
+  );
+
+  return (
+    <>
+      <Header />
+      <S.Container>
+        <Center w="full" p="10">
+          <S.title>Doe donativos</S.title>
+
+          <TouchableOpacity
+            style={{ margin: 20 }}
+            onPress={() => setModal(true)}
+          >
+            <Center
+              bg={theme.colors.focus_second}
+              px="4"
+              py="2"
+              borderRadius={4}
+            >
+              <S.title>Lista de itens</S.title>
+            </Center>
+          </TouchableOpacity>
+
+          <Modal visible={modal} animationType="fade">
+            <Box py="8">
+              <HStack p="4" alignItems="center" justifyContent="space-between">
+                <S.title>Selecione os itens que deseja doar</S.title>
+                <TouchableOpacity onPress={() => setModal(false)}>
+                  <Box
+                    borderRadius="4"
+                    py="2"
+                    px="4"
+                    bg={theme.colors.focus_second}
+                  >
+                    <S.title style={{ color: '#000' }}>FECHAR</S.title>
+                  </Box>
+                </TouchableOpacity>
+              </HStack>
+              <ScrollView contentContainerStyle={{ paddingBottom: 200 }}>
+                {_donates.map(h => (
+                  <TouchableOpacity
+                    onPress={() => handleSelect(h)}
+                    key={h.item}
+                  >
+                    <Box
+                      px="4"
+                      py="2"
+                      my="1"
+                      bg={
+                        itensDonates.findIndex(i => i.item === h.item) !== -1
+                          ? theme.colors.focus
+                          : '#dadada'
+                      }
+                    >
+                      <S.subTitle
+                        selected={
+                          itensDonates.findIndex(i => i.item === h.item) !== -1
+                        }
+                      >
+                        {h.item}
+                      </S.subTitle>
+                    </Box>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </Box>
+          </Modal>
+
+          <Box w="full">
+            <S.title>Seus itens</S.title>
+            <S.content>
+              {itensDonates.map(h => (
+                <S.text style={{ color: '#fff' }}>{h.item}</S.text>
+              ))}
+            </S.content>
+          </Box>
+
+          <Button pres={handleSave} title="SALVAR" />
+        </Center>
+      </S.Container>
+    </>
+  );
+}

@@ -6,6 +6,7 @@
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
+    "cc": "yarn plop --plopfile ./generators/plopfile.cjs",
     "web": "expo start --web"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "@react-navigation/drawer": "^6.6.3",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
+    "styled-components": "^5.3.11",
     "@unform/core": "^2.1.6",
     "@unform/mobile": "^2.1.6",
     "axios": "^1.4.0",
