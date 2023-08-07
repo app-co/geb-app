@@ -15,6 +15,7 @@ import { IUserDtos } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
+import { _routes, routesScheme } from '../../services/schemeRoutes';
 import { _currency, _number } from '../../utils/mask';
 import * as S from './styles';
 
@@ -49,8 +50,10 @@ export function Transaction() {
     const dt = {
       prestador_id: prestador.id,
       client_id: user.id,
+      token: prestador.token,
       objto: {
         consumidor_name: user.nome,
+        avatar: prestador.profile.avatar,
         description,
         valor,
       },
@@ -58,14 +61,13 @@ export function Transaction() {
     };
 
     await api
-      .post('/relation-create', dt)
+      .post(`${routesScheme.relationShip.create}`, dt)
       .then(() => {
         Alert.alert('Sucesso!', 'Continue a incentivar os membros do GEB');
-        navigate('sucess', { prestador, description });
+        // navigate('sucess', { prestador, description });
       })
       .catch(err => {
         const mess = err?.response?.data?.messege;
-
         if (mess) {
           Alert.alert('Ops!', mess);
         } else {
@@ -75,7 +77,7 @@ export function Transaction() {
           );
         }
       });
-  }, [value, description, prestador, user.nome, user.id, valor, navigate]);
+  }, [value, description, prestador, user, valor, navigate]);
 
   return (
     <S.Container>

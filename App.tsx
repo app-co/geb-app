@@ -66,8 +66,7 @@ export default function App() {
     const event = AppState.addEventListener('change', h => {
       if (h === 'active') {
         if (Device.isDevice) {
-          ChecUpdadeDevice();
-          console.log('device');
+          // ChecUpdadeDevice();
         }
       }
     });

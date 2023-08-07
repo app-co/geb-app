@@ -5,7 +5,7 @@ import { _height, _subTitle, _title } from '../../utils/size';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: rgba(51, 51, 51, 0.823);
+  background-color: rgba(51, 51, 51, 0.523);
 `;
 
 export const title = styled.Text`

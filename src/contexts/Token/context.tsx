@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 
 import {} from '../../dtos';
+import Constants from 'expo-constants';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import React, { ReactNode, createContext, useEffect } from 'react';
@@ -49,7 +50,11 @@ export function TokenContext({ children }: TCreation) {
       if (finalStatus !== 'granted') {
         return;
       }
-      token = (await Notifications.getExpoPushTokenAsync()).data;
+      token = (
+        await Notifications.getExpoPushTokenAsync({
+          projectId: Constants.expoConfig.extra.eas.projectId,
+        })
+      ).data;
     } else {
       console.log('toke');
     }

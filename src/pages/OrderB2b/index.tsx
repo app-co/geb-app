@@ -16,6 +16,7 @@ import { IUserDtos } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
+import { routesScheme } from '../../services/schemeRoutes';
 import * as S from './styles';
 
 interface IRoute {
@@ -52,7 +53,7 @@ export function OrderB2b() {
     };
 
     await api
-      .post('/relation-create', dt)
+      .post(routesScheme({ params: prestador.token }).relationShip.create, dt)
       .then(h => {
         sendMessage({
           title: 'B2B',

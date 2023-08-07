@@ -17,13 +17,13 @@ import {
 
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
+import { Loading } from '../../components/Loading';
 import { MembrosComponents } from '../../components/MembrosCompornents';
-import { useToken } from '../../contexts/Token';
-import { useData } from '../../contexts/useData';
-import { IStars, IUserDtos } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { useAuth } from '../../hooks/useAuth';
+import { useAllUsers } from '../../hooks/user';
 import { api } from '../../services/api';
+import { routesScheme } from '../../services/schemeRoutes';
 import {
   BoxButton,
   BoxInput,
@@ -36,12 +36,10 @@ import {
 
 export function Indicacoes() {
   const { user } = useAuth();
-  const { sendMessage } = useToken();
-  const { users } = useData();
+  const { data, isLoading } = useAllUsers();
 
   const { navigate } = useNavigation();
   const [modal, setModal] = useState(false);
-  const [load, setLoad] = React.useState(true);
 
   // const [users, setUsers] = useState<IUserDto[]>([]);
   const [descricao, setDescricao] = useState('');
@@ -52,50 +50,19 @@ export function Indicacoes() {
   const [value, setValue] = useState('');
   const [expoToken, setExpoToken] = React.useState('');
 
-  const membrosData = (users.data as IUserDtos[]) || [];
-  const membros = membrosData.filter(h => h.id !== user.id) || [];
+  const membros = data || [];
 
-  const usersL =
+  const users =
     value.length > 0
       ? membros.filter(h => {
           const up = h.nome.toLocaleUpperCase();
 
-          if (up.includes(value.toLocaleUpperCase())) {
+          if (up.includes(value.toLocaleUpperCase()) && h.id !== user.id) {
             return h;
           }
+          return null;
         })
-      : membros;
-
-  const list = React.useMemo(() => {
-    const us: IUserDtos[] = [];
-
-    if (!users.isLoading) {
-      usersL.forEach(user => {
-        const total = user.Stars.length === 0 ? 1 : user.Stars.length;
-        let star = 0;
-
-        user.Stars.forEach((h: IStars) => {
-          star += h.star;
-        });
-        const md = star / total;
-        const value = Number(md.toFixed(0)) === 0 ? 1 : Number(md.toFixed(0));
-
-        const data = {
-          ...user,
-          media: value,
-        };
-
-        us.push(data);
-      });
-    }
-    const filter = us.filter(h => {
-      if (!h.situation.inativo) {
-        return h;
-      }
-    });
-
-    return filter;
-  }, [users, usersL]);
+      : membros.filter(h => h.id !== user.id);
 
   const OpenModal = useCallback(
     (user_id: string, nome: string, token: string) => {
@@ -117,20 +84,17 @@ export function Indicacoes() {
         client_name: nomeCliente,
         phone_number: telefoneCliente,
         description: descricao,
+        token: user.token,
       },
       type: 'INDICATION',
+      token: expoToken,
     };
 
-    await api.post('/relation-create', dt).then(() => {
+    await api.post(routesScheme.relationShip.create, dt).then(() => {
       Alert.alert('Indicação', `Aguarde a validação de ${indicadoName}`, [
         {
           text: 'Ok',
           onPress: () => {
-            sendMessage({
-              token: expoToken,
-              title: 'VOCE FOI INDICADO',
-              text: `Membro do geb ${user.nome} está indicando você para prestar um serviço`,
-            });
             navigate('INÍCIO');
           },
         },
@@ -142,14 +106,13 @@ export function Indicacoes() {
     nomeCliente,
     descricao,
     telefoneCliente,
-    sendMessage,
     expoToken,
     user,
     navigate,
   ]);
 
-  if (!membros) {
-    return <ActivityIndicator />;
+  if (isLoading) {
+    return <Loading />;
   }
 
   return (
@@ -168,7 +131,7 @@ export function Indicacoes() {
       </Form>
 
       <FlatList
-        data={list}
+        data={users}
         keyExtractor={h => h.id}
         renderItem={({ item: h }) => (
           <MembrosComponents

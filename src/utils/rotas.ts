@@ -14,6 +14,7 @@ import { FindUser } from '../pages/FindMembro';
 import { Indicacoes } from '../pages/Indicacoes';
 import { Padrinho } from '../pages/Padrinho';
 import { Profile } from '../pages/Profile';
+import { Solicitaions } from '../pages/Solicitaions';
 import { Valide } from '../pages/ValidePresenca';
 import { Visitante } from '../pages/Visitante';
 import { StackB2b } from '../routes/StackB2b';
@@ -100,6 +101,14 @@ export const rotas = [
     name: 'APADRINHAR',
     component: Padrinho,
     icon: 'mortar-board',
+  },
+
+  {
+    focus: theme.colors.focus,
+    color: theme.colors.focus_light_3,
+    name: 'SOLICITAÇÕES',
+    component: Solicitaions,
+    icon: 'envelope',
   },
 ];
 

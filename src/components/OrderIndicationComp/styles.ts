@@ -2,6 +2,7 @@ import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 import theme from '../../global/styles/theme';
+import { _subTitle, _text } from '../../utils/size';
 
 const w = Dimensions.get('screen').width;
 
@@ -24,11 +25,13 @@ export const flex = styled.View`
 export const title = styled.Text`
   color: #fff;
   font-family: ${theme.fonts.regular};
+  font-size: ${_subTitle}px;
 `;
 
 export const text = styled.Text`
   color: #fff;
-  font-family: ${theme.fonts.bold};
+  font-family: ${theme.fonts.regular};
+  font-size: ${_text}px;
 `;
 
 export const flexButton = styled.View`
@@ -55,4 +58,8 @@ export const buttonRe = styled.TouchableOpacity`
   justify-content: center;
 
   background-color: ${theme.colors.secundary};
+`;
+
+export const boxDescription = styled.View`
+  flex: 1;
 `;
