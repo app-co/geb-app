@@ -29,7 +29,7 @@ export function Solicitaions() {
   const { user } = useAuth();
   const { data, refetch } = useOrderRelation();
 
-  const [orders, setOrders] = React.useState([]);
+  const [orders, setOrders] = React.useState<IRelashionship[]>([]);
 
   React.useEffect(() => {
     if (data) {
@@ -80,8 +80,18 @@ export function Solicitaions() {
               break;
 
             case 'not-yeat':
-              setItemId('');
-              setRelation(relations.filter(h => h.id !== item.id));
+              {
+                setItemId('');
+                const index = select.findIndex(i => i.id === item.id);
+                const arrSelect = [...select];
+                if (index !== -1) {
+                  arrSelect.splice(index, 1);
+                } else {
+                  arrSelect.push(item);
+                }
+              }
+
+              setSelect(arrSelect);
 
               break;
 
