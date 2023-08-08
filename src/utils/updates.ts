@@ -1,5 +1,5 @@
 export const update = [
   {
-    title: '',
+    title: 'Melhorias no app',
   },
 ];

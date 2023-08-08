@@ -60,18 +60,22 @@ type T =
 export interface IRelashionship {
   id: string;
   objto: {
-    token?: string;
-    description?: string;
-    send_name?: string;
-    quemIndicaou_name?: string;
-    client_name?: string;
-    phone_number_client?: string;
-    consumidor_name?: string;
-    valor?: number;
+    token: string;
+    description: string;
+    send_name: string;
+    quemIndicaou_name: string;
+    client_name: string;
+    phone_number_client: string;
+    consumidor_name: string;
+    valor: number;
     user_id: string;
-    avatar?: string;
-    user_name?: string;
-    name_convidado?: string;
+    avatar: string;
+    user_name: string;
+    name_convidado: string;
+    total_currency: string;
+    updated_at: Date | string;
+    createdted_at: Date | string;
+    currency: string;
   };
   fk_user_id: string;
   situation: boolean;

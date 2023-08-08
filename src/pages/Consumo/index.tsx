@@ -160,7 +160,7 @@ export function Consumo() {
 
   const extratoValidated = React.useMemo(() => {
     const currencyConsumo = validated.data?.totalConsumo;
-    const currenyVenda = validated.data?.totalVenda / 100;
+    const currenyVenda = validated.data?.totalVenda;
 
     const venda = validated?.data?.venda.filter(h => {
       const updated = format(new Date(h.updated_at), 'MM/yy');
@@ -226,19 +226,9 @@ export function Consumo() {
       }
     });
 
-    const totalP = currenyVenda?.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
-
-    const totalC = currencyConsumo?.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
-    });
-
     return {
-      totalC,
-      totalP,
+      totalC: currencyConsumo,
+      totalP: currenyVenda,
       venda,
       invit,
       donate,
@@ -251,8 +241,8 @@ export function Consumo() {
   }, [currencyDateFormated, validated.data]);
 
   const extratoPending = React.useMemo(() => {
-    const currencyConsumo = peding.data?.totalConsumo / 100;
-    const currenyVenda = peding.data?.totalVenda / 100;
+    const currencyConsumo = peding.data?.totalConsumo;
+    const currenyVenda = peding.data?.totalVenda;
 
     const venda = peding?.data?.venda.filter(h => {
       const updated = format(new Date(h.updated_at), 'MM/yy');
@@ -474,7 +464,7 @@ export function Consumo() {
               renderItem={({ item: h }) => (
                 <ExtratoComp
                   data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  valor={locale(h.objto.valor)}
+                  valor={h.objto.currency}
                   description={h.objto.descricao}
                 />
               )}
@@ -491,7 +481,7 @@ export function Consumo() {
               renderItem={({ item: h }) => (
                 <ExtratoComp
                   data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  valor={locale(h.objto.valor)}
+                  valor={h.objto.currency}
                   description={h.objto.descricao}
                 />
               )}

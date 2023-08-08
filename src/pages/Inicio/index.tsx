@@ -42,6 +42,7 @@ import { Loading } from '../../components/Loading';
 import { ModalComp } from '../../components/ModalComp';
 import { OrdersRelashion } from '../../components/OrdersRelashion';
 import { usePontos } from '../../contexts/pontos';
+import { useRelation } from '../../contexts/relation';
 import { useToken } from '../../contexts/Token';
 import { useData } from '../../contexts/useData';
 import {
@@ -49,6 +50,7 @@ import {
   IConsumoRelation,
   IIndicationRelation,
   IRelashionship,
+  ISelfPonts,
 } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { useOrderRelation } from '../../hooks/relations';
@@ -74,8 +76,10 @@ interface IResponse {
 export function Inicio() {
   const { user, logOut, updateUser } = useAuth();
   const { navigate } = useNavigation();
+  const { pontosListMe } = usePontos();
   const { indRank } = useData();
   const { mytoken } = useToken();
+  const { listAllRelation } = useRelation();
   const { data, isLoading, error, refetch } = useOrderRelation();
 
   const [showModalSolicitations, setModalSolicitations] = React.useState(false);
@@ -87,6 +91,55 @@ export function Inicio() {
 
   //   return rs.data as IResponse;
   // });
+
+  const resumo = React.useMemo(() => {
+    let pontos = 0;
+    let currency = 'R$ 00,00';
+
+    if (pontosListMe.data) {
+      const {
+        b2b,
+        compras,
+        convidado,
+        vendas,
+        indication,
+        donates,
+        padrinho,
+        presenca,
+      } = pontosListMe.data as ISelfPonts;
+
+      pontos =
+        b2b.pontos +
+        compras.pontos +
+        convidado.pontos +
+        indication.pontos +
+        donates.pontos +
+        padrinho.pontos +
+        presenca.pontos +
+        vendas.pontos;
+    }
+
+    if (listAllRelation.data) {
+      const lastCurrencty = 7782628;
+
+      const relation = listAllRelation.data as IRelashionship[];
+
+      const validated = relation.filter(
+        h => h.situation === true && h.type === 'CONSUMO_OUT',
+      );
+
+      const total = validated.reduce((ac, i) => {
+        return ac + i.objto.valor;
+      }, 0);
+
+      currency = (total / 100 + lastCurrencty).toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      });
+    }
+
+    return { pontos, currency };
+  }, [listAllRelation.data, pontosListMe.data]);
 
   React.useEffect(() => {
     if (user.token !== mytoken) {
@@ -104,7 +157,7 @@ export function Inicio() {
   useFocusEffect(
     useCallback(() => {
       refetch();
-      if (data?.length > 0) {
+      if (data?.relation?.length > 0) {
         setModalSolicitations(true);
       } else {
         setModalSolicitations(false);
@@ -124,7 +177,7 @@ export function Inicio() {
             navigate('SOLICITAÇÕES');
           }}
           title="Home"
-          orders={data?.length}
+          orders={data?.relation.length}
         />
 
         <Modal
@@ -181,12 +234,12 @@ export function Inicio() {
           <Box alignItems="flex-end">
             <S.text>Vendas este ano:</S.text>
             <S.text style={{ fontSize: _subTitle, fontFamily: 'medium' }}>
-              {0}
+              {data?.totalValor}
             </S.text>
 
             <S.text>Meus pontos:</S.text>
             <S.text style={{ fontSize: _subTitle, fontFamily: 'medium' }}>
-              {0}
+              {resumo.pontos}
             </S.text>
           </Box>
         </HStack>
@@ -195,7 +248,7 @@ export function Inicio() {
           <HStack space={2} alignItems="center">
             <S.text style={{ fontSize: _subTitle }}>Acumulados do GEB:</S.text>
             <S.text style={{ fontSize: _subTitle, fontFamily: 'medium' }}>
-              {0}
+              {resumo.currency}
             </S.text>
           </HStack>
         </Center>

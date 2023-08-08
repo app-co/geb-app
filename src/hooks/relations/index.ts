@@ -1,29 +1,43 @@
 import { useQuery } from 'react-query';
 
-import {
-  IB2bRelation,
-  IConsumoRelation,
-  IIndicationRelation,
-  IRelashionship,
-} from '../../dtos';
+import { IRelashionship } from '../../dtos';
 import { api } from '../../services/api';
+import { routesScheme } from '../../services/schemeRoutes';
 
-interface IResponse {
-  b2b: IB2bRelation;
-  cons: IConsumoRelation;
-  ind: IIndicationRelation;
-  id: string;
+interface I {
+  relation: IRelashionship[];
+  totalValor: string;
 }
 
-export async function solitations(): Promise<IRelashionship[]> {
-  const response = await api.get('/relation/prestador');
-  const orders = response.data as IRelashionship[];
+export async function solitations(): Promise<I> {
+  const response = await api.get(routesScheme.relationShip.list_by_provider);
+  const orders = response.data as I;
 
-  const fil = orders.filter(h => h.situation === false);
+  const l = orders.totalValor;
 
-  return fil;
+  const fil = orders.relation.filter(h => h.situation === false);
+
+  const rs = {
+    relation: fil,
+    totalValor: l,
+  };
+
+  return rs;
+}
+
+export async function getAlRelation(): Promise<IRelashionship[]> {
+  const { data } = await api.get('/relation');
+  const response = data as IRelashionship[];
+  const relation = response.filter(
+    h => h.situation === true,
+  ) as IRelashionship[];
+  return relation;
 }
 
 export function useOrderRelation() {
   return useQuery('relation-orders', solitations);
+}
+
+export function useAllRelation() {
+  return useQuery('all-relation', getAlRelation);
 }
