@@ -6,7 +6,6 @@ import { Form } from '@unform/mobile';
 import { Box, Center, Text, TextArea } from 'native-base';
 import React, { useCallback, useState } from 'react';
 import {
-  ActivityIndicator,
   Alert,
   FlatList,
   Modal,
@@ -19,6 +18,7 @@ import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
 import { Loading } from '../../components/Loading';
 import { MembrosComponents } from '../../components/MembrosCompornents';
+import { useToken } from '../../contexts/Token';
 import theme from '../../global/styles/theme';
 import { useAuth } from '../../hooks/useAuth';
 import { useAllUsers } from '../../hooks/user';
@@ -37,6 +37,7 @@ import {
 export function Indicacoes() {
   const { user } = useAuth();
   const { data, isLoading } = useAllUsers();
+  const { mytoken } = useToken();
 
   const { navigate } = useNavigation();
   const [modal, setModal] = useState(false);
@@ -84,11 +85,13 @@ export function Indicacoes() {
         client_name: nomeCliente,
         phone_number: telefoneCliente,
         description: descricao,
-        token: user.token,
+        token: mytoken,
       },
       type: 'INDICATION',
       token: expoToken,
     };
+
+    console.log(mytoken, expoToken);
 
     await api.post(routesScheme.relationShip.create, dt).then(() => {
       Alert.alert('Indicação', `Aguarde a validação de ${indicadoName}`, [

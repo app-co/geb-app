@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 
-import theme from '../../../global/styles/theme';
-import { _subTitle, _text } from '../../../utils/size';
+import theme from '../../global/styles/theme';
+import { _subTitle, _text } from '../../utils/size';
 
 interface I {
   selected: boolean;

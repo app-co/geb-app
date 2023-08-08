@@ -11,6 +11,7 @@ import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
+import { useToken } from '../../contexts/Token';
 import { IUserDtos } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { useAuth } from '../../hooks/useAuth';
@@ -25,13 +26,13 @@ interface IRoute {
 
 export function Transaction() {
   const { navigate } = useNavigation();
+  const { mytoken } = useToken();
   const { user } = useAuth();
   const route = useRoute();
   const { prestador } = route.params as IRoute;
 
   const [value, setValue] = useState('');
   const [description, setDescription] = useState('');
-  const [mon, setMon] = useState(0);
 
   const valor =
     value.length < 6 ? Number(_number(`${value},00`)) : Number(_number(value));
@@ -52,6 +53,7 @@ export function Transaction() {
       client_id: user.id,
       token: prestador.token,
       objto: {
+        token: mytoken,
         consumidor_name: user.nome,
         avatar: prestador.profile.avatar,
         description,
@@ -64,7 +66,7 @@ export function Transaction() {
       .post(`${routesScheme.relationShip.create}`, dt)
       .then(() => {
         Alert.alert('Sucesso!', 'Continue a incentivar os membros do GEB');
-        // navigate('sucess', { prestador, description });
+        navigate('sucess', { prestador, description });
       })
       .catch(err => {
         const mess = err?.response?.data?.messege;
@@ -77,7 +79,17 @@ export function Transaction() {
           );
         }
       });
-  }, [value, description, prestador, user, valor, navigate]);
+  }, [
+    value,
+    description,
+    prestador.id,
+    prestador.token,
+    prestador.profile.avatar,
+    user.id,
+    user.nome,
+    mytoken,
+    valor,
+  ]);
 
   return (
     <S.Container>
@@ -85,8 +97,7 @@ export function Transaction() {
 
       <Box>
         <S.Title style={{ marginBottom: 30, textAlign: 'center' }}>
-          Vocẽ está consumindo de: {prestador.nome}, da empresa{' '}
-          {prestador.profile.workName}
+          Vocẽ está consumindo de: {prestador.nome}
         </S.Title>
 
         <S.box>

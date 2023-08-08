@@ -3,12 +3,14 @@ import { Box, Center, HStack, TextArea } from 'native-base';
 import React from 'react';
 import { Alert, Modal, ScrollView, TouchableOpacity } from 'react-native';
 
-import { Button } from '../../../components/Button';
-import { Header } from '../../../components/Header';
-import theme from '../../../global/styles/theme';
-import { useAuth } from '../../../hooks/useAuth';
-import { api } from '../../../services/api';
-import { _donates } from '../../../utils/donativos';
+import { Button } from '../../components/Button';
+import { Header } from '../../components/Header';
+import { useToken } from '../../contexts/Token';
+import theme from '../../global/styles/theme';
+import { useAuth } from '../../hooks/useAuth';
+import { useAllUsers } from '../../hooks/user';
+import { api } from '../../services/api';
+import { _donates } from '../../utils/donativos';
 import * as S from './styles';
 
 interface I {
@@ -18,7 +20,10 @@ interface I {
 export function Donates() {
   const { user } = useAuth();
   const { goBack } = useNavigation();
+  const { data } = useAllUsers();
+  const { sendMessage, mytoken } = useToken();
 
+  const adm = data || [];
   const [modal, setModal] = React.useState(false);
 
   const [itensDonates, setItensDonates] = React.useState<I[]>([
@@ -34,11 +39,20 @@ export function Donates() {
       type: 'DONATE',
     };
 
+    const adms = adm.filter(h => h.adm === true).map(h => h.token);
+
     await api.post('/relation-create', data).then(h => {
+      adms.forEach(async h => {
+        await sendMessage({
+          title: '',
+          text: '',
+          token: h,
+        });
+      });
       Alert.alert('Sucesso!', 'Agradecemos sua preocupação com o próximo');
       goBack();
     });
-  }, [goBack, itensDonates, user.id]);
+  }, [adm, goBack, itensDonates, sendMessage, user.id]);
 
   const handleSelect = React.useCallback(
     async (index: I) => {

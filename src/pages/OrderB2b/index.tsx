@@ -26,7 +26,7 @@ interface IRoute {
 export function OrderB2b() {
   const { navigate, reset, goBack } = useNavigation();
   const { relationCreate } = useRelation();
-  const { sendMessage } = useToken();
+  const { sendMessage, mytoken } = useToken();
   const { user } = useAuth();
   const route = useRoute();
   const { prestador } = route.params as IRoute;
@@ -47,19 +47,16 @@ export function OrderB2b() {
       objto: {
         send_name: user.nome,
         description,
+        token: mytoken,
       },
+      token: prestador.token,
       situation: false,
       type: 'B2B',
     };
 
     await api
-      .post(routesScheme({ params: prestador.token }).relationShip.create, dt)
+      .post(routesScheme.relationShip.create, dt)
       .then(h => {
-        sendMessage({
-          title: 'B2B',
-          token: prestador.token,
-          text: `Você realizou um B2B COM ${prestador.nome}?`,
-        });
         setLoad(false);
 
         Alert.alert(

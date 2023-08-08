@@ -72,7 +72,7 @@ interface IResponse {
 }
 
 export function Inicio() {
-  const { user, logOut } = useAuth();
+  const { user, logOut, updateUser } = useAuth();
   const { navigate } = useNavigation();
   const { indRank } = useData();
   const { mytoken } = useToken();
@@ -90,17 +90,26 @@ export function Inicio() {
 
   React.useEffect(() => {
     if (user.token !== mytoken) {
-      api.patch('/user/update-membro', {
-        token: mytoken,
-        id: user.id,
-      });
+      api
+        .patch('/user/update-membro', {
+          token: mytoken,
+          id: user.id,
+        })
+        .then(h => {
+          updateUser({ ...user, token: mytoken });
+        });
     }
-  }, [mytoken, user]);
+  }, [mytoken, updateUser, user]);
 
   useFocusEffect(
     useCallback(() => {
       refetch();
-    }, []),
+      if (data?.length > 0) {
+        setModalSolicitations(true);
+      } else {
+        setModalSolicitations(false);
+      }
+    }, [data]),
   );
 
   if (isLoading) {
@@ -117,6 +126,45 @@ export function Inicio() {
           title="Home"
           orders={data?.length}
         />
+
+        <Modal
+          animationType="fade"
+          visible={showModalSolicitations}
+          transparent
+        >
+          <Center flex={1}>
+            <Box p="16" bg="dark.600" borderRadius={8}>
+              <S.title style={{ textAlign: 'center' }}>
+                Voce tem negócios para aprovar
+              </S.title>
+              <HStack space={8} mt="4">
+                <TouchableOpacity
+                  onPress={() => setModalSolicitations(false)}
+                  style={{
+                    padding: 8,
+                    backgroundColor: theme.colors.focus_second,
+                    borderRadius: 8,
+                  }}
+                >
+                  <S.text style={{ color: '#fff' }}>APROVAR DEPOIS</S.text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => {
+                    setModalSolicitations(false);
+                    navigate('SOLICITAÇÕES');
+                  }}
+                  style={{
+                    padding: 8,
+                    backgroundColor: theme.colors.focus,
+                    borderRadius: 8,
+                  }}
+                >
+                  <S.text style={{ color: '#fff' }}>APROVAR AGORA</S.text>
+                </TouchableOpacity>
+              </HStack>
+            </Box>
+          </Center>
+        </Modal>
 
         <Center>
           <S.text style={{ fontFamily: 'medium', fontSize: _subTitle }}>

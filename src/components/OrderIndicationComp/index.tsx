@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import { IIndicationRelation } from '../../dtos';
+import { IRelashionship } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { _text } from '../../utils/size';
 import * as S from './styles';
@@ -12,7 +12,7 @@ import * as S from './styles';
 type TTypeValue = 'not-yeat' | 'not' | 'handshak';
 
 interface IProps {
-  item: IIndicationRelation;
+  item: IRelashionship;
   reject: () => void;
   confirmation: () => void;
   valueType: (item: TTypeValue) => void;
@@ -34,7 +34,7 @@ export function OrderIndicationComp({
   children,
   load,
 }: IProps) {
-  const [value, setValue] = React.useState('');
+  const [value, setValue] = React.useState('not-yeat');
 
   return (
     <S.Container>
@@ -51,7 +51,7 @@ export function OrderIndicationComp({
           </S.flex>
           <S.flex>
             <S.title>Contato: </S.title>
-            <S.text>{item?.objto?.phone_number_client}</S.text>
+            <S.text>{item?.objto?.phone_number}</S.text>
           </S.flex>
           <S.flex>
             <S.title>Descrição: </S.title>
@@ -59,7 +59,7 @@ export function OrderIndicationComp({
           </S.flex>
           <S.flex>
             <S.title>Data que foi indicado: </S.title>
-            {/* <S.text>{format(new Date(item?.created_at), 'dd/MM/yy')}</S.text> */}
+            <S.text>{format(new Date(item?.created_at), 'dd/MM/yy')}</S.text>
           </S.flex>
 
           <Center
@@ -74,50 +74,53 @@ export function OrderIndicationComp({
             Você fechou negócio?
           </Center>
 
-          <Radio.Group
-            flexDir="row"
-            name="myRadioGroup"
-            accessibilityLabel="favorite number"
-            onChange={h => {
-              setValue(h);
-              valueType(h);
-            }}
-          >
-            <Radio
-              _text={{
-                color: '#fff',
-                fontFamily: theme.fonts.medium,
-                fontSize: RFValue(12),
+          <Center>
+            <Radio.Group
+              flexDir="row"
+              name="myRadioGroup"
+              accessibilityLabel="favorite number"
+              onChange={h => {
+                setValue(h);
+                valueType(h);
               }}
-              value="not-yeat"
+              value={value}
             >
-              Ainda não
-            </Radio>
+              <Radio
+                _text={{
+                  color: '#fff',
+                  fontFamily: theme.fonts.medium,
+                  fontSize: RFValue(12),
+                }}
+                value="not-yeat"
+              >
+                Ainda não
+              </Radio>
 
-            <Radio
-              _text={{
-                color: '#fff',
-                fontFamily: theme.fonts.medium,
-                fontSize: RFValue(12),
-              }}
-              ml={3}
-              value="not"
-            >
-              Não deu certo
-            </Radio>
+              <Radio
+                _text={{
+                  color: '#fff',
+                  fontFamily: theme.fonts.medium,
+                  fontSize: RFValue(12),
+                }}
+                ml={3}
+                value="not"
+              >
+                Não deu certo
+              </Radio>
 
-            <Radio
-              _text={{
-                color: '#fff',
-                fontFamily: theme.fonts.medium,
-                fontSize: RFValue(12),
-              }}
-              ml={3}
-              value="handshak"
-            >
-              Sim
-            </Radio>
-          </Radio.Group>
+              <Radio
+                _text={{
+                  color: '#fff',
+                  fontFamily: theme.fonts.medium,
+                  fontSize: RFValue(12),
+                }}
+                ml={3}
+                value="handshak"
+              >
+                Sim
+              </Radio>
+            </Radio.Group>
+          </Center>
 
           {value === 'handshak' && <Box>{children}</Box>}
         </Box>

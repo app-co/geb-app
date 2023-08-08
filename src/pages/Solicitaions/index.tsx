@@ -1,22 +1,20 @@
+import { useFocusEffect } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { Center, TextArea } from 'native-base';
-import React from 'react';
+import React, { useCallback } from 'react';
+import { Alert } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
 import { OrderIndicationComp } from '../../components/OrderIndicationComp';
-import {
-  IB2bRelation,
-  IConsumoRelation,
-  IIndicationRelation,
-  IRelashionship,
-} from '../../dtos';
+import { IRelashionship } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { useOrderRelation } from '../../hooks/relations';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
-import { _currency } from '../../utils/mask';
+import { paramsRoutesScheme, routesScheme } from '../../services/schemeRoutes';
+import { _currency, _number } from '../../utils/mask';
 import * as S from './styles';
 
 type TSubmit = {
@@ -29,13 +27,7 @@ export function Solicitaions() {
   const { user } = useAuth();
   const { data, refetch } = useOrderRelation();
 
-  const [orders, setOrders] = React.useState<IRelashionship[]>([]);
-
-  React.useEffect(() => {
-    if (data) {
-      setOrders(data);
-    }
-  }, [data]);
+  const [orders, setOrders] = React.useState<IRelashionship[] | undefined>([]);
 
   const [itemId, setItemId] = React.useState('');
   const [descripton, setDescription] = React.useState('');
@@ -52,52 +44,58 @@ export function Solicitaions() {
         setItemId(item.id);
 
         if (item.type === 'INDICATION') {
-          const it = item as IIndicationRelation;
+          const it = item;
           switch (typeIndication) {
             case 'handshak':
               {
-                const value = Number(_number(currency));
+                const valor =
+                  value.length < 6
+                    ? Number(_number(`${value},00`))
+                    : Number(_number(value));
+
                 const dt = {
                   prestador_id: user.id,
                   ponts: 10,
+                  token: '',
                   objto: {
                     consumidor_name: it.objto.client_name,
                     descripton,
-                    valor: value,
+                    valor,
                   },
                   situation: true,
                   type: 'CONSUMO_OUT',
                 };
 
-                await api.post('/relation-create', dt);
+                await api.post(routesScheme.relationShip.create, dt);
 
-                await api.put('/relation-update', {
+                await api.put(routesScheme.relationShip.update, {
                   id: item.id,
                   situation: true,
                 });
+
+                setOrders(orders?.filter(h => h.id !== item.id));
+                setItemId('');
               }
 
               break;
 
             case 'not-yeat':
-              {
-                setItemId('');
-                const index = select.findIndex(i => i.id === item.id);
-                const arrSelect = [...select];
-                if (index !== -1) {
-                  arrSelect.splice(index, 1);
-                } else {
-                  arrSelect.push(item);
-                }
-              }
+              setItemId('');
 
-              setSelect(arrSelect);
+              setOrders(orders?.filter(h => h.id !== item.id));
 
               break;
 
             case 'not':
-              await api.delete(`/relation-delete/${item.id}`);
-              setRelation(relations.filter(h => h.id !== item.id));
+              {
+                await api.put(routesScheme.relationShip.update, {
+                  id: item.id,
+                  situation: true,
+                });
+
+                const fil = orders?.filter(h => h.id !== item.id);
+                setOrders(fil);
+              }
               break;
 
             default:
@@ -105,12 +103,13 @@ export function Solicitaions() {
           }
         } else {
           await api
-            .put('/relation-update', {
+            .put(routesScheme.relationShip.update, {
               id: item.id,
               situation: true,
             })
             .then(h => {
               setItemId('');
+              setOrders(orders?.filter(h => h.id !== item.id));
             });
         }
       } catch (err: any) {
@@ -122,19 +121,36 @@ export function Solicitaions() {
         }
       }
     },
-    [currency, descripton, typeIndication, user.id],
+    [descripton, orders, typeIndication, user.id, value],
   );
 
-  const handleRecused = React.useCallback(async ({ item }: TSubmit) => {
-    try {
-      await api.delete(`/relation-delete/${item.id}`).then(h => {
-        refetch();
+  const handleRecused = React.useCallback(
+    async ({ item }: TSubmit) => {
+      try {
+        await api
+          .delete(paramsRoutesScheme(item.id).relationShip.delete)
+          .then(h => {
+            setOrders(orders?.filter(h => h.id !== item.id));
+            setItemId('');
+          });
+      } catch (err) {
         setItemId('');
-      });
-    } catch (err) {
-      setItemId('');
+      }
+    },
+    [orders],
+  );
+
+  React.useEffect(() => {
+    if (orders?.length === 0) {
+      refetch();
     }
-  }, []);
+  }, [orders]);
+
+  useFocusEffect(
+    useCallback(() => {
+      setOrders(data);
+    }, [data]),
+  );
 
   return (
     <S.Container>
@@ -145,15 +161,15 @@ export function Solicitaions() {
           contentContainerStyle={{
             paddingBottom: 150,
           }}
-          data={data}
+          data={orders}
           keyExtractor={h => h.id}
           renderItem={({ item: h }) => (
             <OrderIndicationComp
               confirmation={() => handleAproved({ item: h })}
               reject={() => handleRecused({ item: h })}
-              itemId={itemId === h.id}
               item={h}
               valueType={h => setTypeIndication(h)}
+              load={itemId === h.id}
             >
               <Form onSubmit={() => {}}>
                 <Center m={10}>

@@ -10,6 +10,7 @@ export const routesScheme = {
   relationShip: {
     create: `/relation-create`,
     list_by_provider: 'relation/prestador',
+    update: `/relation-update`,
   },
 
   users: {
@@ -18,11 +19,12 @@ export const routesScheme = {
   },
 };
 
-export function paramsRoutesScheme(params: string | undefined) {
+export function paramsRoutesScheme(params: string) {
   const routes = {
     relationShip: {
       create: `/relation-create`,
       list_by_provider: 'relation/prestador',
+      delete: `/relation-delete/${params}`,
     },
   };
 

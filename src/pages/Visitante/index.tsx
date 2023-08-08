@@ -12,16 +12,21 @@ import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
 import { useRelation } from '../../contexts/relation';
+import { useToken } from '../../contexts/Token';
 import { IGuest, IInviteRelation } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { useAuth } from '../../hooks/useAuth';
+import { useAllUsers } from '../../hooks/user';
 import { api } from '../../services/api';
+import { routesScheme } from '../../services/schemeRoutes';
 import * as S from './styles';
 
 export function Visitante() {
   const { user } = useAuth();
+  const { mytoken, sendMessage } = useToken();
   const { listAllRelation } = useRelation();
-
+  const { data, isLoading, refetch } = useAllUsers();
+  const adms = data || [];
   const [selected, setSelected] = React.useState('approveded');
   const [showModal, setShowModa] = React.useState(false);
   const [name_convidado, setNameConvidado] = React.useState('');
@@ -37,15 +42,29 @@ export function Visitante() {
   );
 
   const handleSave = React.useCallback(async () => {
+    const adm = adms.filter(h => h.adm === true).map(h => h.token);
+
     try {
       await api
-        .post('/relation-create', {
+        .post(routesScheme.relationShip.create, {
           objto: {
             name_convidado,
+            token: mytoken,
           },
           type: 'INVIT',
+          token: '',
         })
         .then(h => {
+          console.log(h.data);
+          adm.forEach(async h => {
+            console.log(h);
+            await sendMessage({
+              text: 'convidado',
+              title: 'Novo convidado',
+              token: h,
+            });
+          });
+
           Alert.alert(
             'Show!',
             'Convidados são importantes para aumentar as relações de negócios',
@@ -56,11 +75,12 @@ export function Visitante() {
     } catch (err: any) {
       console.log(err?.response);
     }
-  }, [name_convidado]);
+  }, [adms, listAllRelation, name_convidado, sendMessage]);
 
   useFocusEffect(
     useCallback(() => {
       listAllRelation.refetch();
+      refetch();
     }, []),
   );
 

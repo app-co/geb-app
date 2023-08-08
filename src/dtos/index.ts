@@ -59,104 +59,26 @@ type T =
 
 export interface IRelashionship {
   id: string;
-  objto: object;
-  fk_user_id: string;
-  situation: boolean;
-  prestador_id?: string;
-  client_id?: string;
-  ponts: number;
-
-  created_at: Date | string;
-  updated_at: Date | string;
-  type: T;
-}
-
-export interface IRelashionshipCreate {
-  objto: object;
-  fk_user_id?: string;
-  prestador_id?: string;
-  client_id?: string;
-  type: T;
-}
-
-export interface IB2bRelation {
-  id: string;
   objto: {
-    description: string;
-    send_name: string;
-  };
-  fk_user_id: string;
-  situation: boolean;
-  prestador_id?: string;
-  client_id?: string;
-  ponts: number;
-  type: T;
-}
-
-export interface IIndicationRelation {
-  id: string;
-  objto: {
-    quemIndicaou_name: string;
-    client_name: string;
-    phone_number_client: string;
-    description: string;
-  };
-  fk_user_id: string;
-  situation: boolean;
-  prestador_id?: string;
-  client_id?: string;
-  ponts: number;
-  type: T;
-  created_at: Date | string;
-  updated_at: Date | string;
-}
-
-export interface IConsumoRelation {
-  id: string;
-  objto: {
-    consumidor_name: string;
-    valor: string;
-    description: string;
-  };
-  fk_user_id: string;
-  situation: boolean;
-  prestador_id?: string;
-  client_id?: string;
-  ponts: number;
-  type: T;
-
-  created_at: Date | string;
-  updated_at: Date | string;
-}
-
-export interface IInviteRelation {
-  id?: string;
-  objto: {
-    name_convidado: string;
-  };
-  fk_user_id: string;
-  situation: boolean;
-  prestador_id?: string;
-  client_id?: string;
-  ponts: number;
-  type: T;
-}
-
-export interface IPresensaRelation {
-  id?: string;
-  objto: {
+    token?: string;
+    description?: string;
+    send_name?: string;
+    quemIndicaou_name?: string;
+    client_name?: string;
+    phone_number_client?: string;
+    consumidor_name?: string;
+    valor?: number;
     user_id: string;
-    avatar: string;
-    user_name: string;
+    avatar?: string;
+    user_name?: string;
+    name_convidado?: string;
   };
   fk_user_id: string;
   situation: boolean;
-  prestador_id?: string;
+  prestador_id: string;
   client_id?: string;
   ponts: number;
   type: T;
-  created_at: Date | string;
-  updated_at: Date | string;
 }
 
 export interface IRelashionshipUpdate {
@@ -168,68 +90,6 @@ export interface IRelashionshipUpdate {
   client_id?: string;
   ponts?: number;
   type: T;
-}
-
-export interface IPresencaDto {
-  id: string;
-  nome: string;
-  user_id: string;
-  presenca: boolean;
-  createdAt: Date;
-}
-
-export interface IOrderTransaction {
-  id: string;
-  consumidor_name: string;
-  prestador_name: string;
-  consumidor_id: string;
-
-  prestador_id: string;
-  valor: number;
-  descricao: string;
-  createdAt?: Date;
-}
-
-export interface ITransaction {
-  id?: string;
-  consumidor_name?: string;
-  prestador_name: string;
-  consumidor_id?: string;
-  order_id?: string;
-  prestador_id: string;
-  valor: number;
-  descricao: string;
-  created_at?: Date;
-  date?: string;
-  updated_at?: string;
-  valorFormated?: string;
-}
-
-export interface IB2b {
-  send_id: string;
-  send_name: string;
-  recevid_name: string;
-  recevid_id: string;
-  appointment: Date | string;
-  assunto: string;
-  createdAt?: Date;
-  validate: boolean;
-  updated_at?: string;
-  id?: string;
-}
-
-export interface IIndicationDto {
-  id?: string;
-  indicado_id: string;
-  indicado_name: string;
-  quemIndicou_id: string;
-  quemIndicou_name: string;
-  client_name: string;
-  phone_number_client: number;
-  description: string;
-  validate?: boolean;
-  updated_at?: string;
-  createdAt?: Date;
 }
 
 export interface ILinkDto {

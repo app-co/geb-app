@@ -8,9 +8,12 @@ import { ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
 
 import { Header } from '../../components/Header';
 import { useRelation } from '../../contexts/relation';
+import { useToken } from '../../contexts/Token';
 import { IPresensaRelation } from '../../dtos';
 import { useAuth } from '../../hooks/useAuth';
+import { useAllUsers } from '../../hooks/user';
 import { api } from '../../services/api';
+import { routesScheme } from '../../services/schemeRoutes';
 import {
   Box,
   ButtonValidar,
@@ -27,6 +30,11 @@ interface I {
 export function Valide() {
   const { user } = useAuth();
   const { listAllRelation } = useRelation();
+  const { mytoken, sendMessage } = useToken();
+
+  const adms = useAllUsers();
+  const allAdm = adms.data || [];
+
   const { nome, id } = user;
   const { navigate } = useNavigation();
   const [data, setData] = useState(format(new Date(Date.now()), 'dd/MM/yyyy'));
@@ -62,6 +70,7 @@ export function Valide() {
 
   useFocusEffect(
     useCallback(() => {
+      adms.refetch();
       geoLocation();
     }, [geoLocation]),
   );
@@ -90,16 +99,27 @@ export function Valide() {
       objto: {
         user_id: id,
         avatar: user.profile.avatar,
+        token: mytoken,
       },
       type: 'PRESENCA',
       situation: false,
     };
 
+    const adm = allAdm.filter(h => h.adm === true).map(h => h.token);
+
     await api
-      .post('/relation-create', dados)
+      .post(routesScheme.relationShip.create, dados)
       .then(h => {
         setLoad(false);
         navigate('INÍCIO');
+
+        adm.forEach(async h => {
+          sendMessage({
+            title: '',
+            text: '',
+            token: h,
+          });
+        });
         Alert.alert(
           'Solicitação enviada',
           'Aguarde um adm validar sua presença',

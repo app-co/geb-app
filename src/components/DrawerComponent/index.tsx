@@ -21,7 +21,7 @@ export function DrawerContent({ ...props }: Props) {
     <Container>
       <Header>
         <HStack maxW={200}>
-          <Avatar source={{ uri: user.profile.avatarUrl }} />
+          <Avatar source={{ uri: user?.profile?.avatar }} />
           <VStack ml={5}>
             <Text style={{ color: theme.colors.text, fontSize: RFValue(18) }}>
               Olá

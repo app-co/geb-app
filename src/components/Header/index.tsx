@@ -15,7 +15,7 @@ interface IProps {
   type?: 'menu' | 'goback';
   title?: string;
   orders?: number;
-  openMail: () => void;
+  openMail?: () => void;
 }
 
 export function Header({ title, orders = 0, openMail, type = 'menu' }: IProps) {
