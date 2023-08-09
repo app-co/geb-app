@@ -1,77 +1,25 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable camelcase */
-import { AntDesign, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
-import {
-  DrawerActions,
-  useFocusEffect,
-  useNavigation,
-} from '@react-navigation/native';
-import { Form } from '@unform/mobile';
-import { AxiosError } from 'axios';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import * as Contants from 'expo-constants';
-import * as Notifications from 'expo-notifications';
-import {
-  Avatar,
-  Box,
-  Center,
-  HStack,
-  ScrollView,
-  Text,
-  TextArea,
-} from 'native-base';
-import React, { useCallback, useEffect } from 'react';
-import {
-  ActivityIndicator,
-  Dimensions,
-  FlatList,
-  Modal,
-  TouchableOpacity,
-  View,
-  Alert,
-  Platform,
-} from 'react-native';
-
-// import * as Updates from 'expo-updates';
-
-import { useQuery } from 'react-query';
+import { Avatar, Box, Center, HStack, Text } from 'native-base';
+import React, { useCallback } from 'react';
+import { ActivityIndicator, Modal, TouchableOpacity } from 'react-native';
 
 import { Classificacao } from '../../components/Classificacao';
 import { Header } from '../../components/Header';
-import { Input } from '../../components/Inputs';
 import { Loading } from '../../components/Loading';
-import { ModalComp } from '../../components/ModalComp';
-import { OrdersRelashion } from '../../components/OrdersRelashion';
 import { usePontos } from '../../contexts/pontos';
 import { useRelation } from '../../contexts/relation';
 import { useToken } from '../../contexts/Token';
 import { useData } from '../../contexts/useData';
-import {
-  IB2bRelation,
-  IConsumoRelation,
-  IIndicationRelation,
-  IRelashionship,
-  ISelfPonts,
-} from '../../dtos';
+import { IRelashionship, ISelfPonts } from '../../dtos';
 import theme from '../../global/styles/theme';
 import { useOrderRelation } from '../../hooks/relations';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
-import { _currency, _number } from '../../utils/mask';
 import { _subTitle } from '../../utils/size';
 import * as S from './styles';
-
-interface IResponse {
-  consumo: IConsumoRelation[];
-  venda: IConsumoRelation[];
-  b2b: IRelashionship[];
-  donate: IRelashionship[];
-  indication: IRelashionship[];
-  padrinho: IRelashionship[];
-  presenca: IRelashionship[];
-  totalConsumo: number;
-  totalVenda: number;
-  invit: IRelashionship[];
-}
 
 export function Inicio() {
   const { user, logOut, updateUser } = useAuth();
@@ -95,8 +43,9 @@ export function Inicio() {
   const resumo = React.useMemo(() => {
     let pontos = 0;
     let currency = 'R$ 00,00';
+    const ponts = (pontosListMe.data as ISelfPonts) || ({} as ISelfPonts);
 
-    if (pontosListMe.data) {
+    if (ponts.b2b) {
       const {
         b2b,
         compras,
@@ -106,7 +55,7 @@ export function Inicio() {
         donates,
         padrinho,
         presenca,
-      } = pontosListMe.data as ISelfPonts;
+      } = ponts as ISelfPonts;
 
       pontos =
         b2b.pontos +
@@ -119,7 +68,7 @@ export function Inicio() {
         vendas.pontos;
     }
 
-    if (listAllRelation.data) {
+    if (listAllRelation?.data) {
       const lastCurrencty = 7782628;
 
       const relation = listAllRelation.data as IRelashionship[];
@@ -162,7 +111,7 @@ export function Inicio() {
       } else {
         setModalSolicitations(false);
       }
-    }, [data]),
+    }, [data?.relation?.length]),
   );
 
   if (isLoading) {

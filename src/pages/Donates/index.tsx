@@ -44,8 +44,8 @@ export function Donates() {
     await api.post('/relation-create', data).then(h => {
       adms.forEach(async h => {
         await sendMessage({
-          title: '',
-          text: '',
+          title: 'Nova doação de donativos',
+          text: `Membro ${user.nome} acabou de realizar um donativo e espera por sua aprovação`,
           token: h,
         });
       });

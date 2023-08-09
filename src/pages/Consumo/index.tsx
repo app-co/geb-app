@@ -22,6 +22,7 @@ import {
   subMonths,
 } from 'date-fns';
 import { Box, Center, HStack } from 'native-base';
+import { getRandomString } from 'native-base/lib/typescript/theme/v33x-theme/tools';
 import React, { useCallback, useContext, useState } from 'react';
 import {
   ActivityIndicator,
@@ -36,29 +37,10 @@ import { useQuery } from 'react-query';
 import { colecao } from '../../collection';
 import { ExtratoComp } from '../../components/ExtratoComp';
 import { Header } from '../../components/Header';
-import { ListConsumo } from '../../components/ListConsumo';
 import { Loading } from '../../components/Loading';
-import { useRelation } from '../../contexts/relation';
-import {
-  IB2b,
-  IB2bRelation,
-  IConsumoRelation,
-  IDonate,
-  IGuest,
-  IIndicationDto,
-  IInviteRelation,
-  IPadrinho,
-  IPresencaDto,
-  IPresensaRelation,
-  IRelashionship,
-  ITransaction,
-  IUserDto,
-} from '../../dtos';
-import theme from '../../global/styles/theme';
-import { useAuth } from '../../hooks/useAuth';
+import { IRelashionship } from '../../dtos';
 import { api } from '../../services/api';
 import { locale } from '../../utils/LocalStrigMoney';
-import { _currency } from '../../utils/mask';
 import { months } from '../../utils/month';
 import * as S from './styles';
 
@@ -71,19 +53,6 @@ export interface PropTransactions {
   valor: string;
   updated_at: string;
 }
-
-interface IQntGeral {
-  qntPadrinho: number;
-  qntPresenca: number;
-  qntIndicacao: number;
-  user_id: string;
-}
-
-type Presença = {
-  nome: string;
-  data: string;
-  status: string;
-};
 
 type TType =
   | 'entrada'
@@ -107,19 +76,26 @@ const types = [
 ];
 
 interface IResponse {
-  consumo: IConsumoRelation[];
-  venda: IConsumoRelation[];
+  consumo: IRelashionship[];
+  venda: IRelashionship[];
   b2b: IRelashionship[];
   donate: IRelashionship[];
   indication: IRelashionship[];
   padrinho: IRelashionship[];
   presenca: IRelashionship[];
-  totalConsumo: number;
-  totalVenda: number;
+  totalConsumo: string;
+  totalVenda: string;
   invit: IRelashionship[];
 }
 
+interface IExtrato {
+  day: number;
+  item: IRelashionship[];
+  id: number;
+}
+
 type T = 'valid' | 'peding';
+const byDay = Array.from({ length: 31 }, (_, index) => index + 1);
 
 export function Consumo() {
   const [type, setType] = useState<TType>('entrada');
@@ -161,6 +137,15 @@ export function Consumo() {
   const extratoValidated = React.useMemo(() => {
     const currencyConsumo = validated.data?.totalConsumo;
     const currenyVenda = validated.data?.totalVenda;
+
+    const vendaByDay: IExtrato[] = [];
+    const consumoByDay: IExtrato[] = [];
+    const indByDay: IExtrato[] = [];
+    const b2bByDay: IExtrato[] = [];
+    const presByDay: IExtrato[] = [];
+    const danateByDay: IExtrato[] = [];
+    const invitByDay: IExtrato[] = [];
+    const padrinhoByDay: IExtrato[] = [];
 
     const venda = validated?.data?.venda.filter(h => {
       const updated = format(new Date(h.updated_at), 'MM/yy');
@@ -226,23 +211,192 @@ export function Consumo() {
       }
     });
 
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      venda?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      vendaByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      consumo?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      consumoByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      indication?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      indByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      b2b?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      b2bByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      presenca?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      presByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      donate?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      danateByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      invit?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      invitByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      padrinho?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      padrinhoByDay.push(dt);
+    });
+
     return {
       totalC: currencyConsumo,
       totalP: currenyVenda,
-      venda,
-      invit,
-      donate,
-      padrinho,
-      presenca,
-      consumo,
-      indication,
-      b2b,
+      venda: vendaByDay,
+      consumo: consumoByDay,
+      invit: invitByDay,
+      donate: danateByDay,
+      padrinho: padrinhoByDay,
+      presenca: presByDay,
+      indication: indByDay,
+      b2b: b2bByDay,
     };
   }, [currencyDateFormated, validated.data]);
 
   const extratoPending = React.useMemo(() => {
     const currencyConsumo = peding.data?.totalConsumo;
     const currenyVenda = peding.data?.totalVenda;
+
+    const vendaByDay: IExtrato[] = [];
+    const consumoByDay: IExtrato[] = [];
+    const indByDay: IExtrato[] = [];
+    const b2bByDay: IExtrato[] = [];
+    const presByDay: IExtrato[] = [];
+    const danateByDay: IExtrato[] = [];
+    const invitByDay: IExtrato[] = [];
+    const padrinhoByDay: IExtrato[] = [];
 
     const venda = peding?.data?.venda.filter(h => {
       const updated = format(new Date(h.updated_at), 'MM/yy');
@@ -308,27 +462,177 @@ export function Consumo() {
       }
     });
 
-    const totalP = currenyVenda?.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      venda?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      vendaByDay.push(dt);
     });
 
-    const totalC = currencyConsumo?.toLocaleString('pt-BR', {
-      style: 'currency',
-      currency: 'BRL',
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      consumo?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      consumoByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      indication?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      indByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      b2b?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      b2bByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      presenca?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      presByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      donate?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      danateByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      invit?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      invitByDay.push(dt);
+    });
+
+    byDay.forEach(day => {
+      const item: IRelashionship[] = [];
+
+      padrinho?.forEach(venda => {
+        const dayVenda = Number(format(new Date(venda.updated_at), 'dd'));
+
+        if (day === dayVenda) {
+          item.push(venda);
+        }
+      });
+
+      const dt = {
+        id: day + Math.random(),
+        day,
+        item,
+      };
+
+      padrinhoByDay.push(dt);
     });
 
     return {
-      totalC,
-      totalP,
-      venda,
-      invit,
-      donate,
-      padrinho,
-      presenca,
-      consumo,
-      indication,
-      b2b,
+      totalC: currencyConsumo,
+      totalP: currenyVenda,
+      venda: vendaByDay,
+      consumo: consumoByDay,
+      invit: invitByDay,
+      donate: danateByDay,
+      padrinho: padrinhoByDay,
+      presenca: presByDay,
+      indication: indByDay,
+      b2b: b2bByDay,
     };
   }, [currencyDateFormated, peding.data]);
 
@@ -451,7 +755,6 @@ export function Consumo() {
         {type === 'donate' && <S.Text>Seus donativos</S.Text>}
         {type === 'guest' && <S.Text>Seus convidados</S.Text>}
       </S.BoxTotal>
-
       {typeExtrato === 'valid' && (
         <Box>
           {type === 'entrada' && (
@@ -462,11 +765,7 @@ export function Consumo() {
               data={extratoValidated.venda}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  valor={h.objto.currency}
-                  description={h.objto.descricao}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -479,11 +778,7 @@ export function Consumo() {
               data={extratoValidated.consumo}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  valor={h.objto.currency}
-                  description={h.objto.descricao}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -496,10 +791,7 @@ export function Consumo() {
               data={extratoValidated.indication}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={`Cliente indicado: ${h.objto.client_name}`}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -512,10 +804,7 @@ export function Consumo() {
               data={extratoValidated.presenca}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description=""
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -528,10 +817,7 @@ export function Consumo() {
               data={extratoValidated.b2b}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={h.objto.description}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -544,10 +830,7 @@ export function Consumo() {
               data={extratoValidated.invit}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={`Convidado: ${h.objto.name_convidado}`}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -560,10 +843,7 @@ export function Consumo() {
               data={extratoValidated.padrinho}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={`Afiliado: ${h.objto.apadrinhado_name}`}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -576,10 +856,7 @@ export function Consumo() {
               data={extratoValidated.donate}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={h.objto.itens}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -596,11 +873,7 @@ export function Consumo() {
               data={extratoPending.venda}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  valor={locale(h.objto.valor)}
-                  description={h.objto.descricao}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -613,11 +886,7 @@ export function Consumo() {
               data={extratoPending.consumo}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  valor={locale(h.objto.valor)}
-                  description={h.objto.descricao}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -630,10 +899,7 @@ export function Consumo() {
               data={extratoPending.indication}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={`Cliente indicado: ${h.objto.client_name}`}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -646,10 +912,7 @@ export function Consumo() {
               data={extratoPending.presenca}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description=""
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -662,10 +925,7 @@ export function Consumo() {
               data={extratoPending.b2b}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={h.objto.description}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -678,10 +938,7 @@ export function Consumo() {
               data={extratoPending.invit}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={`Convidado: ${h.objto.name_convidado}`}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -694,10 +951,7 @@ export function Consumo() {
               data={extratoPending.padrinho}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={`Afiliado: ${h.objto.apadrinhado_name}`}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}
@@ -710,10 +964,7 @@ export function Consumo() {
               data={extratoPending.donate}
               keyExtractor={h => String(h.id)}
               renderItem={({ item: h }) => (
-                <ExtratoComp
-                  data={format(new Date(h.updated_at), 'dd/MM/yy')}
-                  description={h.objto.itens}
-                />
+                <ExtratoComp day={h.day} item={h.item} />
               )}
             />
           )}

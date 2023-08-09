@@ -148,7 +148,7 @@ export function Solicitaions() {
 
   useFocusEffect(
     useCallback(() => {
-      setOrders(data);
+      setOrders(data?.relation);
     }, [data]),
   );
 

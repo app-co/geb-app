@@ -18,14 +18,14 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.app-c.appGeb",
       "googleServicesFile": "google-ios.plist",
-      "buildNumber": "39"
+      "buildNumber": "40"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#071566"
       },
-      "versionCode": 39,
+      "versionCode": 40,
       "package": "com.appc.gebtraining",
       "googleServicesFile": "google-android.json",
       "permissions": [

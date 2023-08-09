@@ -15,7 +15,13 @@ export async function solitations(): Promise<I> {
 
   const l = orders.totalValor;
 
-  const fil = orders.relation.filter(h => h.situation === false);
+  const fil = orders.relation.filter(
+    h =>
+      h.situation === false &&
+      h.type !== 'PRESENCA' &&
+      h.type !== 'DONATE' &&
+      h.type !== 'INVIT',
+  );
 
   const rs = {
     relation: fil,

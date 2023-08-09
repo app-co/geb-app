@@ -83,6 +83,8 @@ export interface IRelashionship {
   client_id?: string;
   ponts: number;
   type: T;
+  created_at: Date | string;
+  updated_at: Date | string;
 }
 
 export interface IRelashionshipUpdate {
