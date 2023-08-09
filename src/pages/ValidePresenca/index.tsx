@@ -88,11 +88,12 @@ export function Valide() {
     };
 
     if (local.lat !== location.lat && local.log !== location.log) {
-      Alert.alert(
+      return Alert.alert(
         'Atenção',
         'Você precisa estar no local para lançar a sua presença',
       );
     }
+
     const dados = {
       nome,
       user_id: id,
@@ -111,12 +112,12 @@ export function Valide() {
       .post(routesScheme.relationShip.create, dados)
       .then(h => {
         setLoad(false);
-        navigate('INÍCIO');
+        // navigate('INÍCIO');
 
         adm.forEach(async h => {
           sendMessage({
-            title: '',
-            text: '',
+            title: 'Presença',
+            text: 'Um membro acabou de marcar presença',
             token: h,
           });
         });
