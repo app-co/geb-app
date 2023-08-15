@@ -48,6 +48,7 @@ export function OrderB2b() {
         send_name: user.nome,
         description,
         token: mytoken,
+        avatar: user.profile.avatar,
       },
       token: prestador.token,
       situation: false,

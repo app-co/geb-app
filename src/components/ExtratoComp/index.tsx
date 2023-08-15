@@ -22,7 +22,11 @@ function ExtratoCompMemo({ item = [], day }: I) {
       {item.map(h => (
         <S.Container key={h.id}>
           <S.box>
-            <S.text>{h.objto.descricao}</S.text>
+            {h.objto?.apadrinhado_name ? (
+              <S.text>{h.objto?.apadrinhado_name}</S.text>
+            ) : (
+              <S.text>{h.objto.descricao}</S.text>
+            )}
           </S.box>
 
           {h.objto?.valor && (

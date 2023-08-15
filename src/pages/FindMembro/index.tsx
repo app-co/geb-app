@@ -52,13 +52,13 @@ export function FindUser() {
   useFocusEffect(
     useCallback(() => {
       refetch();
-    }, []),
+    }, [refetch]),
   );
 
   if (isLoading) {
     return (
       <Center>
-        <Loading size={46} />
+        <Loading />
       </Center>
     );
   }

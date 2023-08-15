@@ -5,11 +5,13 @@
 // /* eslint-disable camelcase */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { STORAGE_KEY, STORAGE_KEY_TOKEN } from '@types';
+import { useToast } from 'native-base';
 import React, { ReactNode, createContext, useCallback, useState } from 'react';
 import { Alert } from 'react-native';
 
 import { IUserDtos } from '../dtos';
 import { api } from '../services/api';
+import { AppError } from '../utils/AppError';
 
 interface ILogin {
   membro: string;
@@ -41,6 +43,7 @@ export const AuthContext = createContext<IAuthContextData>(
 
 export function AuthContextProvider({ children }: TAuthContext) {
   const [loading, setLoading] = useState(true);
+  const toast = useToast();
   const [data, setData] = useState<AuthState>({} as AuthState);
 
   const LoadingUser = useCallback(async () => {
@@ -61,18 +64,17 @@ export function AuthContextProvider({ children }: TAuthContext) {
   }, []);
 
   const login = useCallback(async ({ membro, senha }: ILogin) => {
-    await api
-      .post('/user/session', {
-        membro,
-        senha,
-      })
-      .then(async h => {
-        const { token } = h.data;
-        api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    try {
+      await api
+        .post('/user/session', {
+          membro,
+          senha,
+        })
+        .then(async h => {
+          const { token } = h.data;
+          api.defaults.headers.common.Authorization = `Bearer ${token}`;
 
-        await api
-          .get('/user/find-user-by-id')
-          .then(async h => {
+          await api.get('/user/find-user-by-id').then(async h => {
             const user = h.data;
             setData({ token, user });
 
@@ -80,9 +82,21 @@ export function AuthContextProvider({ children }: TAuthContext) {
               [keyToken, token],
               [key, JSON.stringify(user)],
             ]);
-          })
-          .catch();
+          });
+        });
+    } catch (error) {
+      const isError = error instanceof AppError;
+      const title = isError
+        ? error.message
+        : 'Não foi possível entrar na sua conta, tente novamente mais tarde';
+
+      toast.show({
+        title,
+        description: 'Entre com suas credenciais corretas',
+        placement: 'bottom',
+        bgColor: 'red.500',
       });
+    }
   }, []);
 
   const logOut = useCallback(async () => {
@@ -104,6 +118,24 @@ export function AuthContextProvider({ children }: TAuthContext) {
     },
     [data.token],
   );
+
+  const tokkenFail = React.useCallback(async () => {
+    logOut();
+    toast.show({
+      title: 'Seu token expirou.',
+      description: 'Entre novamente com suas credenciais',
+      placement: 'bottom',
+      bg: 'red.500',
+    });
+  }, []);
+
+  React.useEffect(() => {
+    const subscribe = api.registerIntercepTokenManager(tokkenFail);
+
+    return () => {
+      subscribe();
+    };
+  }, []);
 
   return (
     <AuthContext.Provider

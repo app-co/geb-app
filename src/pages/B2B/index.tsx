@@ -7,6 +7,7 @@ import { ActivityIndicator, FlatList, View } from 'react-native';
 
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
+import { Loading } from '../../components/Loading';
 import { MembrosComponents } from '../../components/MembrosCompornents';
 import { IUserDtos } from '../../dtos';
 import { useAuth } from '../../hooks/useAuth';
@@ -49,7 +50,7 @@ export function B2B() {
   );
 
   if (isLoading) {
-    return <ActivityIndicator size={30} />;
+    return <Loading />;
   }
 
   return (

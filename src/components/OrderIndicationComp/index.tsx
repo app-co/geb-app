@@ -129,8 +129,8 @@ export function OrderIndicationComp({
       {item.type === 'CONSUMO_OUT' && (
         <HStack space={6}>
           <Center mt="4">
-            <Avatar size="lg" />
-            <S.text>nome</S.text>
+            <Avatar size="lg" source={{ uri: item.objto.avatar }} />
+            <S.text>{item.objto.consumidor_name}</S.text>
           </Center>
 
           <S.boxDescription>
@@ -146,8 +146,8 @@ export function OrderIndicationComp({
       {item.type === 'B2B' && (
         <HStack space={6}>
           <Center mt="4">
-            <Avatar size="lg" />
-            <S.text>nome</S.text>
+            <Avatar size="lg" source={{ uri: item.objto?.avatar }} />
+            <S.text>{item.objto.send_name}</S.text>
           </Center>
 
           <S.boxDescription>

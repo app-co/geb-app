@@ -87,12 +87,12 @@ export function Valide() {
       log: -48.442223,
     };
 
-    if (local.lat !== location.lat && local.log !== location.log) {
-      return Alert.alert(
-        'Atenção',
-        'Você precisa estar no local para lançar a sua presença',
-      );
-    }
+    // if (local.lat !== location.lat && local.log !== location.log) {
+    //   return Alert.alert(
+    //     'Atenção',
+    //     'Você precisa estar no local para lançar a sua presença',
+    //   );
+    // }
 
     const dados = {
       nome,

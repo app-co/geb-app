@@ -79,17 +79,7 @@ export function Transaction() {
           );
         }
       });
-  }, [
-    value,
-    description,
-    prestador.id,
-    prestador.token,
-    prestador.profile.avatar,
-    user.id,
-    user.nome,
-    mytoken,
-    valor,
-  ]);
+  }, [value, description, prestador, user, mytoken, valor, navigate]);
 
   return (
     <S.Container>

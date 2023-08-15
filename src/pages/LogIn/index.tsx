@@ -32,12 +32,9 @@ export function SingIn() {
     setErrEmail(false);
     setErrPass(false);
 
-    await login({
+    login({
       membro,
       senha: pass,
-    }).catch(h => {
-      console.log(h);
-      Alert.alert('Erro ao logar com sua conta', h.response.data.message);
     });
 
     return null;
