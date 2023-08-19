@@ -56,11 +56,7 @@ export function FindUser() {
   );
 
   if (isLoading) {
-    return (
-      <Center>
-        <Loading />
-      </Center>
-    );
+    return <Loading />;
   }
 
   return (

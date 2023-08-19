@@ -1,13 +1,23 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable camelcase */
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { FormHandles } from '@unform/core';
+import { Form } from '@unform/mobile';
 import * as Contants from 'expo-constants';
-import { Avatar, Box, Center, HStack, Text } from 'native-base';
-import React, { useCallback } from 'react';
-import { ActivityIndicator, Modal, TouchableOpacity } from 'react-native';
+import { Avatar, Box, Center, HStack, Text, useToast } from 'native-base';
+import { setCookie } from 'nookies';
+import React, { useCallback, useEffect, useRef } from 'react';
+import {
+  ActivityIndicator,
+  Alert,
+  Modal,
+  TouchableOpacity,
+} from 'react-native';
 
 import { Classificacao } from '../../components/Classificacao';
 import { Header } from '../../components/Header';
+import { Input } from '../../components/Inputs';
 import { Loading } from '../../components/Loading';
 import { usePontos } from '../../contexts/pontos';
 import { useRelation } from '../../contexts/relation';
@@ -18,27 +28,36 @@ import theme from '../../global/styles/theme';
 import { useOrderRelation } from '../../hooks/relations';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
+import { routesScheme } from '../../services/schemeRoutes';
+import { IsActiveFingerTokenStorage } from '../../storage/acitve-finger-token';
+import { LocalAuthData } from '../../storage/local-auth-data';
+import { AppError } from '../../utils/AppError';
 import { _subTitle } from '../../utils/size';
 import * as S from './styles';
 
+const isActiveFigerToken = new IsActiveFingerTokenStorage();
+const localAuthData = new LocalAuthData();
+
 export function Inicio() {
-  const { user, logOut, updateUser } = useAuth();
+  const ref = useRef<FormHandles>(null);
+  const toast = useToast();
+
+  const { user, login, logOut, updateUser } = useAuth();
   const { navigate } = useNavigation();
   const { pontosListMe } = usePontos();
   const { indRank } = useData();
   const { mytoken } = useToken();
   const { listAllRelation } = useRelation();
   const { data, isLoading, error, refetch } = useOrderRelation();
+  const [modalAuth, setModalAuth] = React.useState(false);
+  const [permissionFingerprint, setPermissionFingerprinte] =
+    React.useState(false);
+  const [load, setLoad] = React.useState(false);
+  const [loadingInterface, setLoadInterface] = React.useState(true);
 
-  const [showModalSolicitations, setModalSolicitations] = React.useState(false);
+  const [showModalSolicitations, setModalSolicitations] = React.useState(true);
 
   const version = Contants.default.expoConfig?.version;
-
-  // const validated = useQuery('valid-consumo', async () => {
-  //   const rs = await api.get('/relation/extrato-valid');
-
-  //   return rs.data as IResponse;
-  // });
 
   const resumo = React.useMemo(() => {
     let pontos = 0;
@@ -105,6 +124,9 @@ export function Inicio() {
 
   useFocusEffect(
     useCallback(() => {
+      setTimeout(() => {
+        setLoadInterface(false);
+      }, 3000);
       refetch();
       if (data?.relation?.length > 0) {
         setModalSolicitations(true);
@@ -114,12 +136,129 @@ export function Inicio() {
     }, [data?.relation?.length]),
   );
 
-  if (isLoading) {
+  const handleSavePass = React.useCallback(
+    async ({ pass }: { pass: string }) => {
+      setLoad(true);
+      const auth = {
+        membro: user.membro,
+        senha: pass,
+      };
+
+      try {
+        await api.post('/user/session', auth);
+        await isActiveFigerToken.setStorage({
+          isActive: true,
+        });
+
+        await localAuthData.setStorage(auth);
+
+        setLoad(false);
+        setModalAuth(false);
+      } catch (error) {
+        setLoad(false);
+        const erro = error instanceof AppError;
+
+        if (erro) {
+          Alert.alert('Erro ao validar sua senha', error.message);
+        }
+      }
+    },
+    [toast, user.membro],
+  );
+
+  React.useEffect(() => {
+    async function auth() {
+      const permissionAuth = isActiveFigerToken.getStorage();
+
+      if (!permissionAuth) {
+        if (!loadingInterface) {
+          setModalAuth(!permissionAuth);
+        }
+      }
+    }
+
+    auth();
+
+    return () => {
+      auth();
+    };
+  }, [loadingInterface]);
+
+  if (isLoading && loadingInterface) {
     return <Loading />;
   }
 
   return (
     <S.Container>
+      <Modal visible={modalAuth}>
+        <Center flex="1">
+          <Text style={{ marginBottom: 20 }}>
+            Deseja ativar acesso com sua biometria?
+          </Text>
+
+          <HStack space={8}>
+            <TouchableOpacity
+              onPress={() => setModalAuth(false)}
+              style={{
+                width: 130,
+                alignItems: 'center',
+                padding: 10,
+                borderRadius: 10,
+                backgroundColor: theme.colors.focus_second,
+              }}
+            >
+              <Text style={{ color: '#fff', fontFamily: theme.fonts.bold }}>
+                MAIS TARDE
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => setPermissionFingerprinte(true)}
+              style={{
+                width: 130,
+                alignItems: 'center',
+                padding: 10,
+                borderRadius: 10,
+                backgroundColor: theme.colors.focus,
+              }}
+            >
+              <Text style={{ color: '#fff', fontFamily: theme.fonts.bold }}>
+                SIM
+              </Text>
+            </TouchableOpacity>
+          </HStack>
+
+          {permissionFingerprint && (
+            <Form ref={ref} onSubmit={handleSavePass}>
+              <Center mt="16">
+                <Input icon="lock" placeholder="Digite sua senha" name="pass" />
+
+                <TouchableOpacity
+                  onPress={() => ref.current?.submitForm()}
+                  style={{
+                    width: 130,
+                    alignItems: 'center',
+                    padding: 10,
+                    borderRadius: 10,
+                    backgroundColor: theme.colors.focus,
+                  }}
+                >
+                  {load ? (
+                    <ActivityIndicator />
+                  ) : (
+                    <Text
+                      style={{ color: '#fff', fontFamily: theme.fonts.bold }}
+                    >
+                      SALVAR
+                    </Text>
+                  )}
+                </TouchableOpacity>
+              </Center>
+            </Form>
+          )}
+        </Center>
+      </Modal>
+
       <Box flex={1}>
         <Header
           openMail={() => {

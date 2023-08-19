@@ -5,12 +5,15 @@
 // /* eslint-disable camelcase */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 // import { STORAGE_KEY, STORAGE_KEY_TOKEN } from '@types';
+import * as LocalAuthentication from 'expo-local-authentication';
 import { useToast } from 'native-base';
 import React, { ReactNode, createContext, useCallback, useState } from 'react';
 import { Alert } from 'react-native';
 
 import { IUserDtos } from '../dtos';
 import { api } from '../services/api';
+import { routesScheme } from '../services/schemeRoutes';
+import { TokenStorage } from '../storage/token-storage';
 import { AppError } from '../utils/AppError';
 
 interface ILogin {
@@ -34,7 +37,6 @@ type AuthState = {
   token: string;
   user: IUserDtos;
 };
-const keyToken = '@appGeb:token';
 const key = '@appGeb:user';
 
 export const AuthContext = createContext<IAuthContextData>(
@@ -45,17 +47,27 @@ export function AuthContextProvider({ children }: TAuthContext) {
   const [loading, setLoading] = useState(true);
   const toast = useToast();
   const [data, setData] = useState<AuthState>({} as AuthState);
+  const storageToken = new TokenStorage();
+
+  const userAndTokenUpdate = React.useCallback(async (token: string) => {
+    api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+    await api.get('/user/find-user-by-id').then(async h => {
+      const user = h.data;
+      setData({ token, user });
+    });
+  }, []);
 
   const LoadingUser = useCallback(async () => {
-    await AsyncStorage.removeItem('first');
+    setLoading(true);
 
-    const [token, user] = await AsyncStorage.multiGet([keyToken, key]);
-    api.defaults.headers.common.Authorization = `Bearer ${token[1]}`;
+    const token = await storageToken.getToken();
 
-    if (token[1] && user[1])
-      if (token && user) {
-        setData({ token: token[1], user: JSON.parse(user[1]) });
-      }
+    console.log(token, 'auth');
+    if (token) {
+      userAndTokenUpdate(token);
+    }
+
     setLoading(false);
   }, []);
 
@@ -66,7 +78,7 @@ export function AuthContextProvider({ children }: TAuthContext) {
   const login = useCallback(async ({ membro, senha }: ILogin) => {
     try {
       await api
-        .post('/user/session', {
+        .post(routesScheme.users.login, {
           membro,
           senha,
         })
@@ -78,10 +90,7 @@ export function AuthContextProvider({ children }: TAuthContext) {
             const user = h.data;
             setData({ token, user });
 
-            await AsyncStorage.multiSet([
-              [keyToken, token],
-              [key, JSON.stringify(user)],
-            ]);
+            await storageToken.setToken(token);
           });
         });
     } catch (error) {
@@ -100,14 +109,13 @@ export function AuthContextProvider({ children }: TAuthContext) {
   }, []);
 
   const logOut = useCallback(async () => {
-    await AsyncStorage.multiRemove([keyToken, key]);
-    setData(data as AuthState);
+    await storageToken.removeToken();
     setData({} as AuthState);
   }, [data]);
 
   const updateUser = useCallback(
     async (user: IUserDtos) => {
-      await AsyncStorage.setItem(key, JSON.stringify(user));
+      // await AsyncStorage.setItem(key, JSON.stringify(user));
 
       const dados = {
         token: data.token,
@@ -127,13 +135,13 @@ export function AuthContextProvider({ children }: TAuthContext) {
       placement: 'bottom',
       bg: 'red.500',
     });
-  }, []);
+  }, [logOut, toast]);
 
   React.useEffect(() => {
-    const subscribe = api.registerIntercepTokenManager(tokkenFail);
+    const out = api.registerIntercepTokenManager(tokkenFail);
 
     return () => {
-      subscribe();
+      out();
     };
   }, []);
 

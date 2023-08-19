@@ -16,6 +16,7 @@ export const routesScheme = {
   users: {
     list_all_users: '/user/list-all-user',
     self_ponts: '/user/global-rank-ind',
+    login: '/user/session',
   },
 };
 

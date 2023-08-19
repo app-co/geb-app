@@ -55,7 +55,7 @@ export function Transaction() {
       objto: {
         token: mytoken,
         consumidor_name: user.nome,
-        avatar: prestador.profile.avatar,
+        avatar: user.profile.avatar,
         description,
         valor,
       },

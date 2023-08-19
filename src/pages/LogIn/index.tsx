@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
 import { FormControl, WarningOutlineIcon, Text } from 'native-base';
@@ -10,10 +11,17 @@ import { Alert, View } from 'react-native';
 import logo from '../../assets/logo.png';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Inputs';
+import { Loading } from '../../components/Loading';
 import theme from '../../global/styles/theme';
 import { useAuth } from '../../hooks/useAuth';
+import { IsActiveFingerTokenStorage } from '../../storage/acitve-finger-token';
+import { LocalAuthData } from '../../storage/local-auth-data';
 import { version } from '../../utils/updates';
+import { localAuth } from './LocalAurh';
 import { BoxInput, BoxLogo, Container, Logo } from './styles';
+
+const authStorage = new LocalAuthData();
+const isActiveFingerToken = new IsActiveFingerTokenStorage();
 
 export function SingIn() {
   const { login } = useAuth();
@@ -21,24 +29,54 @@ export function SingIn() {
 
   const [membro, setMembro] = useState('');
   const [pass, setPass] = useState('');
-  const [errEmail, setErrEmail] = useState(false);
-  const [errPass, setErrPass] = useState(false);
+  const [load, setLoad] = React.useState(false);
+  const [authencationStatus, setAuthenticationStatus] = React.useState<
+    boolean | null
+  >(null);
 
   const handleSubmit = useCallback(async () => {
-    if (membro === '' || pass === '') {
-      return Alert.alert('Login', 'forneça um email e uma senha');
+    const credentials = await authStorage.getStorage();
+
+    if (!authencationStatus) {
+      if (membro === '' || pass === '') {
+        return Alert.alert('Login', 'forneça um email e uma senha');
+      }
+      login({
+        membro,
+        senha: pass,
+      });
+    }
+  }, [authStorage, authencationStatus, membro, pass, login]);
+
+  React.useEffect(() => {
+    async function Auth() {
+      const isActive = await isActiveFingerToken.getStorage();
+
+      console.log(isActive);
+
+      const credentials = await authStorage.getStorage();
+
+      if (isActive.isActive) {
+        const isAuth = await localAuth();
+        if (credentials) {
+          if (isAuth) {
+            setLoad(true);
+            login(credentials);
+          } else {
+            setAuthenticationStatus(isAuth);
+          }
+        } else {
+          await isActiveFingerToken.setStorage({ isActive: false });
+        }
+      }
     }
 
-    setErrEmail(false);
-    setErrPass(false);
+    Auth();
+  }, [login]);
 
-    login({
-      membro,
-      senha: pass,
-    });
-
-    return null;
-  }, [membro, pass, login]);
+  if (load) {
+    return <Loading />;
+  }
 
   return (
     <Container behavior="padding">
