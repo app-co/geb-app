@@ -52,12 +52,12 @@ export function SingIn() {
     async function Auth() {
       const isActive = await isActiveFingerToken.getStorage();
 
-      console.log(isActive);
 
       const credentials = await authStorage.getStorage();
 
       if (isActive.isActive) {
         const isAuth = await localAuth();
+        console.log(isAuth, 'auth')
         if (credentials) {
           if (isAuth) {
             setLoad(true);

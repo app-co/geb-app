@@ -168,7 +168,9 @@ export function Inicio() {
 
   React.useEffect(() => {
     async function auth() {
-      const permissionAuth = isActiveFigerToken.getStorage();
+      const permissionAuth = await isActiveFigerToken.getStorage();
+
+      console.log(permissionAuth)
 
       if (!permissionAuth) {
         if (!loadingInterface) {

@@ -1,4 +1,5 @@
 import * as LocalAuthentication from 'expo-local-authentication';
+import { Alert } from 'react-native';
 
 export async function localAuth(): Promise<boolean | null> {
   let auth = null;
@@ -7,7 +8,7 @@ export async function localAuth(): Promise<boolean | null> {
     const supported = await LocalAuthentication.hasHardwareAsync();
 
     if (!supported) {
-      return;
+      return Alert.alert("Dispositivo náo suportado para acesso com biometria ou faceId")
     }
 
     const isEnrolled = await LocalAuthentication.isEnrolledAsync();
@@ -15,6 +16,7 @@ export async function localAuth(): Promise<boolean | null> {
     if (!isEnrolled) {
       return;
     }
+
 
     const result = await LocalAuthentication.authenticateAsync({
       promptMessage: 'Autentique-se para continuar',
