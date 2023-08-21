@@ -163,14 +163,14 @@ export function Inicio() {
         }
       }
     },
-    [toast, user.membro],
+    [user.membro],
   );
 
   React.useEffect(() => {
     async function auth() {
       const permissionAuth = await isActiveFigerToken.getStorage();
 
-      console.log(permissionAuth)
+      console.log(permissionAuth);
 
       if (!permissionAuth) {
         if (!loadingInterface) {

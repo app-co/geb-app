@@ -33,6 +33,7 @@ api.registerIntercepTokenManager = signOut => {
     config => config,
     async requesRrror => {
       const erro = requesRrror?.response?.data;
+      console.log(requesRrror);
       if (requesRrror?.response && erro) {
         const { message } = erro;
         if (message === 'token inválido' || message === 'falta o token') {

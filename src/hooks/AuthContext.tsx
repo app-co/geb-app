@@ -37,7 +37,6 @@ type AuthState = {
   token: string;
   user: IUserDtos;
 };
-const key = '@appGeb:user';
 
 export const AuthContext = createContext<IAuthContextData>(
   {} as IAuthContextData,
@@ -63,13 +62,12 @@ export function AuthContextProvider({ children }: TAuthContext) {
 
     const token = await storageToken.getToken();
 
-    console.log(token, 'auth');
     if (token) {
       userAndTokenUpdate(token);
     }
 
     setLoading(false);
-  }, []);
+  }, [storageToken, userAndTokenUpdate]);
 
   React.useEffect(() => {
     LoadingUser();
@@ -99,12 +97,22 @@ export function AuthContextProvider({ children }: TAuthContext) {
         ? error.message
         : 'Não foi possível entrar na sua conta, tente novamente mais tarde';
 
-      toast.show({
-        title,
-        description: 'Entre com suas credenciais corretas',
-        placement: 'bottom',
-        bgColor: 'red.500',
-      });
+      if (isError) {
+        toast.show({
+          title,
+          description: title,
+          placement: 'bottom',
+          bgColor: 'red.500',
+        });
+      } else {
+        toast.show({
+          title,
+          description:
+            'Estamos com um problema no servidor, tente novamente mais tarde',
+          placement: 'bottom',
+          bgColor: 'red.500',
+        });
+      }
     }
   }, []);
 

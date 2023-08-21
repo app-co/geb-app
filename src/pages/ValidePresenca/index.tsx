@@ -27,6 +27,11 @@ interface I {
   log: number;
 }
 
+const local = {
+  lat: -22.889,
+  log: -48.442,
+};
+
 export function Valide() {
   const { user } = useAuth();
   const { listAllRelation } = useRelation();
@@ -43,8 +48,6 @@ export function Valide() {
   const [location, setLocation] = useState<I>({ lat: 0, log: 0 });
   const [errorMsg, setErrorMsg] = useState(null);
 
-  useEffect(() => {}, []);
-
   const geoLocation = React.useCallback(async () => {
     const { status } = await Location.requestForegroundPermissionsAsync();
     if (status !== 'granted') {
@@ -58,6 +61,10 @@ export function Valide() {
       log: location.coords.longitude,
     });
   }, []);
+
+  useEffect(() => {
+    geoLocation();
+  }, [geoLocation]);
 
   const presendaData = (listAllRelation.data as IPresensaRelation[]) || [];
   const filPres = presendaData.find(h => {
@@ -82,17 +89,15 @@ export function Valide() {
       );
     }
 
-    const local = {
-      lat: -22.8894586,
-      log: -48.442223,
-    };
+    const lat = Number(location.lat.toFixed(3));
+    const log = Number(location.log.toFixed(3));
 
-    // if (local.lat !== location.lat && local.log !== location.log) {
-    //   return Alert.alert(
-    //     'Atenção',
-    //     'Você precisa estar no local para lançar a sua presença',
-    //   );
-    // }
+    if (local.lat !== lat && local.log !== log) {
+      return Alert.alert(
+        'Atenção',
+        'Você precisa estar no local para lançar a sua presença',
+      );
+    }
 
     const dados = {
       nome,
@@ -130,12 +135,14 @@ export function Valide() {
         Alert.alert('Ops!', h.response.data.message);
       });
   }, [
+    allAdm,
     filPres,
     id,
     location.lat,
     location.log,
-    navigate,
+    mytoken,
     nome,
+    sendMessage,
     user.profile.avatar,
   ]);
 
@@ -144,7 +151,7 @@ export function Valide() {
       <Header title="Valide sua presença" />
 
       <Box>
-        <Title>{data} </Title>
+        <Title>{data}</Title>
       </Box>
 
       <ButtonValidar onPress={hanldeValidar}>

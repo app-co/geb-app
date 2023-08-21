@@ -2,7 +2,7 @@
   "expo": {
     "name": "GEB networking",
     "slug": "aplicativogeb",
-    "version": "3.2.9",
+    "version": "3.3.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -18,14 +18,14 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.app-c.appGeb",
       "googleServicesFile": "google-ios.plist",
-      "buildNumber": "42"
+      "buildNumber": "44"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#071566"
       },
-      "versionCode": 42,
+      "versionCode": 44,
       "package": "com.appc.gebtraining",
       "googleServicesFile": "google-android.json",
       "permissions": [
@@ -56,7 +56,7 @@
       [
         "expo-location",
         {
-          "locationAlwaysAndWhenInUsePermission": "Allow $(PRODUCT_NAME) to use your location."
+          "locationAlwaysAndWhenInUsePermission": "Permita que $(PRODUCT_NAME) acesse sua localizaçõa. Essa função é necessária para que você possa validar sua presença duarante os eventos"
         }
       ],
 
