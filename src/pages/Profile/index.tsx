@@ -113,7 +113,7 @@ export function Profile() {
     const result = await ImagePiker.launchImageLibraryAsync({
       mediaTypes: ImagePiker.MediaTypeOptions.All,
       allowsEditing: true,
-      quality: 1,
+      quality: 0,
     });
 
     if (result.cancelled) {
@@ -132,7 +132,7 @@ export function Profile() {
 
       const reference = storage().ref(`/image/avatar/${user.id}.png`);
 
-      await reference.putFile(result.uri);
+      await reference.putFile(result.assets[0].uri);
       const photoUrl = await reference.getDownloadURL();
       setAvatarUrl(photoUrl);
     }
@@ -147,15 +147,11 @@ export function Profile() {
         mediaTypes: ImagePiker.MediaTypeOptions.All,
         allowsEditing: true,
         aspect: [4, 4],
-        quality: 1,
+        quality: 0,
       });
 
-      if (result.cancelled) {
-        setLoading(false);
-      }
-
       if (!result.cancelled) {
-        setLogo(result.uri);
+        setLogo(result.assets[0].uri);
 
         try {
           const ref = storage().ref(`image/logo/${user.id}.png`);
@@ -165,7 +161,7 @@ export function Profile() {
         }
         const reference = storage().ref(`/image/logo/${user.id}.png`);
 
-        await reference.putFile(result.uri);
+        await reference.putFile(result.assets[0].uri);
         const photoUrl = await reference.getDownloadURL();
         setLogorUrl(photoUrl);
       }

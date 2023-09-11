@@ -2,6 +2,7 @@ import theme from '../global/styles/theme';
 import { Ranking } from '../pages/ADM/Classificacao';
 import { SingUp } from '../pages/ADM/CreateUser';
 import { DeletUser } from '../pages/ADM/DeleteUser';
+import { UploadAvatar } from '../pages/ADM/UploadAvatar';
 import { ValidateDanates } from '../pages/ADM/ValidateDanates';
 import { ValidateGuest } from '../pages/ADM/ValidateGuest';
 import { ListPresenca } from '../pages/ADM/ValidatePresenca';
@@ -138,6 +139,13 @@ export const rotasAdm = [
     color: theme.colors.secundary,
     name: 'EXCLUIR MEMBROS',
     component: DeletUser,
+    icon: '',
+  },
+
+  {
+    color: theme.colors.secundary,
+    name: 'Carregar Avatar',
+    component: UploadAvatar,
     icon: '',
   },
   // {

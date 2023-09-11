@@ -4,8 +4,17 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
+import { getWeek } from 'date-fns';
 import * as Contants from 'expo-constants';
-import { Avatar, Box, Center, HStack, Text, useToast } from 'native-base';
+import {
+  Avatar,
+  Box,
+  Center,
+  HStack,
+  Text,
+  useToast,
+  VStack,
+} from 'native-base';
 import { setCookie } from 'nookies';
 import React, { useCallback, useEffect, useRef } from 'react';
 import {
@@ -14,6 +23,7 @@ import {
   Modal,
   TouchableOpacity,
 } from 'react-native';
+import { useQuery } from 'react-query';
 
 import { Classificacao } from '../../components/Classificacao';
 import { Header } from '../../components/Header';
@@ -38,6 +48,19 @@ import * as S from './styles';
 const isActiveFigerToken = new IsActiveFingerTokenStorage();
 const localAuthData = new LocalAuthData();
 
+interface IResponse {
+  presenca: IRelashionship[];
+}
+
+const variationPresensa: any = {
+  5: '#f5e346',
+  6: '#f5e346',
+  7: '#f8973d',
+  8: '#f8973d',
+  9: '#f8973d',
+  10: '#ee3c3c',
+};
+
 export function Inicio() {
   const ref = useRef<FormHandles>(null);
   const toast = useToast();
@@ -56,6 +79,29 @@ export function Inicio() {
   const [loadingInterface, setLoadInterface] = React.useState(true);
 
   const [showModalSolicitations, setModalSolicitations] = React.useState(true);
+  const [modalPresenca, setModalPresenca] = React.useState(false);
+
+  const validated = useQuery('valid-consumo', async () => {
+    const rs = await api.get('/relation/extrato-valid');
+
+    return rs.data as IResponse;
+  });
+
+  const avaliablePresenca = React.useMemo(() => {
+    const presenca = validated.data?.presenca || [];
+
+    const currencyWeek = getWeek(new Date());
+    const avaliable = currencyWeek - 30;
+    const totalPresenca = 30;
+
+    return { avaliable, totalPresenca, currencyWeek };
+  }, [validated.data?.presenca]);
+
+  React.useEffect(() => {
+    if (avaliablePresenca.avaliable >= 5) {
+      setModalPresenca(true);
+    }
+  }, []);
 
   const version = Contants.default.expoConfig?.version;
 
@@ -170,8 +216,6 @@ export function Inicio() {
     async function auth() {
       const permissionAuth = await isActiveFigerToken.getStorage();
 
-      console.log(permissionAuth);
-
       if (!permissionAuth) {
         if (!loadingInterface) {
           setModalAuth(!permissionAuth);
@@ -192,6 +236,27 @@ export function Inicio() {
 
   return (
     <S.Container>
+      <Modal transparent visible={false}>
+        <Center flex={1}>
+          <VStack
+            bg={variationPresensa[avaliablePresenca.avaliable]}
+            p="8"
+            borderRadius={4}
+            space={4}
+          >
+            <S.title style={{ color: '#fff' }}>
+              Sua presença está baixa : (
+            </S.title>
+            <S.subTitle style={{ color: '#fff' }}>
+              Total de eventos do geb: {avaliablePresenca.currencyWeek}
+            </S.subTitle>
+
+            <S.subTitle style={{ color: '#fff' }}>
+              Suas presenças até o momento: {avaliablePresenca.totalPresenca}
+            </S.subTitle>
+          </VStack>
+        </Center>
+      </Modal>
       <Modal visible={modalAuth}>
         <Center flex="1">
           <Text style={{ marginBottom: 20 }}>
