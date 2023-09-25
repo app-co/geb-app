@@ -71,14 +71,6 @@ export function OrderB2b() {
         console.log(h);
         setLoad(false);
       });
-
-    // await api
-    //   .post('/b2b/create-b2b', dados)
-    //   .then(h => {
-    //     Alert.alert('Sua solicitação foi enviada com sucesso!');
-    //     goBack();
-    //   })
-    //   .catch(h => console.log('b2b', h.response.data));
   }, [
     description,
     goBack,
