@@ -35,44 +35,36 @@ export function SingIn() {
   >(null);
 
   const handleSubmit = useCallback(async () => {
-    const credentials = await authStorage.getStorage();
+    login({
+      membro,
+      senha: pass,
+    });
+  }, [membro, pass, login]);
 
-    if (!authencationStatus) {
-      if (membro === '' || pass === '') {
-        return Alert.alert('Login', 'forneça um email e uma senha');
-      }
-      login({
-        membro,
-        senha: pass,
-      });
-    }
-  }, [authStorage, authencationStatus, membro, pass, login]);
+  // React.useEffect(() => {
+  //   async function Auth() {
+  //     const isActive = await isActiveFingerToken.getStorage();
 
-  React.useEffect(() => {
-    async function Auth() {
-      const isActive = await isActiveFingerToken.getStorage();
+  //     const credentials = await authStorage.getStorage();
 
+  //     if (isActive.isActive) {
+  //       const isAuth = await localAuth();
+  //       console.log(isAuth, 'auth')
+  //       if (credentials) {
+  //         if (isAuth) {
+  //           setLoad(true);
+  //           login(credentials);
+  //         } else {
+  //           setAuthenticationStatus(isAuth);
+  //         }
+  //       } else {
+  //         await isActiveFingerToken.setStorage({ isActive: false });
+  //       }
+  //     }
+  //   }
 
-      const credentials = await authStorage.getStorage();
-
-      if (isActive.isActive) {
-        const isAuth = await localAuth();
-        console.log(isAuth, 'auth')
-        if (credentials) {
-          if (isAuth) {
-            setLoad(true);
-            login(credentials);
-          } else {
-            setAuthenticationStatus(isAuth);
-          }
-        } else {
-          await isActiveFingerToken.setStorage({ isActive: false });
-        }
-      }
-    }
-
-    Auth();
-  }, [login]);
+  //   Auth();
+  // }, [login]);
 
   if (load) {
     return <Loading />;

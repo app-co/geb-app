@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const key = '@appGeb:auth-data';
+const key = '@appnetwork:auth-data';
 
 interface I {
   membro: string;

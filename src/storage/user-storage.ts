@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { IUserDtos } from '../dtos';
 
-const key = '@appGeb:user';
+const key = '@appnetworking:user';
 
 export class UserStorage {
   async setToken(user: IUserDtos): Promise<void> {

@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const keyToken = '@appGeb:token';
+const keyToken = '@appnetworking:token';
 
 export class TokenStorage {
   async setToken(token: string): Promise<void> {

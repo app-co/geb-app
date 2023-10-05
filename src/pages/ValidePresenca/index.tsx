@@ -92,12 +92,12 @@ export function Valide() {
     const lat = Number(location.lat.toFixed(3));
     const log = Number(location.log.toFixed(3));
 
-    if (local.lat !== lat && local.log !== log) {
-      return Alert.alert(
-        'Atenção',
-        'Você precisa estar no local para lançar a sua presença',
-      );
-    }
+    // if (local.lat !== lat && local.log !== log) {
+    //   return Alert.alert(
+    //     'Atenção',
+    //     'Você precisa estar no local para lançar a sua presença',
+    //   );
+    // }
 
     const dados = {
       nome,
