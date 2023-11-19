@@ -170,9 +170,7 @@ export function Inicio() {
 
   useFocusEffect(
     useCallback(() => {
-      setTimeout(() => {
-        setLoadInterface(false);
-      }, 3000);
+
       refetch();
       if (data?.relation?.length > 0) {
         setModalSolicitations(true);
@@ -182,55 +180,37 @@ export function Inicio() {
     }, [data?.relation?.length]),
   );
 
-  const handleSavePass = React.useCallback(
-    async ({ pass }: { pass: string }) => {
-      setLoad(true);
-      const auth = {
-        membro: user.membro,
-        senha: pass,
-      };
+  // const handleSavePass = React.useCallback(
+  //   async ({ pass }: { pass: string }) => {
+  //     setLoad(true);
+  //     const auth = {
+  //       membro: user.membro,
+  //       senha: pass,
+  //     };
 
-      try {
-        await api.post('/user/session', auth);
-        await isActiveFigerToken.setStorage({
-          isActive: true,
-        });
+  //     try {
+  //       await api.post('/user/session', auth);
+  //       await isActiveFigerToken.setStorage({
+  //         isActive: true,
+  //       });
 
-        await localAuthData.setStorage(auth);
+  //       await localAuthData.setStorage(auth);
 
-        setLoad(false);
-        setModalAuth(false);
-      } catch (error) {
-        setLoad(false);
-        const erro = error instanceof AppError;
+  //       setLoad(false);
+  //       setModalAuth(false);
+  //     } catch (error) {
+  //       setLoad(false);
+  //       const erro = error instanceof AppError;
 
-        if (erro) {
-          Alert.alert('Erro ao validar sua senha', error.message);
-        }
-      }
-    },
-    [user.membro],
-  );
+  //       if (erro) {
+  //         Alert.alert('Erro ao validar sua senha', error.message);
+  //       }
+  //     }
+  //   },
+  //   [user.membro],
+  // );
 
-  React.useEffect(() => {
-    async function auth() {
-      const permissionAuth = await isActiveFigerToken.getStorage();
-
-      if (!permissionAuth) {
-        if (!loadingInterface) {
-          setModalAuth(!permissionAuth);
-        }
-      }
-    }
-
-    auth();
-
-    return () => {
-      auth();
-    };
-  }, [loadingInterface]);
-
-  if (isLoading && loadingInterface) {
+  if (isLoading) {
     return <Loading />;
   }
 
@@ -257,7 +237,8 @@ export function Inicio() {
           </VStack>
         </Center>
       </Modal>
-      <Modal visible={modalAuth}>
+
+      <Modal visible={false}>
         <Center flex="1">
           <Text style={{ marginBottom: 20 }}>
             Deseja ativar acesso com sua biometria?
