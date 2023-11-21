@@ -11,6 +11,7 @@ import {
   Box,
   Center,
   HStack,
+  Modal,
   Text,
   useToast,
   VStack,
@@ -20,7 +21,6 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import {
   ActivityIndicator,
   Alert,
-  Modal,
   TouchableOpacity,
 } from 'react-native';
 import { useQuery } from 'react-query';
@@ -216,7 +216,7 @@ export function Inicio() {
 
   return (
     <S.Container>
-      <Modal transparent visible={false}>
+      {/* <Modal transparent visible={false}>
         <Center flex={1}>
           <VStack
             bg={variationPresensa[avaliablePresenca.avaliable]}
@@ -236,94 +236,13 @@ export function Inicio() {
             </S.subTitle>
           </VStack>
         </Center>
-      </Modal>
+      </Modal> */}
 
-      <Modal visible={false}>
-        <Center flex="1">
-          <Text style={{ marginBottom: 20 }}>
-            Deseja ativar acesso com sua biometria?
-          </Text>
-
-          <HStack space={8}>
-            <TouchableOpacity
-              onPress={() => setModalAuth(false)}
-              style={{
-                width: 130,
-                alignItems: 'center',
-                padding: 10,
-                borderRadius: 10,
-                backgroundColor: theme.colors.focus_second,
-              }}
-            >
-              <Text style={{ color: '#fff', fontFamily: theme.fonts.bold }}>
-                MAIS TARDE
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => setPermissionFingerprinte(true)}
-              style={{
-                width: 130,
-                alignItems: 'center',
-                padding: 10,
-                borderRadius: 10,
-                backgroundColor: theme.colors.focus,
-              }}
-            >
-              <Text style={{ color: '#fff', fontFamily: theme.fonts.bold }}>
-                SIM
-              </Text>
-            </TouchableOpacity>
-          </HStack>
-
-          {permissionFingerprint && (
-            <Form ref={ref} onSubmit={handleSavePass}>
-              <Center mt="16">
-                <Input icon="lock" placeholder="Digite sua senha" name="pass" />
-
-                <TouchableOpacity
-                  onPress={() => ref.current?.submitForm()}
-                  style={{
-                    width: 130,
-                    alignItems: 'center',
-                    padding: 10,
-                    borderRadius: 10,
-                    backgroundColor: theme.colors.focus,
-                  }}
-                >
-                  {load ? (
-                    <ActivityIndicator />
-                  ) : (
-                    <Text
-                      style={{ color: '#fff', fontFamily: theme.fonts.bold }}
-                    >
-                      SALVAR
-                    </Text>
-                  )}
-                </TouchableOpacity>
-              </Center>
-            </Form>
-          )}
-        </Center>
-      </Modal>
-
-      <Box flex={1}>
-        <Header
-          openMail={() => {
-            navigate('SOLICITAÇÕES');
-          }}
-          title="Home"
-          orders={data?.relation.length}
-        />
-
-        <Modal
-          animationType="fade"
-          visible={showModalSolicitations}
-          transparent
-        >
-          <Center flex={1}>
-            <Box p="16" bg="dark.600" borderRadius={8}>
-              <S.title style={{ textAlign: 'center' }}>
+      <Modal isOpen={showModalSolicitations} onClose={() => setModalSolicitations(false)} >
+        <Modal.Body mt={'50%'} bg='gray.500' borderRadius={8} >
+        <Center flex={1}>
+            <Box p="16" borderRadius={8}>
+              <S.title style={{ textAlign: 'center', color: '#fff' }}>
                 Voce tem negócios para aprovar
               </S.title>
               <HStack space={8} mt="4">
@@ -353,7 +272,18 @@ export function Inicio() {
               </HStack>
             </Box>
           </Center>
-        </Modal>
+        </Modal.Body>
+      </Modal>
+
+      <Box flex={1}>
+        <Header
+          openMail={() => {
+            navigate('SOLICITAÇÕES');
+          }}
+          title="Home"
+          orders={data?.relation.length}
+        />
+
 
         <Center>
           <S.text style={{ fontFamily: 'medium', fontSize: _subTitle }}>
