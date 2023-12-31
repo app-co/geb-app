@@ -9,7 +9,7 @@ import { Header } from '../../../components/Header';
 import { useRelation } from '../../../contexts/relation';
 import { useData } from '../../../contexts/useData';
 import { IInviteRelation, IRelashionship, IUserDtos } from '../../../dtos';
-import theme from '../../../global/styles/theme';
+import theme from '../../../global/styles/geb';
 import { api } from '../../../services/api';
 import * as S from './styles';
 

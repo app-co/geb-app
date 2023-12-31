@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import * as S from './styles';
 
 interface IPropsPonts {
@@ -52,7 +52,7 @@ export function BoxRank({ item }: I) {
               {' '}
               {item.nome}{' '}
             </S.TitleList>
-            <S.TitleList> {} </S.TitleList>
+            <S.TitleList> { } </S.TitleList>
           </View>
 
           <View

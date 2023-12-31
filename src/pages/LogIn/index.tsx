@@ -1,23 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
-import { FormControl, WarningOutlineIcon, Text } from 'native-base';
+import { Text } from 'native-base';
 import React, { useCallback, useRef, useState } from 'react';
-import { Alert, View } from 'react-native';
+import { View } from 'react-native';
 
 // import { Input } from "../../components/Inputs";
 import logo from '../../assets/logo.png';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Inputs';
 import { Loading } from '../../components/Loading';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { IsActiveFingerTokenStorage } from '../../storage/acitve-finger-token';
 import { LocalAuthData } from '../../storage/local-auth-data';
 import { version } from '../../utils/updates';
-import { localAuth } from './LocalAurh';
 import { BoxInput, BoxLogo, Container, Logo } from './styles';
 
 const authStorage = new LocalAuthData();

@@ -1,10 +1,10 @@
 import { Feather } from '@expo/vector-icons';
-import { Dimensions, FlatList } from 'react-native';
+import { Dimensions } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
-import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 
 const { colors, fonts } = theme;
 const { height, width } = Dimensions.get('screen');

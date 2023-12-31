@@ -3,19 +3,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-alert */
 /* eslint-disable camelcase */
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import storage from '@react-native-firebase/storage';
 import { useNavigation } from '@react-navigation/native';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
 import * as ImagePiker from 'expo-image-picker';
-import { Box as BoxBase, Text } from 'native-base';
 import React, {
   useCallback,
-  useEffect,
-  useMemo,
   useRef,
-  useState,
+  useState
 } from 'react';
 import {
   ActivityIndicator,
@@ -31,7 +28,7 @@ import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
 import { ToglleEnquadramento } from '../../components/ToglleEnquadramento';
 import { ToglleRamo } from '../../components/ToglleRamo';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import {

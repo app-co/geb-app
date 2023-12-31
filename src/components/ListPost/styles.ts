@@ -2,7 +2,7 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 
 export const Container = styled.View``;
 

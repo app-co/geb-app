@@ -1,7 +1,7 @@
-import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 
 const { colors, fonts } = theme;
 export const Container = styled.View`

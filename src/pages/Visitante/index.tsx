@@ -6,15 +6,14 @@ import { Box, Center, FlatList, HStack } from 'native-base';
 import React, { useCallback } from 'react';
 import { ActivityIndicator, Alert, Modal } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { useQueries, useQuery } from 'react-query';
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
 import { useRelation } from '../../contexts/relation';
 import { useToken } from '../../contexts/Token';
-import { IGuest, IInviteRelation } from '../../dtos';
-import theme from '../../global/styles/theme';
+import { IInviteRelation } from '../../dtos';
+import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { useAllUsers } from '../../hooks/user';
 import { api } from '../../services/api';

@@ -7,7 +7,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { CartaMessagem } from '../CartaMessagem';
 import * as S from './styles';
 

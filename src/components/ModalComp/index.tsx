@@ -1,9 +1,9 @@
 import { Feather } from '@expo/vector-icons';
-import { Box, Center, HStack } from 'native-base';
+import { Box, HStack } from 'native-base';
 import React, { ReactNode } from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import * as S from './styles';
 
 interface Prps {

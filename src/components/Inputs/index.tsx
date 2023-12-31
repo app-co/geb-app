@@ -6,7 +6,7 @@ import { useField } from '@unform/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { TextInputProps } from 'react-native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { Box, Container, Icon } from './styles';
 
 type TText = 'currency';

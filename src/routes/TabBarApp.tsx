@@ -3,7 +3,7 @@ import { Entypo, FontAwesome5 } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 
-import theme from '../global/styles/theme';
+import theme from '../global/styles/geb';
 import { InfoGeb } from '../pages/infoGeb';
 import { StackHome } from './StackHome';
 import { StacKMembros } from './StackMembros';

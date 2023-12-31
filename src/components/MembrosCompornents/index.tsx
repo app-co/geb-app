@@ -1,12 +1,12 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable camelcase */
-import { AntDesign, FontAwesome, FontAwesome5 } from '@expo/vector-icons';
+import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import React from 'react';
 import { Image, Text } from 'react-native';
 
 import icone from '../../../assets/circulos.png';
 import negociosPng from '../../assets/NEGOCIOS.png';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import * as S from './styles';
 
 interface Props {

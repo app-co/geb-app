@@ -3,25 +3,20 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useEffect, useId, useRef, useState } from 'react';
+import React, { useId, useState } from 'react';
 import {
-  ActivityIndicator,
-  Alert,
   FlatList,
   ScrollView,
-  View,
+  View
 } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { Modalize } from 'react-native-modalize';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useQuery } from 'react-query';
 
-import { BoxRank } from '../../../components/BoxRank';
 import { Header } from '../../../components/Header';
 import { Loading } from '../../../components/Loading';
-import { useData } from '../../../contexts/useData';
 import { IGlobalPonts } from '../../../dtos';
-import theme from '../../../global/styles/theme';
+import theme from '../../../global/styles/geb';
 import { api } from '../../../services/api';
 import {
   Box,
@@ -222,7 +217,7 @@ export function Ranking() {
               keyExtractor={h => h.name}
               renderItem={({ item: h, index }) => (
                 <TouchableOpacity
-                  onPress={() => {}}
+                  onPress={() => { }}
                   style={{
                     paddingBottom: 20,
                     marginTop: 10,
@@ -255,7 +250,7 @@ export function Ranking() {
                         {' '}
                         {h.nome}{' '}
                       </TitleList>
-                      <TitleList> {} </TitleList>
+                      <TitleList> { } </TitleList>
                     </View>
 
                     <View
@@ -313,7 +308,7 @@ export function Ranking() {
                       {' '}
                       {h.nome}{' '}
                     </TitleList>
-                    <TitleList> {} </TitleList>
+                    <TitleList> { } </TitleList>
                   </View>
 
                   <View
@@ -370,7 +365,7 @@ export function Ranking() {
                       {' '}
                       {h.nome}{' '}
                     </TitleList>
-                    <TitleList> {} </TitleList>
+                    <TitleList> { } </TitleList>
                   </View>
 
                   <View
@@ -427,7 +422,7 @@ export function Ranking() {
                       {' '}
                       {h.nome}{' '}
                     </TitleList>
-                    <TitleList> {} </TitleList>
+                    <TitleList> { } </TitleList>
                   </View>
 
                   <View
@@ -484,7 +479,7 @@ export function Ranking() {
                       {' '}
                       {h.nome}{' '}
                     </TitleList>
-                    <TitleList> {} </TitleList>
+                    <TitleList> { } </TitleList>
                   </View>
 
                   <View
@@ -541,7 +536,7 @@ export function Ranking() {
                       {' '}
                       {h.nome}{' '}
                     </TitleList>
-                    <TitleList> {} </TitleList>
+                    <TitleList> { } </TitleList>
                   </View>
 
                   <View
@@ -598,7 +593,7 @@ export function Ranking() {
                       {' '}
                       {h.nome}{' '}
                     </TitleList>
-                    <TitleList> {} </TitleList>
+                    <TitleList> { } </TitleList>
                   </View>
 
                   <View
@@ -655,7 +650,7 @@ export function Ranking() {
                       {' '}
                       {h.nome}{' '}
                     </TitleList>
-                    <TitleList> {} </TitleList>
+                    <TitleList> { } </TitleList>
                   </View>
 
                   <View
@@ -712,7 +707,7 @@ export function Ranking() {
                       {' '}
                       {h.nome}{' '}
                     </TitleList>
-                    <TitleList> {} </TitleList>
+                    <TitleList> { } </TitleList>
                   </View>
 
                   <View

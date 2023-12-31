@@ -2,7 +2,7 @@ import { TextInputMask } from 'react-native-masked-text';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { w } from '../../utils/size';
 
 export const Container = styled.View`

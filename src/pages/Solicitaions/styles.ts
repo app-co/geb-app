@@ -2,7 +2,7 @@ import { Platform } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { _title } from '../../utils/size';
 
 export const Container = styled.View`

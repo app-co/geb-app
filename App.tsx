@@ -5,14 +5,14 @@ import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 
 import {
-  BarlowCondensed_400Regular as regular,
-  BarlowCondensed_500Medium as medium,
   BarlowCondensed_700Bold as bold,
+  BarlowCondensed_500Medium as medium,
+  BarlowCondensed_400Regular as regular,
   useFonts,
 } from '@expo-google-fonts/barlow-condensed';
 
-import 'react-native-gesture-handler';
 import * as Device from 'expo-device';
+import 'react-native-gesture-handler';
 
 import * as Notifications from 'expo-notifications';
 import { StatusBar } from 'expo-status-bar';
@@ -25,11 +25,11 @@ import {
   Text,
 } from 'native-base';
 import React, { useRef } from 'react';
-import { ActivityIndicator, AppState, LogBox, Modal, View } from 'react-native';
+import { ActivityIndicator, AppState, Modal } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import theme from './src/global/styles/theme';
+import theme from './src/global/styles/geb';
 import { AuthContextProvider } from './src/hooks/AuthContext';
 import { Route } from './src/routes';
 import { update } from './src/utils/updates';

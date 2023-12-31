@@ -2,18 +2,17 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
 import { AntDesign } from '@expo/vector-icons';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Box } from 'native-base';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList } from 'react-native';
 
-import { colecao } from '../../collection';
 import { Header } from '../../components/Header';
 import { ListPost } from '../../components/ListPost';
-import { IPostsDtos, IProfileDto, IUserDtos } from '../../dtos';
-import theme from '../../global/styles/theme';
+import { IPostsDtos, IUserDtos } from '../../dtos';
+import theme from '../../global/styles/geb';
 import { api } from '../../services/api';
-import { ButonPost, Container, Flat } from './styles';
+import { ButonPost, Container } from './styles';
 
 export interface Res {
   post: IPostsDtos;

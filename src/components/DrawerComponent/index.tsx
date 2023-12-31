@@ -1,14 +1,14 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import {
-  DrawerItemList,
   DrawerContentComponentProps,
+  DrawerItemList,
 } from '@react-navigation/drawer';
 import { HStack, VStack } from 'native-base';
 import React from 'react';
 import { ScrollView, Text } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { Avatar, Container, Header, LogOf, Title, TitleName } from './styles';
 

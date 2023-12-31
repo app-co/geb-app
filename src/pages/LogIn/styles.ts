@@ -1,11 +1,11 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 
 export const Container = styled.KeyboardAvoidingView`
   flex: 1;
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.focus};
   align-items: center;
   /* padding-bottom: 10px; */
 `;

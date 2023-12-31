@@ -5,7 +5,7 @@ import { ActivityIndicator } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { IRelashionship } from '../../dtos';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { _text } from '../../utils/size';
 import * as S from './styles';
 

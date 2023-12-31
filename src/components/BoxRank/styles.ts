@@ -2,7 +2,7 @@ import { Dimensions } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 
 const { colors, fonts } = theme;
 const { width, height } = Dimensions.get('screen');

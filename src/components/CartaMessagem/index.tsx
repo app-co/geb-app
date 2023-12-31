@@ -1,9 +1,9 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Text, Box, Circle } from 'native-base';
+import { Box, Circle, Text } from 'native-base';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 
 interface Props {
   pres: () => void;

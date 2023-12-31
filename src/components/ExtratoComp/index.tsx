@@ -1,10 +1,9 @@
-import { format } from 'date-fns';
-import { Box, Circle } from 'native-base';
+import { Circle } from 'native-base';
 import React, { memo } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { IRelashionship } from '../../dtos';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import * as S from './styles';
 
 interface I {

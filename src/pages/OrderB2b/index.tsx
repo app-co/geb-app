@@ -4,16 +4,15 @@
 import { AntDesign, Feather } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { TextArea } from 'native-base';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ActivityIndicator, Alert, ScrollView, Text, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { Header } from '../../components/Header';
-import { useB2b } from '../../contexts/b2b';
 import { useRelation } from '../../contexts/relation';
 import { useToken } from '../../contexts/Token';
 import { IUserDtos } from '../../dtos';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { routesScheme } from '../../services/schemeRoutes';

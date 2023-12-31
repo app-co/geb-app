@@ -1,4 +1,4 @@
-import theme from '../global/styles/theme';
+import theme from '../global/styles/geb';
 import { Ranking } from '../pages/ADM/Classificacao';
 import { SingUp } from '../pages/ADM/CreateUser';
 import { DeletUser } from '../pages/ADM/DeleteUser';

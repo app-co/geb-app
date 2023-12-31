@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { _subTitle, _text } from '../../utils/size';
 
 const w = Dimensions.get('screen').width;

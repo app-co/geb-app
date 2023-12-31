@@ -19,7 +19,7 @@ import { Input } from '../../components/Inputs';
 import { Loading } from '../../components/Loading';
 import { MembrosComponents } from '../../components/MembrosCompornents';
 import { useToken } from '../../contexts/Token';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { useAllUsers } from '../../hooks/user';
 import { api } from '../../services/api';
@@ -29,9 +29,9 @@ import {
   BoxInput,
   BoxModal,
   Container,
+  Input as In,
   TextButon,
   Title,
-  Input as In,
 } from './styles';
 
 export function Indicacoes() {
@@ -56,13 +56,13 @@ export function Indicacoes() {
   const users =
     value.length > 0
       ? membros.filter(h => {
-          const up = h.nome.toLocaleUpperCase();
+        const up = h.nome.toLocaleUpperCase();
 
-          if (up.includes(value.toLocaleUpperCase()) && h.id !== user.id) {
-            return h;
-          }
-          return null;
-        })
+        if (up.includes(value.toLocaleUpperCase()) && h.id !== user.id) {
+          return h;
+        }
+        return null;
+      })
       : membros.filter(h => h.id !== user.id);
 
   const OpenModal = useCallback(
@@ -145,8 +145,8 @@ export function Indicacoes() {
             icon="indicar"
             userName={h.nome}
             pres={() => OpenModal(h.id, h.nome, h.token)}
-            // inativoPres={h.inativo}
-            // inativo={h.inativo}
+          // inativoPres={h.inativo}
+          // inativo={h.inativo}
           />
         )}
       />
@@ -155,7 +155,7 @@ export function Indicacoes() {
         onRequestClose={() => setModal(false)}
         visible={modal}
         animationType="slide"
-        // transparent
+      // transparent
       >
         <BoxModal>
           <ScrollView>

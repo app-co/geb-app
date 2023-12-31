@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { _subTitle } from '../../utils/size';
 
 interface props {

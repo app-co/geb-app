@@ -1,12 +1,12 @@
 import { useNavigation } from '@react-navigation/native';
-import { Box, Center, HStack, TextArea } from 'native-base';
+import { Box, Center, HStack } from 'native-base';
 import React from 'react';
 import { Alert, Modal, ScrollView, TouchableOpacity } from 'react-native';
 
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { useToken } from '../../contexts/Token';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { useAllUsers } from '../../hooks/user';
 import { api } from '../../services/api';

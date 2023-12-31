@@ -1,7 +1,6 @@
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
-import { _height, _subTitle, _title } from '../../utils/size';
+import { _subTitle } from '../../utils/size';
 
 export const Container = styled.View`
   flex: 1;

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable camelcase */
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
@@ -15,13 +14,11 @@ import {
   useToast,
   VStack,
 } from 'native-base';
-import { setCookie } from 'nookies';
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import {
   ActivityIndicator,
-  Alert,
   Modal,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 import { useQuery } from 'react-query';
 
@@ -34,14 +31,12 @@ import { useRelation } from '../../contexts/relation';
 import { useToken } from '../../contexts/Token';
 import { useData } from '../../contexts/useData';
 import { IRelashionship, ISelfPonts } from '../../dtos';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useOrderRelation } from '../../hooks/relations';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
-import { routesScheme } from '../../services/schemeRoutes';
 import { IsActiveFingerTokenStorage } from '../../storage/acitve-finger-token';
 import { LocalAuthData } from '../../storage/local-auth-data';
-import { AppError } from '../../utils/AppError';
 import { _subTitle } from '../../utils/size';
 import * as S from './styles';
 
@@ -170,7 +165,6 @@ export function Inicio() {
 
   useFocusEffect(
     useCallback(() => {
-
       refetch();
       if (data?.relation?.length > 0) {
         setModalSolicitations(true);

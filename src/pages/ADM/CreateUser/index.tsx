@@ -6,33 +6,28 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
-import { Center, Text, Box as Content } from 'native-base';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Center, Box as Content, Text } from 'native-base';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
   FlatList,
   Modal,
-  ScrollView,
   TouchableOpacity,
-  View,
+  View
 } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import * as Yup from 'yup';
 
-import { Button } from '../../../components/Button';
 import { Header } from '../../../components/Header';
 import { Input } from '../../../components/Inputs';
 import { MembroLista } from '../../../components/MembroLista';
-import { ToglleEnquadramento } from '../../../components/ToglleEnquadramento';
-import { ToglleRamo } from '../../../components/ToglleRamo';
 import { useData } from '../../../contexts/useData';
 import { IUserDtos } from '../../../dtos';
-import theme from '../../../global/styles/theme';
 import { useAuth } from '../../../hooks/useAuth';
 import { api } from '../../../services/api';
 import getValidationErrors from '../../../utils/getValidationsErrors';
-import { Box, BoxAdm, BxPadrinho, Container, Logo, Title } from './styles';
+import { Box, BoxAdm, BxPadrinho, Container, Title } from './styles';
 
 interface FormData {
   nome: string;

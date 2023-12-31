@@ -8,8 +8,8 @@ import { ActivityIndicator } from 'react-native';
 import { Header } from '../../../components/Header';
 import { useRelation } from '../../../contexts/relation';
 import { useData } from '../../../contexts/useData';
-import { IDonate, IRelashionship, IUserDtos } from '../../../dtos';
-import theme from '../../../global/styles/theme';
+import { IRelashionship, IUserDtos } from '../../../dtos';
+import theme from '../../../global/styles/geb';
 import { api } from '../../../services/api';
 import * as S from './styles';
 

@@ -11,7 +11,7 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { _subTitle, _text, _title } from '../../utils/size';
 
 const { colors, fonts } = theme;

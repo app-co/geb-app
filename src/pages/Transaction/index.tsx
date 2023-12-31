@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
-import { AntDesign, Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { Avatar, Box, Center, HStack, TextArea } from 'native-base';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Alert, ScrollView, Text, View } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
@@ -13,10 +13,10 @@ import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
 import { useToken } from '../../contexts/Token';
 import { IUserDtos } from '../../dtos';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
-import { _routes, routesScheme } from '../../services/schemeRoutes';
+import { routesScheme } from '../../services/schemeRoutes';
 import { _currency, _number } from '../../utils/mask';
 import * as S from './styles';
 

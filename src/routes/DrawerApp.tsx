@@ -4,11 +4,10 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
 
 import { DrawerContent } from '../components/DrawerComponent';
-import theme from '../global/styles/theme';
+import theme from '../global/styles/geb';
 import { useAuth } from '../hooks/useAuth';
 import { Inicio } from '../pages/Inicio';
 import { rotas, rotasAdm } from '../utils/rotas';
-import { StackIndication } from './StackInicio';
 
 const { Navigator, Screen } = createDrawerNavigator();
 

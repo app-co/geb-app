@@ -9,7 +9,7 @@ import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
 import { OrderIndicationComp } from '../../components/OrderIndicationComp';
 import { IRelashionship } from '../../dtos';
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 import { useOrderRelation } from '../../hooks/relations';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
@@ -171,7 +171,7 @@ export function Solicitaions() {
               valueType={h => setTypeIndication(h)}
               load={itemId === h.id}
             >
-              <Form onSubmit={() => {}}>
+              <Form onSubmit={() => { }}>
                 <Center m={10}>
                   <Input
                     placeholderTextColor="#b6b6b6"

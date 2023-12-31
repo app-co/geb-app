@@ -1,7 +1,7 @@
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/theme';
+import theme from '../../global/styles/geb';
 
 export const Container = styled.View`
   flex: 1;
