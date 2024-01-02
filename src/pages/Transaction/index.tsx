@@ -166,7 +166,7 @@ export function Transaction() {
           </S.BoxInput>
 
           <S.Buton onPress={navigateToOk}>
-            <S.Title style={{ color: theme.colors.text_secundary }}>
+            <S.Title style={{ color: theme.colors.color_text.dark }}>
               Enviar
             </S.Title>
           </S.Buton>

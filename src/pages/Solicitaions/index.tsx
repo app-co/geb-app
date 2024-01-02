@@ -186,7 +186,7 @@ export function Solicitaions() {
                     w="64"
                     mt="2"
                     _focus={{
-                      backgroundColor: theme.colors.secundary,
+                      backgroundColor: theme.colors.bg_color[2],
                       fontFamily: theme.fonts.regular,
                     }}
                     color="#fff"

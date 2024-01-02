@@ -77,7 +77,7 @@ export function ValidateDanates() {
 
   if (listAllRelation.isLoading) {
     <Center bg="gray.700" flex="1">
-      <ActivityIndicator size={40} color={theme.colors.focus_second} />
+      <ActivityIndicator size={40} color={theme.colors.focus[2]} />
     </Center>;
   }
 
@@ -87,7 +87,7 @@ export function ValidateDanates() {
 
       {list.length === 0 && (
         <Center>
-          <S.title style={{ color: theme.colors.focus_second }}>
+          <S.title style={{ color: theme.colors.focus[2] }}>
             Ainda não há donativos
           </S.title>
         </Center>
@@ -97,13 +97,7 @@ export function ValidateDanates() {
         data={list}
         keyExtractor={h => String(h.id)}
         renderItem={({ item: h }) => (
-          <Box
-            px="4"
-            mt="1"
-            bg={theme.colors.focus_light}
-            borderRadius="8"
-            py="4"
-          >
+          <Box px="4" mt="1" bg={theme.colors.focus[2]} borderRadius="8" py="4">
             <HStack mb="2" justifyContent="space-between" alignItems="center">
               <S.title>{h.nome}</S.title>
               <S.title>{h.data}</S.title>

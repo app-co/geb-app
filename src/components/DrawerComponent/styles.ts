@@ -3,10 +3,6 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
-const { colors, fonts } = theme;
-
 export const Container = styled.View`
   flex: 1;
   padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 5}px;
@@ -43,7 +39,7 @@ export const LogOf = styled.TouchableOpacity`
   width: ${RFValue(100)}px;
   height: ${RFValue(35)}px;
   margin-left: ${RFValue(20)}px;
-  background-color: ${colors.focus_light};
+  background-color: ${h => h.theme.colors.focus[2]};
 
   align-items: center;
   justify-content: center;

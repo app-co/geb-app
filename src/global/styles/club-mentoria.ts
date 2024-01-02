@@ -8,9 +8,9 @@ export default {
 
     button: {
       bg: {
-        approved: 'rgba(231, 101, 45, 1)',
+        approved: 'rgba(45, 231, 113, 1)',
         reproved: 'rgba(162, 167, 181, 1)',
-        common: 'rgba(162, 167, 181, 1)',
+        common: 'rgba(56, 251, 104, 1)',
         destak: 'rgba(7, 21, 102, 1)',
       },
       text: {

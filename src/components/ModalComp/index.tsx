@@ -26,11 +26,7 @@ export function ModalComp({ title, children, closed }: Prps) {
         >
           <S.title>{title}</S.title>
           <TouchableOpacity onPress={closed} style={{ padding: 4 }}>
-            <Feather
-              size={30}
-              name="x-circle"
-              color={theme.colors.focus_second}
-            />
+            <Feather size={30} name="x-circle" color={theme.colors.focus[1]} />
           </TouchableOpacity>
         </HStack>
         <Box>{children}</Box>

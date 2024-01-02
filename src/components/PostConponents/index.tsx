@@ -15,7 +15,7 @@ export function PostComponent({ focus }: Props) {
         style={{ position: 'absolute' }}
         name="plus"
         size={35}
-        color={theme.colors.primary}
+        color={theme.colors.bg_color[1]}
       />
     </Container>
   );

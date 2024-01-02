@@ -1,17 +1,13 @@
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../../global/styles/geb';
-
-const { colors, fonts } = theme;
-
 interface Props {
   isAdm: boolean;
 }
 
 export const Container = styled.KeyboardAvoidingView`
   /* flex: 1; */
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.primary};
 `;
 
 export const Box = styled.View.attrs({
@@ -27,7 +23,7 @@ export const Box = styled.View.attrs({
 })`
   width: 100%;
   min-height: ${RFPercentage(40)}px;
-  background-color: ${colors.secundary};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   align-items: center;
   border-radius: 15px;
   padding: 20px;
@@ -40,9 +36,9 @@ export const BoxInput = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(14)}px;
-  color: ${colors.focus};
+  color: ${h => h.theme.colors.focus};
 `;
 
 export const Logo = styled.Image`
@@ -54,11 +50,11 @@ export const BoxAdm = styled.TouchableOpacity<Props>`
   width: ${RFValue(25)}px;
   height: ${RFValue(25)}px;
   border-radius: ${RFValue(14)}px;
-  background-color: ${({ isAdm }) =>
-    isAdm ? colors.focus_second : colors.primary};
+  background-color: ${({ isAdm, theme }) =>
+    isAdm ? theme.colors.focus[2] : theme.colors.bg_color[1]};
 
   border-width: 2px;
-  border-color: ${colors.focus};
+  border-color: ${h => h.theme.colors.focus[1]};
   align-self: flex-end;
   margin-left: 10px;
 `;
@@ -66,7 +62,7 @@ export const BoxAdm = styled.TouchableOpacity<Props>`
 export const ContainerInput = styled.View`
   width: ${RFValue(200)}px;
   height: ${RFValue(40)}px;
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
 
   border-radius: 10px;
   margin-bottom: 20px;
@@ -79,7 +75,7 @@ export const BxPadrinho = styled.TouchableOpacity`
   height: 40px;
 
   border-radius: 12px;
-  background-color: ${colors.secundary};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   align-items: center;
   justify-content: center;
   margin-top: 15px;

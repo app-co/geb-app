@@ -4,9 +4,6 @@ import { TextInputMask } from 'react-native-masked-text';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
-const { colors, fonts } = theme;
 const { height, width } = Dimensions.get('screen');
 
 export const BoxHeader = styled.View.attrs({
@@ -22,7 +19,7 @@ export const BoxHeader = styled.View.attrs({
 })`
   width: 100%;
   height: ${RFPercentage(8)}px;
-  background-color: ${colors.secundary};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   align-items: center;
   justify-content: space-between;
   padding: 8px 25px;
@@ -31,12 +28,12 @@ export const BoxHeader = styled.View.attrs({
 
 export const Container = styled.View`
   /* padding: 20px 20px 30px 20px; */
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   flex: 1;
 `;
 
 export const Box = styled.View`
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   align-items: center;
   flex-direction: row;
   justify-content: center;
@@ -46,7 +43,7 @@ export const Box = styled.View`
 export const BoxCamera = styled.TouchableOpacity`
   width: ${RFPercentage(7)}px;
   height: ${RFPercentage(7)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.bg_button[1]};
   align-items: center;
   justify-content: center;
   border-radius: ${RFValue(25)}px;
@@ -56,20 +53,20 @@ export const BoxCamera = styled.TouchableOpacity`
 
 export const Camera = styled(Feather)`
   font-size: ${RFValue(25)}px;
-  color: ${colors.primary};
+  color: ${h => h.theme.colors.bg_color[1]};
 `;
 
 export const Avatar = styled.Image`
   width: ${RFPercentage(22)}px;
   height: ${RFPercentage(22)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   border-radius: ${RFValue(80)}px;
   align-self: center;
 `;
 
 export const TitleHeader = styled.Text`
-  color: ${colors.focus};
-  font-family: ${fonts.bold};
+  color: ${h => h.theme.colors.focus[1]};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(16)}px;
 `;
 
@@ -83,9 +80,8 @@ export const BoxFormularios = styled.View.attrs({
   shadowRadius: 2.62,
   elevation: 4,
 })`
-  background-color: ${colors.secundary};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   width: ${width / 1.12}px;
-  /* height: ${RFPercentage(55)}px; */
   top: ${RFPercentage(1)}px;
   align-self: center;
   border-radius: 15px;
@@ -96,12 +92,6 @@ export const BoxFormularios = styled.View.attrs({
 `;
 
 export const BoxInput = styled.View`
-  /* border-width: 2px;
-    border-top-color: ${colors.secundary};
-    border-right-color: ${colors.secundary};
-    border-left-color: ${colors.secundary};
-    border-bottom-color: ${colors.focus};
-    border-radius: 10px; */
   justify-content: center;
   padding: 0 20px;
 
@@ -110,17 +100,17 @@ export const BoxInput = styled.View`
 `;
 
 export const InpuMask = styled(TextInputMask)`
-  font-family: ${fonts.regular};
+  font-family: ${h => h.theme.fonts.regular};
   font-size: ${RFValue(14)}px;
-  color: ${colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const BoxTogle = styled.TouchableOpacity`
   border-width: 2px;
-  border-top-color: ${colors.secundary};
-  border-right-color: ${colors.secundary};
-  border-left-color: ${colors.secundary};
-  border-bottom-color: ${colors.focus};
+  border-top-color: ${h => h.theme.colors.bg_color[2]};
+  border-right-color: ${h => h.theme.colors.bg_color[2]};
+  border-left-color: ${h => h.theme.colors.bg_color[2]};
+  border-bottom-color: ${h => h.theme.colors.focus[1]};
   justify-content: center;
   padding: 0 10px;
 
@@ -131,15 +121,15 @@ export const BoxTogle = styled.TouchableOpacity`
 `;
 
 export const TextTogle = styled.Text`
-  font-family: ${fonts.regular};
+  font-family: ${h => h.theme.fonts.regular};
   font-size: ${RFValue(14)}px;
-  color: ${colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const BoxButton = styled.TouchableOpacity`
   width: ${RFPercentage(40)}px;
   height: ${RFPercentage(7)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.bg_button[1]};
   align-self: center;
   align-items: center;
   justify-content: center;
@@ -150,7 +140,7 @@ export const BoxButton = styled.TouchableOpacity`
 export const BoxLogo = styled.View`
   width: ${RFPercentage(20)}px;
   height: ${RFPercentage(20)}px;
-  background-color: ${colors.secundary};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   border-radius: 15px;
   margin-left: ${RFValue(20)}px;
   margin-top: ${RFValue(15)}px;
@@ -166,7 +156,7 @@ export const LogoImage = styled.Image`
 `;
 
 export const TitleButton = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(24)}px;
-  color: ${colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;

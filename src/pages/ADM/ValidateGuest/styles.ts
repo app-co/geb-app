@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 
-import theme from '../../../global/styles/geb';
 import { _subTitle, _text } from '../../../utils/size';
 
 export const Container = styled.View`
@@ -8,24 +7,24 @@ export const Container = styled.View`
 `;
 
 export const title = styled.Text`
-  color: #fff;
+  color: ${h => h.theme.colors.color_text.ligh};
   font-weight: 600;
-  font-family: ${theme.fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
 
   font-size: ${_subTitle}px;
 `;
 
 export const text = styled.Text`
-  color: #fff;
+  color: ${h => h.theme.colors.color_text.ligh};
   font-weight: 600;
-  font-family: ${theme.fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
 
   font-size: ${_text}px;
 `;
 
 export const approvedButon = styled.TouchableOpacity`
   padding: 1px 20px;
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.bg_button[1]};
   align-items: center;
   justify-content: center;
   height: 40px;
@@ -36,7 +35,7 @@ export const reprovedButon = styled.TouchableOpacity`
   padding: 5px 10px;
   height: 40px;
   border-radius: 6px;
-  background-color: ${theme.colors.focus_second};
+  background-color: ${h => h.theme.colors.bg_button[2]};
   align-items: center;
   justify-content: center;
 `;

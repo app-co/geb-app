@@ -2,11 +2,10 @@ import { FontAwesome } from '@expo/vector-icons';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
 import { w } from '../../utils/size';
 
 export const Container = styled.View`
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.bg_modal[1]};
   padding: 20px;
 
   flex: 1;
@@ -16,13 +15,13 @@ export const Container = styled.View`
 
 export const title = styled.Text`
   margin: 10px;
-  color: #fff;
+  color: ${h => h.theme.colors.color_text.ligh};
   font-size: ${RFValue(18)}px;
   margin-top: ${w * 0.1}px;
 `;
 
 export const star = styled(FontAwesome)`
-  color: ${theme.colors.focus_second};
+  color: ${h => h.theme.colors.focus[2]};
   font-size: ${RFValue(30)}px;
 `;
 
@@ -56,10 +55,10 @@ export const button = styled.TouchableOpacity`
   margin-top: 30px;
   border-radius: 5px;
 
-  background-color: ${theme.colors.focus_second};
+  background-color: ${h => h.theme.colors.bg_button[2]};
 `;
 
 export const txtButon = styled.Text`
   color: #fff;
-  font-family: ${theme.fonts.regular};
+  font-family: ${h => h.theme.fonts.regular};
 `;

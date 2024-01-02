@@ -11,7 +11,6 @@ import logo from '../../assets/logo.png';
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Inputs';
 import { Loading } from '../../components/Loading';
-import theme from '../../global/styles/geb';
 import { useAuth } from '../../hooks/useAuth';
 import { IsActiveFingerTokenStorage } from '../../storage/acitve-finger-token';
 import { LocalAuthData } from '../../storage/local-auth-data';
@@ -73,7 +72,7 @@ export function SingIn() {
       <Text
         style={{
           alignSelf: 'flex-end',
-          color: theme.colors.primary_light,
+          // color: theme.colors.bg_color[1],
           fontSize: 12,
           marginRight: 20,
           top: 30,
@@ -98,7 +97,7 @@ export function SingIn() {
           <Input
             name="membro"
             value={pass}
-            selectionColor={theme.colors.text_secundary}
+            // selectionColor={theme.colors.color_text.dark}
             secureTextEntry
             placeholder="SENHA"
             onChangeText={setPass}

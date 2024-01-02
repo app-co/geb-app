@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
 import { _text, _title } from '../../utils/size';
 
 export const content = styled.View`
@@ -12,7 +11,7 @@ export const content = styled.View`
 `;
 
 export const Container = styled.View`
-  background-color: #9d9d9d98;
+  background-color: ${h => h.theme.colors.bg_color[2]};
   padding: 5px 10px;
 
   flex-direction: row;
@@ -27,13 +26,13 @@ export const box = styled.View`
 `;
 
 export const title = styled.Text`
-  color: #fff;
-  font-family: ${theme.fonts.bold};
+  color: ${h => h.theme.colors.color_text.ligh};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: ${_title}px;
 `;
 
 export const text = styled.Text`
   color: #141414;
-  font-family: ${theme.fonts.regular};
+  font-family: ${h => h.theme.fonts.regular};
   font-size: ${_text + 2}px;
 `;

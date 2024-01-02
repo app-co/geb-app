@@ -62,7 +62,7 @@ export function Input({ name, icon, ...rest }: Props) {
         name={icon}
         size={20}
         color={
-          isFocused || isFilled ? theme.colors.focus : theme.colors.focus_light
+          isFocused || isFilled ? theme.colors.focus[1] : theme.colors.focus[2]
         }
       />
       <Container

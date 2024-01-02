@@ -2,12 +2,11 @@ import { Platform } from 'react-native';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
 import { _title } from '../../utils/size';
 
 export const Container = styled.View`
   padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 20}px;
-  background-color: ${theme.colors.focus_light};
+  background-color: ${h => h.theme.colors.bg_color[3]};
   flex: 1;
 `;
 

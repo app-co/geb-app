@@ -15,11 +15,7 @@ import {
   VStack,
 } from 'native-base';
 import React, { useCallback, useRef } from 'react';
-import {
-  ActivityIndicator,
-  Modal,
-  TouchableOpacity
-} from 'react-native';
+import { ActivityIndicator, Modal, TouchableOpacity } from 'react-native';
 import { useQuery } from 'react-query';
 
 import { Classificacao } from '../../components/Classificacao';
@@ -246,7 +242,7 @@ export function Inicio() {
                 alignItems: 'center',
                 padding: 10,
                 borderRadius: 10,
-                backgroundColor: theme.colors.focus_second,
+                backgroundColor: theme.colors.bg_button[1],
               }}
             >
               <Text style={{ color: '#fff', fontFamily: theme.fonts.bold }}>
@@ -261,7 +257,7 @@ export function Inicio() {
                 alignItems: 'center',
                 padding: 10,
                 borderRadius: 10,
-                backgroundColor: theme.colors.focus,
+                backgroundColor: theme.colors.bg_button[1],
               }}
             >
               <Text style={{ color: '#fff', fontFamily: theme.fonts.bold }}>
@@ -282,7 +278,7 @@ export function Inicio() {
                     alignItems: 'center',
                     padding: 10,
                     borderRadius: 10,
-                    backgroundColor: theme.colors.focus,
+                    backgroundColor: theme.colors.bg_button[1],
                   }}
                 >
                   {load ? (
@@ -325,7 +321,7 @@ export function Inicio() {
                   onPress={() => setModalSolicitations(false)}
                   style={{
                     padding: 8,
-                    backgroundColor: theme.colors.focus_second,
+                    backgroundColor: theme.colors.bg_button[2],
                     borderRadius: 8,
                   }}
                 >
@@ -338,7 +334,7 @@ export function Inicio() {
                   }}
                   style={{
                     padding: 8,
-                    backgroundColor: theme.colors.focus,
+                    backgroundColor: theme.colors.bg_button[1],
                     borderRadius: 8,
                   }}
                 >

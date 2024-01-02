@@ -64,7 +64,7 @@ export function FindMembroComponent({
       <S.MapView onPress={maps}>
         <Feather
           name="map-pin"
-          color={theme.colors.primary}
+          color={theme.colors.bg_color[1]}
           size={RFValue(20)}
         />
         <S.TitleMaps>endereço</S.TitleMaps>
@@ -93,7 +93,7 @@ export function FindMembroComponent({
         <S.Box onPress={insta}>
           <MaterialCommunityIcons
             name="web"
-            color={theme.colors.primary}
+            color={theme.colors.focus[2]}
             size={RFValue(16)}
           />
 

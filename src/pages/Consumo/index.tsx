@@ -4,43 +4,18 @@
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
-import {
-  Feather,
-  MaterialCommunityIcons,
-  MaterialIcons,
-} from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
-import {
-  addDays,
-  addMonths,
-  format,
-  getDate,
-  getDay,
-  getMonth,
-  getYear,
-  subDays,
-  subMonths,
-} from 'date-fns';
-import { Box, Center, HStack } from 'native-base';
-import { getRandomString } from 'native-base/lib/typescript/theme/v33x-theme/tools';
-import React, { useCallback, useContext, useState } from 'react';
-import {
-  ActivityIndicator,
-  FlatList,
-  ScrollView,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { addMonths, format, getMonth, subMonths } from 'date-fns';
+import { Center, HStack } from 'native-base';
+import React, { useCallback, useState } from 'react';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { useQuery } from 'react-query';
 
-import { colecao } from '../../collection';
-import { ExtratoComp } from '../../components/ExtratoComp';
 import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
 import { IRelashionship } from '../../dtos';
 import { api } from '../../services/api';
-import { locale } from '../../utils/LocalStrigMoney';
 import { months } from '../../utils/month';
 import * as S from './styles';
 
@@ -755,6 +730,7 @@ export function Consumo() {
         {type === 'donate' && <S.Text>Seus donativos</S.Text>}
         {type === 'guest' && <S.Text>Seus convidados</S.Text>}
       </S.BoxTotal>
+
       {typeExtrato === 'valid' && (
         <Box>
           {type === 'entrada' && (

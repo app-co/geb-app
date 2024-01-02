@@ -76,7 +76,7 @@ export function ValidateGuest() {
 
   if (listAllRelation.isLoading) {
     <Center bg="gray.700" flex="1">
-      <ActivityIndicator size={40} color={theme.colors.focus_second} />
+      <ActivityIndicator size={40} color={theme.colors.focus[1]} />
     </Center>;
   }
 
@@ -86,7 +86,7 @@ export function ValidateGuest() {
 
       {list.length === 0 && (
         <Center flex="1">
-          <S.title style={{ color: theme.colors.focus_second }}>
+          <S.title style={{ color: theme.colors.focus[1] }}>
             Lista de convidados vazia
           </S.title>
         </Center>
@@ -96,13 +96,7 @@ export function ValidateGuest() {
         data={list}
         keyExtractor={h => String(h.id)}
         renderItem={({ item: h }) => (
-          <Box
-            px="4"
-            mt="1"
-            bg={theme.colors.focus_light}
-            borderRadius="8"
-            py="4"
-          >
+          <Box px="4" mt="1" bg={theme.colors.focus[2]} borderRadius="8" py="4">
             <HStack mb="2" justifyContent="space-between" alignItems="center">
               <S.title>{h.nome}</S.title>
               <S.title>{h.data}</S.title>

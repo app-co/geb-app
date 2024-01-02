@@ -83,12 +83,7 @@ export function Donates() {
             style={{ margin: 20 }}
             onPress={() => setModal(true)}
           >
-            <Center
-              bg={theme.colors.focus_second}
-              px="4"
-              py="2"
-              borderRadius={4}
-            >
+            <Center bg={theme.colors.focus[2]} px="4" py="2" borderRadius={4}>
               <S.title>Lista de itens</S.title>
             </Center>
           </TouchableOpacity>
@@ -102,7 +97,7 @@ export function Donates() {
                     borderRadius="4"
                     py="2"
                     px="4"
-                    bg={theme.colors.focus_second}
+                    bg={theme.colors.focus[2]}
                   >
                     <S.title style={{ color: '#000' }}>FECHAR</S.title>
                   </Box>
@@ -120,7 +115,7 @@ export function Donates() {
                       my="1"
                       bg={
                         itensDonates.findIndex(i => i.item === h.item) !== -1
-                          ? theme.colors.focus
+                          ? theme.colors.focus[1]
                           : '#dadada'
                       }
                     >

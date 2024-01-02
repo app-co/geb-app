@@ -1,14 +1,13 @@
 import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
 import { _subTitle, _text } from '../../utils/size';
 
 const w = Dimensions.get('screen').width;
 
 export const Container = styled.View`
   /* height: 200px; */
-  background-color: ${theme.colors.focus_light};
+  background-color: ${h => h.theme.colors.focus[2]};
   border-radius: 8px;
 
   width: 100%;
@@ -23,14 +22,14 @@ export const flex = styled.View`
 `;
 
 export const title = styled.Text`
-  color: #fff;
-  font-family: ${theme.fonts.regular};
+  color: ${h => h.theme.colors.color_text.ligh};
+  font-family: ${h => h.theme.fonts.regular};
   font-size: ${_subTitle}px;
 `;
 
 export const text = styled.Text`
-  color: #fff;
-  font-family: ${theme.fonts.regular};
+  color: ${h => h.theme.colors.color_text.ligh};
+  font-family: ${h => h.theme.fonts.regular};
   font-size: ${_text}px;
 `;
 
@@ -47,7 +46,7 @@ export const buttonOk = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.bg_button[1]};
   border-radius: 8px;
 `;
 export const buttonRe = styled.TouchableOpacity`
@@ -57,7 +56,7 @@ export const buttonRe = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  background-color: ${theme.colors.secundary};
+  background-color: ${h => h.theme.colors.bg_button[2]};
 `;
 
 export const boxDescription = styled.View`

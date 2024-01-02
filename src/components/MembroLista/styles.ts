@@ -1,15 +1,12 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
-const { colors, fonts } = theme;
 
 export const Container = styled.View``;
 
 export const Title = styled.Text`
-  color: ${colors.text};
-  font-family: ${fonts.regular};
+  color: ${h => h.theme.colors.color_text.dark};
+  font-family: ${h => h.theme.fonts.regular};
 
   font-size: ${RFValue(18)}px;
   margin-left: ${RFValue(30)}px;
@@ -19,12 +16,12 @@ export const ButtonToggle = styled.TouchableOpacity`
   width: 50%;
   height: 35px;
 
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus};
 `;
 
 export const TitleTogle = styled.Text`
-  color: ${colors.text_secundary};
-  font-family: ${fonts.regular};
+  color: ${h => h.theme.colors.color_text.ligh};
+  font-family: ${h => h.theme.fonts.regular};
 
   font-size: ${RFValue(18)}px;
 `;
@@ -36,7 +33,7 @@ export const BxName = styled.TouchableOpacity`
   /* justify-content:  */
   padding: 15px;
 
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
 `;
 
 export const Avatar = styled.Image`
@@ -44,7 +41,7 @@ export const Avatar = styled.Image`
   height: ${RFValue(60)}px;
   border-radius: 30px;
 
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
 `;
 
 export const Line = styled.View`
@@ -52,5 +49,5 @@ export const Line = styled.View`
   height: 2px;
   align-self: center;
 
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
 `;

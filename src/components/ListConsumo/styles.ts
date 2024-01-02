@@ -1,9 +1,6 @@
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
-const { colors, fonts } = theme;
 export const Container = styled.View.attrs({
   shadowColor: '#000',
   shadowOffset: {
@@ -17,7 +14,7 @@ export const Container = styled.View.attrs({
 })`
   width: 100%;
   height: ${RFPercentage(10)}px;
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   margin-top: 10px;
   flex-direction: row;
   align-items: center;
@@ -29,29 +26,29 @@ export const BoxData = styled.View`
   width: ${RFPercentage(14)}px;
   height: ${RFPercentage(9)}px;
   border-radius: ${RFValue(30)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-items: center;
   justify-content: center;
   padding: 5px;
 `;
 
 export const TextData = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(14)}px;
-  color: ${colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.dark};
   text-align: center;
 `;
 
 export const BoxValor = styled.View`
   width: ${RFPercentage(30)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   border-radius: ${RFValue(10)}px;
   padding: 0 10px;
   justify-content: space-around;
 `;
 
 export const TextValue = styled.Text`
-  font-family: ${fonts.regular};
+  font-family: ${h => h.theme.fonts.regular};
   font-size: ${RFValue(14)}px;
-  color: ${colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;

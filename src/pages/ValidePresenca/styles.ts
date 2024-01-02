@@ -1,18 +1,15 @@
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
-const { colors, fonts } = theme;
 export const Container = styled.View``;
 
 export const Title = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: 20px;
-  color: ${colors.text};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const Box = styled.View`
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   width: 100%;
   height: 100px;
   align-items: center;
@@ -22,7 +19,7 @@ export const Box = styled.View`
 export const ButtonValidar = styled.TouchableOpacity`
   width: 70%;
   height: 40px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.bg_button[1]};
   align-self: center;
   align-items: center;
   justify-content: center;
@@ -31,7 +28,7 @@ export const ButtonValidar = styled.TouchableOpacity`
 `;
 
 export const TextButtonValidar = styled.Text`
-  font-family: ${fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: 20px;
-  color: ${colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.dark};
 `;

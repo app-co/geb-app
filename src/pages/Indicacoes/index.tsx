@@ -145,8 +145,6 @@ export function Indicacoes() {
             icon="indicar"
             userName={h.nome}
             pres={() => OpenModal(h.id, h.nome, h.token)}
-          // inativoPres={h.inativo}
-          // inativo={h.inativo}
           />
         )}
       />
@@ -155,7 +153,6 @@ export function Indicacoes() {
         onRequestClose={() => setModal(false)}
         visible={modal}
         animationType="slide"
-      // transparent
       >
         <BoxModal>
           <ScrollView>
@@ -163,7 +160,7 @@ export function Indicacoes() {
               <TouchableOpacity
                 onPress={() => setModal(false)}
                 style={{
-                  backgroundColor: theme.colors.focus_second,
+                  backgroundColor: theme.colors.focus[2],
                   borderRadius: 10,
                   padding: 10,
                   width: 100,

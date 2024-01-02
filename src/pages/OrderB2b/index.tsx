@@ -95,7 +95,7 @@ export function OrderB2b() {
               {user.profile.avatar ? (
                 <S.Avatar source={{ uri: user.profile.avatar }} />
               ) : (
-                <Feather name="user" size={60} color={theme.colors.focus} />
+                <Feather name="user" size={60} color={theme.colors.focus[1]} />
               )}
             </S.BoxAvatar>
 
@@ -114,7 +114,7 @@ export function OrderB2b() {
                       width: 50,
                       height: 50,
                       borderRadius: 25,
-                      backgroundColor: theme.colors.focus,
+                      backgroundColor: theme.colors.focus[1],
                       alignSelf: 'flex-end',
                     }}
                   />
@@ -130,7 +130,7 @@ export function OrderB2b() {
                       width: 50,
                       height: 50,
                       borderRadius: 25,
-                      backgroundColor: theme.colors.focus,
+                      backgroundColor: theme.colors.focus[1],
                       alignSelf: 'flex-start',
                     }}
                   />
@@ -142,7 +142,7 @@ export function OrderB2b() {
               {prestador?.profile?.avatar ? (
                 <S.Avatar source={{ uri: prestador?.profile?.avatar }} />
               ) : (
-                <Feather name="user" size={60} color={theme.colors.focus} />
+                <Feather name="user" size={60} color={theme.colors.focus[1]} />
               )}
             </S.BoxProvider>
           </S.BoxElement>
@@ -181,7 +181,7 @@ export function OrderB2b() {
             {load ? (
               <ActivityIndicator />
             ) : (
-              <S.Title style={{ color: theme.colors.text_secundary }}>
+              <S.Title style={{ color: theme.colors.color_text.dark }}>
                 Enviar
               </S.Title>
             )}

@@ -1,12 +1,13 @@
 /* eslint-disable import/prefer-default-export */
-import React, { useCallback, useState } from "react";
-import { Dimensions, Modal, View } from "react-native";
-import { BoxImage, Container, Image, Title } from "./styles";
-import image from "../../assets/download.jpg";
-import { Noticias } from "../Noticias";
-import { HeaderContaponent } from "../../components/HeaderComponent";
+import React, { useCallback, useState } from 'react';
+import { Dimensions, Modal, View } from 'react-native';
 
-const { width, height } = Dimensions.get("screen");
+import image from '../../assets/download.jpg';
+import { HeaderContaponent } from '../../components/HeaderComponent';
+import { Noticias } from '../Noticias';
+import { BoxImage, Container, Image, Title } from './styles';
+
+const { width, height } = Dimensions.get('screen');
 const ITEM_WIDTH = width * 1;
 const ITEM_HEIGHT = ITEM_WIDTH * 0.6;
 
@@ -19,7 +20,7 @@ export function Aviso() {
 
   const handleOffModal = useCallback(() => {
     setModal(false);
-    console.log("ok");
+    console.log('ok');
   }, []);
 
   return (

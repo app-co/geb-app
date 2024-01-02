@@ -16,21 +16,21 @@ export function CartaMessagem({ pres, quantity }: Props) {
       <TouchableOpacity onPress={pres}>
         <Circle
           top="2"
-          bg={theme.colors.focus_second}
+          bg={theme.colors.focus[1]}
           alignItems="center"
           justifyContent="center"
           size="5"
         >
           <Text
             fontFamily={theme.fonts.bold}
-            color={theme.colors.text_secundary}
+            color={theme.colors.color_text.dark}
             fontSize={12}
           >
             {quantity}
           </Text>
         </Circle>
         <MaterialCommunityIcons
-          color={theme.colors.focus}
+          color={theme.colors.focus[1]}
           size={40}
           name="email-outline"
         />

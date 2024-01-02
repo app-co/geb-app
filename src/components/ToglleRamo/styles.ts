@@ -5,7 +5,7 @@ import theme from '../../global/styles/geb';
 
 const { colors, fonts } = theme;
 export const Container = styled.View`
-  background-color: ${colors.secundary};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   padding: 15px;
   padding-bottom: 200px;
 `;
@@ -18,13 +18,13 @@ export const Title = styled.Text`
 export const TitleDescricao = styled.Text`
   font-family: ${fonts.regular};
   font-size: ${RFValue(14)}px;
-  color: ${colors.text};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const Box = styled.TouchableOpacity`
   width: 100%;
   height: ${RFPercentage(10)}px;
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   margin-bottom: 10px;
   border-radius: 10px;
   padding: 10px;

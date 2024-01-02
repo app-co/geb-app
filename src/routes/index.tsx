@@ -7,7 +7,8 @@ import { PadrinhoContext } from '../contexts/padrinho/context';
 import { Pontos } from '../contexts/pontos/context';
 import { RelationContex } from '../contexts/relation/context';
 import { TokenContext } from '../contexts/Token/context';
-import theme from '../global/styles/geb';
+import clubMentoriaTheme from '../global/styles/club-mentoria';
+import gebTheme from '../global/styles/geb';
 import { useAuth } from '../hooks/useAuth';
 import { SingIn } from '../pages/LogIn';
 import { DrawerApp } from './DrawerApp';
@@ -15,13 +16,26 @@ import { DrawerApp } from './DrawerApp';
 export function Route() {
   const { user, loading } = useAuth();
 
+  const themes = {
+    A: gebTheme,
+    B: clubMentoriaTheme,
+  };
+
   if (loading) {
     return <ActivityIndicator />;
   }
 
+  // return (
+  //   <NavigationContainer>
+  //     <ThemeProvider theme={theme}>
+  //       <SingIn />
+  //     </ThemeProvider>
+  //   </NavigationContainer>
+  // );
+
   return (
     <NavigationContainer>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={themes.A}>
         {user ? (
           <LoadData>
             <Pontos>

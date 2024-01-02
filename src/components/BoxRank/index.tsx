@@ -31,7 +31,7 @@ export function BoxRank({ item }: I) {
             <S.TitleList
               style={{
                 fontSize: 26,
-                color: theme.colors.text_secundary,
+                color: theme.colors.color_text.dark,
               }}
             >
               {item.rank}

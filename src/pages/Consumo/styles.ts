@@ -1,10 +1,7 @@
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
 import { _subTitle, _text } from '../../utils/size';
-
-const { colors, fonts } = theme;
 
 interface PropsFiltro {
   filtro: boolean;
@@ -20,27 +17,28 @@ interface TypeEx {
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
 `;
 
 export const toch = styled.TouchableOpacity<TypeEx>`
   padding: 4px;
 
   border-width: 1px;
-  border-color: ${theme.colors.secundary};
+  border-color: ${h => h.theme.colors.bg_color[2]};
   border-radius: 8px;
 
-  background-color: ${h => (h.type ? theme.colors.secundary : 'transparent')};
+  background-color: ${h =>
+    h.type ? h.theme.colors.bg_color[2] : 'transparent'};
 `;
 
 export const text = styled.Text`
   font-size: ${_text + 2}px;
-  font-family: ${theme.fonts.Regular};
+  font-family: ${h => h.theme.fonts.Regular};
 `;
 
 export const reloaded = styled.TouchableOpacity`
   padding: 2px 10px;
-  background-color: ${theme.colors.focus_light};
+  background-color: ${h => h.theme.colors.focus[2]};
   align-items: center;
   justify-content: center;
   border-radius: 5px;
@@ -48,20 +46,20 @@ export const reloaded = styled.TouchableOpacity`
 
 export const title = styled.Text`
   font-size: ${_subTitle}px;
-  font-family: ${theme.fonts.Regular};
+  font-family: ${h => h.theme.fonts.Regular};
 `;
 
 export const BoxTotal = styled.View`
   width: 100%;
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   justify-content: center;
   padding: 10px 20px;
 `;
 
 export const Text = styled.Text`
   font-size: ${RFValue(16)}px;
-  font-family: ${theme.fonts.Regular};
-  color: ${theme.colors.text_secundary};
+  font-family: ${h => h.theme.fonts.Regular};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const BoxFiltros = styled.View`
@@ -74,12 +72,14 @@ export const BoxFiltros = styled.View`
 
 export const TextFiltro = styled.Text<PropsFiltro>`
   font-size: ${RFValue(14)}px;
-  font-family: ${fonts.Regular};
-  color: ${({ filtro }) => (filtro ? colors.text_secundary : colors.text)};
+  font-family: ${h => h.theme.fonts.Regular};
+  color: ${({ filtro, theme }) =>
+    filtro ? theme.colors.color_text.dark : theme.colors.color_text.ligh};
 `;
 
 export const BoxFiltroTouch = styled.TouchableOpacity<PropsFiltro>`
-  background-color: ${({ filtro }) => (filtro ? colors.focus : colors.primary)};
+  background-color: ${({ filtro, theme }) =>
+    filtro ? theme.colors.bg_button[1] : theme.colors.bg_button[2]};
   border-radius: 10px;
   align-items: center;
   justify-content: center;
@@ -88,7 +88,7 @@ export const BoxFiltroTouch = styled.TouchableOpacity<PropsFiltro>`
   padding: 2px;
 
   border-width: 1px;
-  border-color: ${colors.focus};
+  border-color: ${h => h.theme.colors.focus[1]};
 `;
 
 export const BoxTypeTransaction = styled.View`
@@ -102,13 +102,14 @@ export const BoxTypeTransaction = styled.View`
 
 export const TextTypeTransaction = styled.Text<PropsTyps>`
   font-size: ${RFValue(14)}px;
-  font-family: ${theme.fonts.bold};
-  color: ${({ type }) => (type ? colors.text_secundary : colors.text)};
+  font-family: ${h => h.theme.fonts.bold};
+  color: ${({ type, theme }) =>
+    type ? theme.colors.color_text.ligh : theme.colors.color_text.dark};
 `;
 
 export const BoxTypeTransactionTouch = styled.TouchableOpacity<PropsTyps>`
-  background-color: ${({ type }) =>
-    type ? colors.focus_light : colors.primary};
+  background-color: ${({ type, theme }) =>
+    type ? theme.colors.bg_button[2] : theme.colors.bg_button[1]};
   /* width: ${RFPercentage(8)}px;
     height: ${RFPercentage(3)}px; */
 
@@ -118,7 +119,7 @@ export const BoxTypeTransactionTouch = styled.TouchableOpacity<PropsTyps>`
   justify-content: center;
 
   border-width: 1px;
-  border-color: ${colors.focus_light};
+  border-color: ${h => h.theme.colors.focus[2]};
   margin-left: ${RFValue(15)}px;
   padding: 3px ${RFValue(6)}px;
 `;

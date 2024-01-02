@@ -1,10 +1,9 @@
 /* eslint-disable camelcase */
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { add, format, isAfter, max } from 'date-fns';
+import { format } from 'date-fns';
 import * as Location from 'expo-location';
-import { Center } from 'native-base';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, Alert } from 'react-native';
 
 import { Header } from '../../components/Header';
 import { useRelation } from '../../contexts/relation';

@@ -15,9 +15,9 @@ export function TabBarApp() {
       initialRouteName="home"
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: theme.colors.focus,
+        tabBarActiveTintColor: theme.colors.focus[1],
         tabBarLabelStyle: { fontFamily: theme.fonts.regular },
-        tabBarInactiveTintColor: theme.colors.tex_light,
+        tabBarInactiveTintColor: theme.colors.color_text.ligh,
         tabBarStyle: {
           paddingTop: 5,
           paddingBottom: 10,

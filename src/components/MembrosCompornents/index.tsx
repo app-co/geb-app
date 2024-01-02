@@ -98,11 +98,15 @@ export function MembrosComponents({
             />
           )}
           {icon === 'indicar' && (
-            <AntDesign size={40} name="swap" color={theme.colors.focus} />
+            <AntDesign size={40} name="swap" color={theme.colors.focus[2]} />
           )}
 
           {icon === 'b2b' && (
-            <FontAwesome5 name="users" size={40} color={theme.colors.focus} />
+            <FontAwesome5
+              name="users"
+              size={40}
+              color={theme.colors.focus[1]}
+            />
           )}
         </S.ContainerIcon>
       </S.Box>

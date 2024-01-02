@@ -9,11 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
 import * as ImagePiker from 'expo-image-picker';
-import React, {
-  useCallback,
-  useRef,
-  useState
-} from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   Alert,
@@ -317,7 +313,7 @@ export function Profile() {
                   }}
                   value={whats!}
                 />
-                <BoxInput h="1" bg={theme.colors.focus} />
+                <BoxInput h="1" bg={theme.colors.focus[1]} />
               </BoxInput>
             </BoxFormularios>
 
@@ -366,7 +362,7 @@ export function Profile() {
                   <AntDesign
                     name="caretdown"
                     size={25}
-                    color={theme.colors.focus}
+                    color={theme.colors.focus[1]}
                   />
                 </BoxTogle>
               </View>
@@ -384,7 +380,7 @@ export function Profile() {
                   <AntDesign
                     name="caretdown"
                     size={25}
-                    color={theme.colors.focus}
+                    color={theme.colors.focus[1]}
                   />
                 </BoxTogle>
               </View>

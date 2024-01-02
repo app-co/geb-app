@@ -136,7 +136,7 @@ export function Visitante() {
             renderItem={({ item: h }) => (
               <Box
                 bg={
-                  selected === 'approveded' ? theme.colors.entrada : 'gray.300'
+                  selected === 'approveded' ? theme.colors.focus[1] : 'gray.300'
                 }
                 mt={2}
                 p={5}

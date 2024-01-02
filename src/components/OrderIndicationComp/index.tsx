@@ -64,7 +64,7 @@ export function OrderIndicationComp({
 
           <Center
             _text={{
-              color: theme.colors.focus_second,
+              color: theme.colors.focus[2],
               fontFamily: theme.fonts.bold,
               fontWeight: 800,
               fontSize: _text,
@@ -136,7 +136,7 @@ export function OrderIndicationComp({
           <S.boxDescription>
             <S.title>Descrição do cunsumo</S.title>
             <S.text>{item?.objto.description}</S.text>
-            <S.title style={{ color: theme.colors.focus_second }}>
+            <S.title style={{ color: theme.colors.focus[1] }}>
               {item?.objto?.valor}
             </S.title>
           </S.boxDescription>

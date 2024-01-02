@@ -2,12 +2,11 @@ import { TextInputMask } from 'react-native-masked-text';
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
 import { w } from '../../utils/size';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
 `;
 
 export const Box = styled.View.attrs({
@@ -23,7 +22,7 @@ export const Box = styled.View.attrs({
 })`
   width: 100%;
   height: ${RFValue(200)}px;
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   align-items: center;
   padding: 6px;
   border-radius: 16px;
@@ -83,7 +82,7 @@ export const ImageProviderOfice = styled.Image`
   width: ${RFValue(40)}px;
   border-radius: ${RFValue(25)}px;
   height: ${RFValue(40)}px;
-  background-color: ${theme.colors.focus_light};
+  background-color: ${h => h.theme.colors.focus[2]};
   align-self: flex-start;
 `;
 
@@ -98,14 +97,14 @@ export const ImageOfice = styled.Image`
   width: ${RFValue(40)}px;
   border-radius: ${RFValue(25)}px;
   height: ${RFValue(40)}px;
-  background-color: ${theme.colors.focus_light};
+  background-color: ${h => h.theme.colors.focus[2]};
   align-self: flex-end;
 `;
 
 export const Title = styled.Text`
   font-size: ${RFValue(16)}px;
-  font-family: ${theme.fonts.bold};
-  color: ${theme.colors.text};
+  font-family: ${h => h.theme.fonts.bold};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const BoxInput = styled.View.attrs({
@@ -121,7 +120,7 @@ export const BoxInput = styled.View.attrs({
 })`
   width: 100%;
   height: ${RFValue(250)}px;
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   /* flex-direction: row; */
   align-items: center;
   padding: 6px;
@@ -139,7 +138,7 @@ export const ContainerInput = styled.View`
 `;
 
 export const InputText = styled(TextInputMask)`
-  font-family: ${theme.fonts.regular};
+  font-family: ${h => h.theme.fonts.regular};
   font-size: ${RFValue(16)}px;
 `;
 
@@ -147,7 +146,7 @@ export const Buton = styled.TouchableOpacity`
   width: ${RFValue(250)}px;
   height: ${RFValue(40)}px;
   border-radius: ${RFValue(10)}px;
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.button.bg.approved};
   align-self: center;
   align-items: center;
   justify-content: center;

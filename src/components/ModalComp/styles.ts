@@ -4,7 +4,7 @@ import { _subTitle } from '../../utils/size';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: rgba(51, 51, 51, 0.523);
+  background-color: ${h => h.theme.colors.bg_modal[1]};
 `;
 
 export const title = styled.Text`
@@ -13,6 +13,6 @@ export const title = styled.Text`
 `;
 
 export const box = styled.View`
-  background-color: #a1a1a1;
+  background-color: ${h => h.theme.colors.bg_modal[1]};
   padding: 20px;
 `;

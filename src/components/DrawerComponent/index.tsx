@@ -23,7 +23,12 @@ export function DrawerContent({ ...props }: Props) {
         <HStack maxW={200}>
           <Avatar source={{ uri: user?.profile?.avatar }} />
           <VStack ml={5}>
-            <Text style={{ color: theme.colors.text, fontSize: RFValue(18) }}>
+            <Text
+              style={{
+                color: theme.colors.color_text.dark,
+                fontSize: RFValue(18),
+              }}
+            >
               Olá
             </Text>
             <TitleName>{user.nome} </TitleName>
@@ -39,7 +44,7 @@ export function DrawerContent({ ...props }: Props) {
             logOut();
           }}
         >
-          <Title style={{ color: theme.colors.text_secundary }}>SAIR</Title>
+          <Title style={{ color: theme.colors.color_text.dark }}>SAIR</Title>
         </LogOf>
       </ScrollView>
     </Container>

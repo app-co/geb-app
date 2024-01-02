@@ -14,12 +14,11 @@ import styled from 'styled-components/native';
 import theme from '../../global/styles/geb';
 import { _subTitle, _text, _title } from '../../utils/size';
 
-const { colors, fonts } = theme;
 const { height, width } = Dimensions.get('screen');
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.primary};
   padding: ${width / 10.5}px 5px;
   padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 20}px;
   padding-bottom: 10px;
@@ -27,21 +26,18 @@ export const Container = styled.View`
 `;
 
 export const title = styled.Text`
-  font-family: ${fonts.Regular};
+  font-family: ${h => h.theme.fonts.Regular};
   font-size: ${_title}px;
-  /* color: ${colors.text_secundary}; */
 `;
 
 export const subTitle = styled.Text`
-  font-family: ${fonts.medium};
+  font-family: ${h => h.theme.fonts.medium};
   font-size: ${_subTitle}px;
-  /* color: ${colors.text_secundary}; */
 `;
 
 export const text = styled.Text`
-  font-family: ${fonts.Regular};
+  font-family: ${h => h.theme.fonts.Regular};
   font-size: ${_text}px;
-  /* color: ${colors.text_secundary}; */
 `;
 
 export const Box = styled.TouchableOpacity`
@@ -65,7 +61,7 @@ export const Avatar = styled.Image`
 export const BoxIco = styled.View`
   align-items: center;
   justify-content: center;
-  background-color: ${theme.colors.focus_light};
+  background-color: ${h => h.theme.colors.focus[2]};
   width: ${height * 0.15}px;
   height: ${height * 0.15}px;
   border-radius: ${RFValue(100)}px;
@@ -74,14 +70,14 @@ export const BoxIco = styled.View`
 
 export const TitleName = styled.Text`
   /* margin-top: 10px; */
-  font-family: ${fonts.Regular};
+  font-family: ${h => h.theme.fonts.Regular};
   font-size: ${RFValue(20)}px;
   align-self: center;
-  color: ${theme.colors.text};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const BoxPrice = styled.View.attrs({
-  shadowColor: colors.focus,
+  shadowColor: theme.colors.focus,
   shadowOffset: {
     width: 0,
     height: 3,
@@ -92,7 +88,7 @@ export const BoxPrice = styled.View.attrs({
   elevation: 6,
 })`
   width: ${width * 0.5}px;
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-self: center;
   justify-content: center;
   align-items: center;
@@ -102,21 +98,21 @@ export const BoxPrice = styled.View.attrs({
   padding: 2px;
 `;
 export const TitlePrice = styled.Text`
-  font-family: ${fonts.Regular};
+  font-family: ${h => h.theme.fonts.Regular};
   font-size: ${RFValue(16)}px;
-  color: ${theme.colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const TitleP = styled.Text`
-  font-family: ${fonts.Regular};
+  font-family: ${h => h.theme.fonts.Regular};
   font-size: ${RFValue(12)}px;
-  color: ${theme.colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const ComprasText = styled.Text`
-  font-family: ${fonts.Regular};
+  font-family: ${h => h.theme.fonts.Regular};
   font-size: ${RFValue(14)}px;
-  color: ${theme.colors.text};
+  color: ${h => h.theme.colors.color_text.dark};
   top: ${RFValue(15)}px;
 `;
 
@@ -125,7 +121,7 @@ export const Scroll = styled.ScrollView`
 `;
 
 export const Line = styled.View.attrs({
-  shadowColor: colors.focus,
+  shadowColor: theme.colors.focus,
   shadowOffset: {
     width: 0,
     height: 3,
@@ -137,7 +133,7 @@ export const Line = styled.View.attrs({
 })`
   height: 2px;
   width: 80%;
-  background-color: ${colors.text};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   align-self: center;
   margin-top: ${width / 29}px;
   margin-bottom: ${width / 20}px;

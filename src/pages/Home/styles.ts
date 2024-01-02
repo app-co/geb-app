@@ -1,10 +1,8 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
 export const Container = styled.View`
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   flex: 1;
 `;
 
@@ -13,8 +11,8 @@ export const BoxInfo = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: ${theme.fonts.regular};
-  color: ${theme.colors.text_secundary};
+  font-family: ${h => h.theme.fonts.regular};
+  color: ${h => h.theme.colors.color_text.dark};
   margin-left: ${RFValue(70)}px;
 `;
 
@@ -22,12 +20,12 @@ export const BoxPost = styled.View`
   padding: 10px;
   margin-top: 32px;
   border-radius: ${RFValue(10)}px;
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   align-self: center;
 
-  border-top-color: ${theme.colors.primary};
-  border-right-color: ${theme.colors.primary};
-  border-left-color: ${theme.colors.primary};
+  border-top-color: ${h => h.theme.colors.bg_color[1]};
+  border-right-color: ${h => h.theme.colors.bg_color[1]};
+  border-left-color: ${h => h.theme.colors.bg_color[1]};
   border-width: 1px;
 `;
 
@@ -42,7 +40,7 @@ export const BoxAvatarPost = styled.View`
   height: ${RFValue(40)}px;
   width: ${RFValue(40)}px;
   border-radius: 20px;
-  background-color: ${theme.colors.tex_light};
+  background-color: ${h => h.theme.colors.color_text.ligh};
 
   align-items: center;
   justify-content: center;
@@ -70,7 +68,7 @@ export const LikePost = styled.TouchableOpacity`
 `;
 
 export const TextPost = styled.Text`
-  font-family: ${theme.fonts.regular};
+  font-family: ${h => h.theme.fonts.regular};
   font-size: ${RFValue(16)}px;
 `;
 
@@ -79,7 +77,7 @@ export const ButonPost = styled.TouchableOpacity`
   width: ${RFValue(50)}px;
   height: ${RFValue(50)}px;
   border-radius: ${RFValue(30)}px;
-  background-color: ${theme.colors.focus_light};
+  background-color: ${h => h.theme.colors.bg_button[1]};
   align-items: center;
   justify-content: center;
   top: ${RFValue(550)}px;

@@ -14,7 +14,7 @@ interface I {
 function ExtratoCompMemo({ item = [], day }: I) {
   return (
     <S.content>
-      <Circle size="sm" bg={theme.colors.focus}>
+      <Circle size="sm" bg={theme.colors.focus[1]}>
         <S.title>{day}</S.title>
       </Circle>
 

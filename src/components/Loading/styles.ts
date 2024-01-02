@@ -1,11 +1,9 @@
 import { Image } from 'react-native';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
 export const Container = styled.View`
   flex: 1;
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-items: center;
   justify-content: center;
 `;

@@ -4,11 +4,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useId, useState } from 'react';
-import {
-  FlatList,
-  ScrollView,
-  View
-} from 'react-native';
+import { FlatList, ScrollView, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { useQuery } from 'react-query';
@@ -228,7 +224,7 @@ export function Ranking() {
                       <TitleList
                         style={{
                           fontSize: 26,
-                          color: theme.colors.text_secundary,
+                          color: theme.colors.color_text.dark,
                         }}
                       >
                         {index + 1}
@@ -286,7 +282,7 @@ export function Ranking() {
                     <TitleList
                       style={{
                         fontSize: 26,
-                        color: theme.colors.text_secundary,
+                        color: theme.colors.color_text.dark,
                       }}
                     >
                       {h.rank}
@@ -343,7 +339,7 @@ export function Ranking() {
                     <TitleList
                       style={{
                         fontSize: 26,
-                        color: theme.colors.text_secundary,
+                        color: theme.colors.color_text.dark,
                       }}
                     >
                       {h.rank}
@@ -400,7 +396,7 @@ export function Ranking() {
                     <TitleList
                       style={{
                         fontSize: 26,
-                        color: theme.colors.text_secundary,
+                        color: theme.colors.color_text.dark,
                       }}
                     >
                       {h.rank}
@@ -457,7 +453,7 @@ export function Ranking() {
                     <TitleList
                       style={{
                         fontSize: 26,
-                        color: theme.colors.text_secundary,
+                        color: theme.colors.color_text.dark,
                       }}
                     >
                       {h.rank}
@@ -514,7 +510,7 @@ export function Ranking() {
                     <TitleList
                       style={{
                         fontSize: 26,
-                        color: theme.colors.text_secundary,
+                        color: theme.colors.color_text.dark,
                       }}
                     >
                       {h.rank}
@@ -571,7 +567,7 @@ export function Ranking() {
                     <TitleList
                       style={{
                         fontSize: 26,
-                        color: theme.colors.text_secundary,
+                        color: theme.colors.color_text.dark,
                       }}
                     >
                       {h.rank}
@@ -628,7 +624,7 @@ export function Ranking() {
                     <TitleList
                       style={{
                         fontSize: 26,
-                        color: theme.colors.text_secundary,
+                        color: theme.colors.color_text.dark,
                       }}
                     >
                       {h.rank}
@@ -685,7 +681,7 @@ export function Ranking() {
                     <TitleList
                       style={{
                         fontSize: 26,
-                        color: theme.colors.text_secundary,
+                        color: theme.colors.color_text.dark,
                       }}
                     >
                       {h.rank}

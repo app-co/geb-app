@@ -2,12 +2,10 @@ import { FontAwesome } from '@expo/vector-icons';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
 import { w } from '../../utils/size';
 
-const { colors, fonts } = theme;
 export const Container = styled.View`
-  background-color: ${colors.secundary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   width: 100%;
   padding: 10px;
   border-radius: 8px;
@@ -16,27 +14,27 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-size: ${RFValue(14)}px;
-  font-family: ${fonts.regular};
-  color: ${colors.focus};
+  font-family: ${h => h.theme.fonts.regular};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const TitleName = styled.Text`
   font-size: ${RFValue(16)}px;
-  font-family: ${fonts.bold};
-  color: ${colors.focus};
+  font-family: ${h => h.theme.fonts.bold};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const Avatar = styled.Image`
   width: ${RFValue(50)}px;
   height: ${RFValue(50)}px;
   border-radius: ${RFValue(25)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
 `;
 
 export const MapView = styled.TouchableOpacity`
   width: ${w * 0.3}px;
   min-height: ${RFPercentage(5)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   flex-direction: row;
   padding: 5px;
   align-items: center;
@@ -57,7 +55,7 @@ export const boxH = styled.View`
 `;
 
 export const star = styled(FontAwesome)`
-  color: ${theme.colors.focus_second};
+  color: ${h => h.theme.colors.focus[2]};
   font-size: ${RFValue(18)}px;
 `;
 
@@ -65,15 +63,15 @@ export const boxV = styled.View``;
 
 export const TitleMaps = styled.Text`
   font-size: ${RFValue(12)}px;
-  font-family: ${fonts.regular};
-  color: ${colors.text_secundary};
+  font-family: ${h => h.theme.fonts.regular};
+  color: ${h => h.theme.colors.color_text.ligh};
   margin-left: 5px;
 `;
 
 export const Box = styled.TouchableOpacity`
   width: ${RFPercentage(10.5)}px;
   height: ${RFPercentage(6)}px;
-  background-color: ${colors.focus_light};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-items: center;
   justify-content: center;
   border-radius: 10px;
@@ -82,6 +80,6 @@ export const Box = styled.TouchableOpacity`
 
 export const TitleSocial = styled.Text`
   font-size: ${RFValue(10)}px;
-  font-family: ${fonts.regular};
-  color: ${colors.text_secundary};
+  font-family: ${h => h.theme.fonts.regular};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;

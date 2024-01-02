@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
 import { _subTitle, _text } from '../../utils/size';
 
 interface I {
@@ -26,7 +25,10 @@ export const title = styled.Text`
 
 export const subTitle = styled.Text<I>`
   font-size: ${_subTitle - 2}px;
-  color: ${h => (h.selected ? '#fff' : theme.colors.text)};
+  color: ${h =>
+    h.selected
+      ? h.theme.colors.color_text.ligh
+      : h.theme.colors.color_text.dark};
   font-family: 'regular';
 `;
 

@@ -27,11 +27,7 @@ export function DrawerApp() {
             <FontAwesome
               name="home"
               size={size}
-              color={
-                focused
-                  ? theme.colors.focus_second
-                  : theme.colors.focus_second_3
-              }
+              color={focused ? theme.colors.focus[1] : theme.colors.focus[2]}
             />
           ),
         }}

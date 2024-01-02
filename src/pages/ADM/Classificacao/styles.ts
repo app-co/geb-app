@@ -2,9 +2,6 @@ import { Dimensions } from 'react-native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../../global/styles/geb';
-
-const { colors, fonts } = theme;
 const { width, height } = Dimensions.get('screen');
 
 const widt = width * 0.3;
@@ -20,49 +17,52 @@ interface FiltroProps {
 
 export const Container = styled.SafeAreaView`
   flex: 1;
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.primary};
 `;
 
 export const TitleType = styled.Text<TypePros>`
-  font-family: ${fonts.bold};
-  color: ${({ type }) => (type ? colors.text_secundary : colors.text)};
+  font-family: ${h => h.theme.fonts.bold};
+  color: ${({ type, theme }) =>
+    type ? theme.colors.color_text.dark : theme.colors.color_text.ligh};
   font-size: ${RFValue(12)}px;
 `;
 
 export const TitleFiltro = styled.Text<FiltroProps>`
-  font-family: ${fonts.bold};
-  color: ${({ filtro }) => (filtro ? colors.text_secundary : colors.text)};
+  font-family: ${h => h.theme.fonts.bold};
+  color: ${({ filtro, theme }) =>
+    filtro ? theme.colors.color_text.dark : theme.colors.color_text.ligh};
   font-size: ${RFValue(14)}px;
 `;
 
 export const TitleList = styled.Text`
-  font-family: ${fonts.bold};
-  color: ${colors.text};
+  font-family: ${h => h.theme.fonts.bold};
+  color: ${h => h.theme.colors.color_text.dark};
   font-size: ${RFValue(14)}px;
 `;
 
 export const Box = styled.TouchableOpacity<TypePros>`
-  background-color: ${({ type }) =>
-    type ? colors.focus_light : colors.primary};
+  background-color: ${({ type, theme }) =>
+    type ? theme.colors.bg_button[1] : theme.colors.bg_button[2]};
   border-radius: 10px;
   align-items: center;
   justify-content: center;
 
   border-width: 1px;
-  border-color: ${theme.colors.focus_light};
+  border-color: ${h => h.theme.colors.focus[2]};
   padding: 3px ${RFValue(8)}px;
   margin-left: ${RFValue(15)}px;
 `;
 
 export const BoxFiltro = styled.TouchableOpacity<FiltroProps>`
-  background-color: ${({ filtro }) => (filtro ? colors.focus : colors.primary)};
+  background-color: ${({ filtro, theme }) =>
+    filtro ? theme.colors.focus[1] : theme.colors.bg_color};
   width: ${widt - 40}px;
   margin-top: ${RFValue(20)}px;
   align-items: center;
   justify-content: center;
   border-radius: ${RFValue(8)}px;
   border-width: 1px;
-  border-color: ${theme.colors.focus};
+  border-color: ${h => h.theme.colors.focus[1]};
 `;
 
 export const BoxClassificacao = styled.View`
@@ -70,7 +70,7 @@ export const BoxClassificacao = styled.View`
   height: ${RFPercentage(8)}px;
 
   border-radius: ${RFValue(30)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-items: center;
   justify-content: center;
 `;
@@ -87,7 +87,7 @@ export const BoxLista = styled.View.attrs({
   elevation: 5,
 })`
   padding: ${RFValue(20)}px;
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   width: 100%;
   align-items: center;
   border-radius: ${RFValue(8)}px;

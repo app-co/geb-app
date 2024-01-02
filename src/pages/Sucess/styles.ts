@@ -1,32 +1,30 @@
 import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
 export const Container = styled.View`
   flex: 1;
   align-items: center;
   justify-content: center;
-  background-color: ${theme.colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   padding: 20px;
 `;
 
 export const Title = styled.Text`
-  font-family: ${theme.fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(24)}px;
-  color: ${theme.colors.focus};
+  color: ${h => h.theme.colors.focus[1]};
 `;
 
 export const Message = styled.Text`
-  font-family: ${theme.fonts.bold};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(24)}px;
-  color: ${theme.colors.primary};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const Button = styled.TouchableOpacity`
   width: ${RFValue(200)}px;
   height: ${RFValue(50)}px;
-  background-color: ${theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_button[1]};
   border-radius: ${RFValue(10)}px;
   align-items: center;
   justify-content: center;

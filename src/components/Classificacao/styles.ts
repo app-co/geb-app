@@ -1,24 +1,21 @@
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
-import theme from '../../global/styles/geb';
-
-const { colors, fonts } = theme;
 export const Container = styled.View`
   flex: 1;
-  background-color: ${colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
 `;
 
 export const Title = styled.Text`
-  font-family: ${fonts.medium};
+  font-family: ${h => h.theme.fonts.medium};
   font-size: ${RFValue(16)}px;
-  color: ${colors.text_secundary};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const BoxAvatar = styled.Image`
   width: ${RFPercentage(12)}px;
   height: ${RFPercentage(12)}px;
-  background-color: ${colors.secundary};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   border-radius: ${RFPercentage(6)}px;
   align-self: center;
 `;
@@ -29,7 +26,7 @@ export const BoxEventos = styled.View`
 
 export const BoxContainer = styled.View`
   width: 70%;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +37,7 @@ export const BoxContainer = styled.View`
 export const BoxPosition = styled.View`
   width: 20%;
   height: ${RFPercentage(6)}px;
-  background-color: ${colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-items: center;
   justify-content: center;
   border-radius: 8px;
