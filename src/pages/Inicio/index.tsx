@@ -125,7 +125,6 @@ export function Inicio() {
     }
 
     if (listAllRelation?.data) {
-      const lastCurrencty = 7782628;
 
       const relation = listAllRelation.data as IRelashionship[];
 
@@ -137,7 +136,7 @@ export function Inicio() {
         return ac + i.objto.valor;
       }, 0);
 
-      currency = (total / 100 + lastCurrencty).toLocaleString('pt-BR', {
+      currency = (total / 100).toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL',
       });
