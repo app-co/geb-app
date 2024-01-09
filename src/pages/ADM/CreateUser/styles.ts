@@ -41,6 +41,12 @@ export const Title = styled.Text`
   color: ${h => h.theme.colors.color_text.dark};
 `;
 
+export const TextInpu = styled.Text`
+  font-family: ${h => h.theme.fonts.bold};
+  font-size: ${RFValue(14)}px;
+  color: ${h => h.theme.colors.color_text.ligh};
+`;
+
 export const Logo = styled.Image`
   width: ${RFValue(250)}px;
   height: ${RFValue(150)}px;

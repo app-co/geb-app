@@ -81,13 +81,12 @@ export function SingUp() {
   // TODO RESTO
 
   const te = useCallback(() => {
-    console.log('teset')
-  }, [])
+    console.log('teset');
+  }, []);
 
   const handleSubmit = useCallback(
     async (data: any) => {
-
-      console.log(data)
+      console.log(data);
 
       try {
         formRef.current?.setErrors({});
@@ -230,17 +229,17 @@ export function SingUp() {
       <Form ref={formRef} onSubmit={handleSubmit}>
         <S.Box>
           <View>
-            <S.Title>NOME COMPLETO</S.Title>
+            <S.TextInpu>NOME COMPLETO</S.TextInpu>
             <Input name="nome" icon="user" />
           </View>
 
           <View>
-            <S.Title>MEMBRO</S.Title>
+            <S.TextInpu>MEMBRO</S.TextInpu>
             <Input name="membro" icon="user" />
           </View>
 
           <View>
-            <S.Title>SENHA</S.Title>
+            <S.TextInpu>SENHA</S.TextInpu>
             <Input name="senha" autoCapitalize="none" icon="user" />
           </View>
         </S.Box>
@@ -248,7 +247,10 @@ export function SingUp() {
           {loading ? (
             <ActivityIndicator size="large" />
           ) : (
-            <Button pres={() => formRef.current?.submitForm()} title="CADASTRAR" />
+            <Button
+              pres={() => formRef.current?.submitForm()}
+              title="CADASTRAR"
+            />
           )}
         </Center>
       </Form>
