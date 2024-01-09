@@ -80,8 +80,15 @@ export function SingUp() {
 
   // TODO RESTO
 
+  const te = useCallback(() => {
+    console.log('teset')
+  }, [])
+
   const handleSubmit = useCallback(
-    async (data: FormData) => {
+    async (data: any) => {
+
+      console.log(data)
+
       try {
         formRef.current?.setErrors({});
 
@@ -124,7 +131,7 @@ export function SingUp() {
         }
       }
     },
-    [adm, enquadramento, idUserModal, navigate, nomeUserModa, ramo],
+    [adm, enquadramento, idUserModal, navigate, nomeUserModa, ramo, hub],
   );
 
   const handleAdm = useCallback(() => {
@@ -156,16 +163,6 @@ export function SingUp() {
   return (
     <S.Container>
       <Header />
-
-      {/* <Modalize ref={modalizeRefRamo}>
-        <ToglleRamo selectItem={(item: string) => SelectItemRamo(item)} />
-      </Modalize>
-
-      <Modalize ref={modalizeRefEnquadramento} snapPoint={530}>
-        <ToglleEnquadramento
-          selectItem={(item: string) => SelectItemEnquadramento(item)}
-        />
-      </Modalize> */}
 
       <Modal animationType="fade" visible={modalUser}>
         <View style={{ flex: 1 }}>
@@ -247,14 +244,14 @@ export function SingUp() {
             <Input name="senha" autoCapitalize="none" icon="user" />
           </View>
         </S.Box>
+        <Center p="2" alignSelf="center" mt="10" w="200">
+          {loading ? (
+            <ActivityIndicator size="large" />
+          ) : (
+            <Button pres={() => formRef.current?.submitForm()} title="CADASTRAR" />
+          )}
+        </Center>
       </Form>
-      <Center p="2" alignSelf="center" mt="10" w="200">
-        {loading ? (
-          <ActivityIndicator size="large" />
-        ) : (
-          <Button title="CADASTRAR" />
-        )}
-      </Center>
     </S.Container>
   );
 }
