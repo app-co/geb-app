@@ -18,7 +18,7 @@ const { height, width } = Dimensions.get('screen');
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${h => h.theme.colors.primary};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   padding: ${width / 10.5}px 5px;
   padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 20}px;
   padding-bottom: 10px;
@@ -28,14 +28,17 @@ export const Container = styled.View`
 export const title = styled.Text`
   font-family: ${h => h.theme.fonts.Regular};
   font-size: ${_title}px;
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const subTitle = styled.Text`
+  color: ${h => h.theme.colors.color_text.ligh};
   font-family: ${h => h.theme.fonts.medium};
   font-size: ${_subTitle}px;
 `;
 
 export const text = styled.Text`
+  color: ${h => h.theme.colors.color_text.ligh};
   font-family: ${h => h.theme.fonts.Regular};
   font-size: ${_text}px;
 `;

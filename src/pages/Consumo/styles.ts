@@ -1,3 +1,4 @@
+import { MaterialIcons } from '@expo/vector-icons';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
@@ -31,22 +32,37 @@ export const toch = styled.TouchableOpacity<TypeEx>`
     h.type ? h.theme.colors.bg_color[2] : 'transparent'};
 `;
 
+export const titleToch = styled.Text<TypeEx>`
+  font-size: ${_text + 2}px;
+  font-family: ${h => h.theme.fonts.Regular};
+  color: ${h =>
+    h.type ? h.theme.colors.color_text.dark : h.theme.colors.color_text.ligh};
+`;
+
 export const text = styled.Text`
   font-size: ${_text + 2}px;
   font-family: ${h => h.theme.fonts.Regular};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const reloaded = styled.TouchableOpacity`
   padding: 2px 10px;
-  background-color: ${h => h.theme.colors.focus[2]};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-items: center;
   justify-content: center;
   border-radius: 5px;
 `;
 
+export const titleReload = styled.Text`
+  font-size: ${_subTitle}px;
+  font-family: ${h => h.theme.fonts.medium};
+  color: ${h => h.theme.colors.color_text.dark};
+`;
+
 export const title = styled.Text`
   font-size: ${_subTitle}px;
   font-family: ${h => h.theme.fonts.Regular};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const BoxTotal = styled.View`
@@ -68,6 +84,10 @@ export const BoxFiltros = styled.View`
   justify-content: space-between;
   padding: 5px 20px;
   margin-bottom: ${RFValue(16)}px;
+`;
+
+export const arrowIcon = styled(MaterialIcons)`
+  color: ${h => h.theme.colors.focus[1]};
 `;
 
 export const TextFiltro = styled.Text<PropsFiltro>`
@@ -104,12 +124,12 @@ export const TextTypeTransaction = styled.Text<PropsTyps>`
   font-size: ${RFValue(14)}px;
   font-family: ${h => h.theme.fonts.bold};
   color: ${({ type, theme }) =>
-    type ? theme.colors.color_text.ligh : theme.colors.color_text.dark};
+    type ? theme.colors.color_text.dark : theme.colors.color_text.dark};
 `;
 
 export const BoxTypeTransactionTouch = styled.TouchableOpacity<PropsTyps>`
   background-color: ${({ type, theme }) =>
-    type ? theme.colors.bg_button[2] : theme.colors.bg_button[1]};
+    type ? theme.colors.button.bg.approved : theme.colors.bg_button[1]};
   /* width: ${RFPercentage(8)}px;
     height: ${RFPercentage(3)}px; */
 
@@ -119,7 +139,7 @@ export const BoxTypeTransactionTouch = styled.TouchableOpacity<PropsTyps>`
   justify-content: center;
 
   border-width: 1px;
-  border-color: ${h => h.theme.colors.focus[2]};
+  border-color: ${h => h.theme.colors.focus[1]};
   margin-left: ${RFValue(15)}px;
   padding: 3px ${RFValue(6)}px;
 `;

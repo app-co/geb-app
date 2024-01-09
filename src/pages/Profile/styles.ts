@@ -19,7 +19,7 @@ export const BoxHeader = styled.View.attrs({
 })`
   width: 100%;
   height: ${RFPercentage(8)}px;
-  background-color: ${h => h.theme.colors.bg_color[2]};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   align-items: center;
   justify-content: space-between;
   padding: 8px 25px;
@@ -59,13 +59,13 @@ export const Camera = styled(Feather)`
 export const Avatar = styled.Image`
   width: ${RFPercentage(22)}px;
   height: ${RFPercentage(22)}px;
-  background-color: ${h => h.theme.colors.focus[1]};
+  background-color: ${h => h.theme.colors.bg_color[2]};
   border-radius: ${RFValue(80)}px;
   align-self: center;
 `;
 
 export const TitleHeader = styled.Text`
-  color: ${h => h.theme.colors.focus[1]};
+  color: ${h => h.theme.colors.color_text.ligh};
   font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(16)}px;
 `;
@@ -80,7 +80,7 @@ export const BoxFormularios = styled.View.attrs({
   shadowRadius: 2.62,
   elevation: 4,
 })`
-  background-color: ${h => h.theme.colors.bg_color[2]};
+  background-color: ${h => h.theme.colors.bg_color[3]};
   width: ${width / 1.12}px;
   top: ${RFPercentage(1)}px;
   align-self: center;
@@ -110,9 +110,10 @@ export const BoxTogle = styled.TouchableOpacity`
   border-top-color: ${h => h.theme.colors.bg_color[2]};
   border-right-color: ${h => h.theme.colors.bg_color[2]};
   border-left-color: ${h => h.theme.colors.bg_color[2]};
-  border-bottom-color: ${h => h.theme.colors.focus[1]};
+  border-bottom-color: ${h => h.theme.colors.bg_color[2]};
   justify-content: center;
   padding: 0 10px;
+  border-radius: 10px;
 
   width: ${RFPercentage(25)}px;
   align-items: center;
@@ -129,7 +130,7 @@ export const TextTogle = styled.Text`
 export const BoxButton = styled.TouchableOpacity`
   width: ${RFPercentage(40)}px;
   height: ${RFPercentage(7)}px;
-  background-color: ${h => h.theme.colors.bg_button[1]};
+  background-color: ${h => h.theme.colors.button.bg.approved};
   align-self: center;
   align-items: center;
   justify-content: center;

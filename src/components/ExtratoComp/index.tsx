@@ -1,9 +1,7 @@
-import { Circle } from 'native-base';
 import React, { memo } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 import { IRelashionship } from '../../dtos';
-import theme from '../../global/styles/geb';
 import * as S from './styles';
 
 interface I {
@@ -14,9 +12,9 @@ interface I {
 function ExtratoCompMemo({ item = [], day }: I) {
   return (
     <S.content>
-      <Circle size="sm" bg={theme.colors.focus[1]}>
+      <S.circle>
         <S.title>{day}</S.title>
-      </Circle>
+      </S.circle>
 
       {item.map(h => (
         <S.Container key={h.id}>

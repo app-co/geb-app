@@ -5,6 +5,7 @@ import { IUserDto } from '../../DtosUser';
 
 export const Container = styled.KeyboardAvoidingView`
   flex: 1;
+  background-color: ${h => h.theme.colors.bg_color[1]};
 `;
 
 export const Title = styled.Text``;

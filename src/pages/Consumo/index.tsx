@@ -4,14 +4,14 @@
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
-import { MaterialIcons } from '@expo/vector-icons';
 import { useFocusEffect } from '@react-navigation/native';
 import { addMonths, format, getMonth, subMonths } from 'date-fns';
-import { Center, HStack } from 'native-base';
+import { Box, Center, HStack } from 'native-base';
 import React, { useCallback, useState } from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { FlatList, ScrollView, TouchableOpacity, View } from 'react-native';
 import { useQuery } from 'react-query';
 
+import { ExtratoComp } from '../../components/ExtratoComp';
 import { Header } from '../../components/Header';
 import { Loading } from '../../components/Loading';
 import { IRelashionship } from '../../dtos';
@@ -639,14 +639,18 @@ export function Consumo() {
           onPress={() => setTypeExtrato('valid')}
           type={typeExtrato === 'valid'}
         >
-          <S.title>Relações validadas</S.title>
+          <S.titleToch type={typeExtrato === 'valid'}>
+            Relações validadas
+          </S.titleToch>
         </S.toch>
 
         <S.toch
           onPress={() => setTypeExtrato('peding')}
           type={typeExtrato === 'peding'}
         >
-          <S.title>Relações pendentes</S.title>
+          <S.titleToch type={typeExtrato === 'peding'}>
+            Relações pendentes
+          </S.titleToch>
         </S.toch>
       </HStack>
 
@@ -686,19 +690,20 @@ export function Consumo() {
         px="4"
       >
         <TouchableOpacity style={{ padding: 3 }} onPress={handleMinus}>
-          <MaterialIcons name="arrow-back-ios" size={34} color="black" />
+          <S.arrowIcon name="arrow-back-ios" size={34} />
         </TouchableOpacity>
 
         <Center>
           <S.text>{currencyDateFormated}</S.text>
           <S.title>{months[month]}</S.title>
+
           <S.reloaded onPress={reloaded}>
-            <S.text style={{ color: '#fff' }}>AUTALIZAR</S.text>
+            <S.titleReload>AUTALIZAR</S.titleReload>
           </S.reloaded>
         </Center>
 
         <TouchableOpacity style={{ padding: 3 }} onPress={handlePlus}>
-          <MaterialIcons name="arrow-forward-ios" size={34} color="black" />
+          <S.arrowIcon name="arrow-forward-ios" size={34} />
         </TouchableOpacity>
       </HStack>
 

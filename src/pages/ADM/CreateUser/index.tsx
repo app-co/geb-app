@@ -6,7 +6,7 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
-import { Center, Box as Content, Text } from 'native-base';
+import { Box, Center } from 'native-base';
 import React, { useCallback, useRef, useState } from 'react';
 import {
   ActivityIndicator,
@@ -14,11 +14,12 @@ import {
   FlatList,
   Modal,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
 import { Modalize } from 'react-native-modalize';
 import * as Yup from 'yup';
 
+import { Button } from '../../../components/Button';
 import { Header } from '../../../components/Header';
 import { Input } from '../../../components/Inputs';
 import { MembroLista } from '../../../components/MembroLista';
@@ -27,7 +28,7 @@ import { IUserDtos } from '../../../dtos';
 import { useAuth } from '../../../hooks/useAuth';
 import { api } from '../../../services/api';
 import getValidationErrors from '../../../utils/getValidationsErrors';
-import { Box, BoxAdm, BxPadrinho, Container, Title } from './styles';
+import * as S from './styles';
 
 interface FormData {
   nome: string;
@@ -43,6 +44,8 @@ interface FormData {
   adm: true;
 }
 
+const hubList = ['GEB', 'CLUB_MENTORIA'];
+
 export function SingUp() {
   const { navigate } = useNavigation();
   const formRef = useRef<FormHandles>(null);
@@ -55,8 +58,6 @@ export function SingUp() {
   const [idAdm, setIsAdm] = useState('user');
 
   // TODO MODAL
-  const [modal, setModal] = useState(false);
-  const [modalRamo, setModalRamo] = useState(false);
   const [enquadramento, setEnquadramento] = useState('');
   const [ramo, setRamo] = useState('');
   const [modalUser, setModalUser] = useState(false);
@@ -64,8 +65,8 @@ export function SingUp() {
   const [nomeUserModa, setNomeUserModal] = useState('');
   const modalizeRefRamo = useRef<Modalize>(null);
   const modalizeRefEnquadramento = useRef<Modalize>(null);
-
-  const [padre, setPadre] = useState(0);
+  const [isOpenHub, setIsOpenHub] = React.useState<boolean>(false);
+  const [hub, setHub] = React.useState<string>('');
 
   const OpenModalUser = useCallback(() => {
     setModalUser(true);
@@ -83,7 +84,10 @@ export function SingUp() {
     async (data: FormData) => {
       try {
         formRef.current?.setErrors({});
-        console.log(data);
+
+        if (!hub) {
+          Alert.alert('Escolha um hub para cadastro');
+        }
 
         const shema = Yup.object().shape({
           nome: Yup.string().required('Nome obrigatorio'),
@@ -97,6 +101,7 @@ export function SingUp() {
 
         const dados = {
           ...data,
+          hub,
           adm,
         };
 
@@ -149,7 +154,7 @@ export function SingUp() {
   }
 
   return (
-    <Container>
+    <S.Container>
       <Header />
 
       {/* <Modalize ref={modalizeRefRamo}>
@@ -171,8 +176,29 @@ export function SingUp() {
               <MembroLista
                 closeModal={() => CloseModalUser(h.id, h.nome)}
                 nome={h.nome}
-                avatar={h.profile.avatarUrl}
+                avatar={h.profile.avatar}
               />
+            )}
+          />
+        </View>
+      </Modal>
+
+      <Modal animationType="fade" visible={isOpenHub}>
+        <View style={{ flex: 1 }}>
+          <FlatList
+            data={hubList}
+            keyExtractor={h => h}
+            renderItem={({ item: h }) => (
+              <TouchableOpacity
+                onPress={() => {
+                  setHub(h);
+                  setIsOpenHub(false);
+                }}
+              >
+                <Box mt="2" p="4" bg="gray.700">
+                  <S.Title style={{ fontSize: 20 }}>{h}</S.Title>
+                </Box>
+              </TouchableOpacity>
             )}
           />
         </View>
@@ -186,55 +212,49 @@ export function SingUp() {
           marginTop: 20,
         }}
       >
-        <Title>adm</Title>
-        <BoxAdm isAdm={idAdm === 'adm'} onPress={handleAdm} />
-        <Title style={{ marginLeft: 40 }}>usuário</Title>
-        <BoxAdm isAdm={idAdm === 'user'} onPress={handleUser} />
+        <S.Title>adm</S.Title>
+        <S.BoxAdm isAdm={idAdm === 'adm'} onPress={handleAdm} />
+        <S.Title style={{ marginLeft: 40 }}>usuário</S.Title>
+        <S.BoxAdm isAdm={idAdm === 'user'} onPress={handleUser} />
       </View>
 
-      <BxPadrinho onPress={OpenModalUser}>
+      <S.BxPadrinho onPress={OpenModalUser}>
         {nomeUserModa ? (
-          <Title>padrinho: {nomeUserModa} </Title>
+          <S.Title>padrinho: {nomeUserModa} </S.Title>
         ) : (
-          <Title>Escolher padrinho</Title>
+          <S.Title>Escolher padrinho</S.Title>
         )}
-      </BxPadrinho>
+      </S.BxPadrinho>
+
+      <S.Bxub onPress={() => setIsOpenHub(true)}>
+        {hub ? <S.Title>{hub} </S.Title> : <S.Title>Escolha um HUB</S.Title>}
+      </S.Bxub>
 
       <Form ref={formRef} onSubmit={handleSubmit}>
-        <Box>
+        <S.Box>
           <View>
-            <Title>NOME COMPLETO</Title>
+            <S.Title>NOME COMPLETO</S.Title>
             <Input name="nome" icon="user" />
           </View>
 
           <View>
-            <Title>MEMBRO</Title>
+            <S.Title>MEMBRO</S.Title>
             <Input name="membro" icon="user" />
           </View>
 
           <View>
-            <Title>SENHA</Title>
+            <S.Title>SENHA</S.Title>
             <Input name="senha" autoCapitalize="none" icon="user" />
           </View>
-        </Box>
+        </S.Box>
       </Form>
       <Center p="2" alignSelf="center" mt="10" w="200">
         {loading ? (
           <ActivityIndicator size="large" />
         ) : (
-          <TouchableOpacity
-            onPress={() => {
-              formRef.current.submitForm();
-            }}
-          >
-            <Content>
-              <Text fontSize={20} bold>
-                Cadastrar
-              </Text>
-            </Content>
-          </TouchableOpacity>
+          <Button title="CADASTRAR" />
         )}
       </Center>
-    </Container>
+    </S.Container>
   );
 }

@@ -1,15 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { Children, ReactNode, createContext } from 'react';
+import React, { ReactNode, createContext } from 'react';
 import { QueryObserverBaseResult, useQuery } from 'react-query';
 
-import {
-  IB2b,
-  IIndicationDto,
-  IOrderTransaction,
-  ISelfPonts,
-  IUserDtos,
-} from '../dtos';
+import { IOrderTransaction, ISelfPonts, IUserDtos } from '../dtos';
 import { api } from '../services/api';
 
 interface ICreateContextData {
@@ -26,7 +20,7 @@ export const LoadDataContext = createContext({} as ICreateContextData);
 
 export function LoadData({ children }: TCreation) {
   const users = useQuery('users', async () => {
-    const rs = await api.get('/user/list-all-user');
+    const rs = await api.get('/user/list-all-user/GEB');
 
     return rs.data as IUserDtos[];
   });

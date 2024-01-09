@@ -25,17 +25,9 @@ export function Route() {
     return <ActivityIndicator />;
   }
 
-  // return (
-  //   <NavigationContainer>
-  //     <ThemeProvider theme={theme}>
-  //       <SingIn />
-  //     </ThemeProvider>
-  //   </NavigationContainer>
-  // );
-
   return (
     <NavigationContainer>
-      <ThemeProvider theme={themes.A}>
+      <ThemeProvider theme={themes.B}>
         {user ? (
           <LoadData>
             <Pontos>

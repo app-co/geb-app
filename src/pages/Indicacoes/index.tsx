@@ -36,7 +36,7 @@ import {
 
 export function Indicacoes() {
   const { user } = useAuth();
-  const { data, isLoading } = useAllUsers();
+  const { data, isLoading } = useAllUsers(user.hub);
   const { mytoken } = useToken();
 
   const { navigate } = useNavigation();

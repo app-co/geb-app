@@ -7,9 +7,9 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-family: ${h => h.theme.fonts.medium};
+  font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(16)}px;
-  color: ${h => h.theme.colors.color_text.ligh};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const BoxAvatar = styled.Image`

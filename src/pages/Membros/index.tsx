@@ -4,17 +4,16 @@
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { Center } from 'native-base';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FlatList, ScrollView, Text, View } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { FlatList, View } from 'react-native';
 
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
 import { Loading } from '../../components/Loading';
 import { MembrosComponents } from '../../components/MembrosCompornents';
-import { IProfileDto, IStars, IUserDtos } from '../../dtos';
+import { IProfileDto, IUserDtos } from '../../dtos';
 import { useAuth } from '../../hooks/useAuth';
 import { useAllUsers } from '../../hooks/user';
-import { api } from '../../services/api';
 import { Box } from '../FindMembro/styles';
 import { Container } from './styles';
 
@@ -26,7 +25,7 @@ interface PropsUser {
 export function Membros() {
   const { navigate } = useNavigation();
   const { user } = useAuth();
-  const { data, refetch, isLoading } = useAllUsers();
+  const { data, refetch, isLoading } = useAllUsers(user.hub);
 
   const [load, setLoad] = useState(true);
   const [search, setSearch] = React.useState('');
@@ -43,13 +42,13 @@ export function Membros() {
   const users =
     search.length > 0
       ? membros.filter(h => {
-          const up = h.nome.toLocaleUpperCase();
+        const up = h.nome.toLocaleUpperCase();
 
-          if (up.includes(search.toLocaleUpperCase()) && h.id !== user.id) {
-            return h;
-          }
-          return null;
-        })
+        if (up.includes(search.toLocaleUpperCase()) && h.id !== user.id) {
+          return h;
+        }
+        return null;
+      })
       : membros.filter(h => h.id !== user.id);
 
   useFocusEffect(
@@ -93,8 +92,8 @@ export function Membros() {
               user_avatar={h.profile.avatar}
               oficio={h.profile.workName}
               imageOfice={h.profile.logo}
-              // inativoPres={h..inativo}
-              // inativo={h.inativo}
+            // inativoPres={h..inativo}
+            // inativo={h.inativo}
             />
           )}
         />

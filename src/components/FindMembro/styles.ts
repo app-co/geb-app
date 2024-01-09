@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import { w } from '../../utils/size';
 
 export const Container = styled.View`
-  background-color: ${h => h.theme.colors.bg_color[1]};
+  background-color: ${h => h.theme.colors.bg_color[3]};
   width: 100%;
   padding: 10px;
   border-radius: 8px;
@@ -15,13 +15,13 @@ export const Container = styled.View`
 export const Title = styled.Text`
   font-size: ${RFValue(14)}px;
   font-family: ${h => h.theme.fonts.regular};
-  color: ${h => h.theme.colors.color_text.dark};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const TitleName = styled.Text`
   font-size: ${RFValue(16)}px;
   font-family: ${h => h.theme.fonts.bold};
-  color: ${h => h.theme.colors.color_text.dark};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const Avatar = styled.Image`
@@ -55,7 +55,7 @@ export const boxH = styled.View`
 `;
 
 export const star = styled(FontAwesome)`
-  color: ${h => h.theme.colors.focus[2]};
+  color: ${h => h.theme.colors.focus[1]};
   font-size: ${RFValue(18)}px;
 `;
 
@@ -63,8 +63,8 @@ export const boxV = styled.View``;
 
 export const TitleMaps = styled.Text`
   font-size: ${RFValue(12)}px;
-  font-family: ${h => h.theme.fonts.regular};
-  color: ${h => h.theme.colors.color_text.ligh};
+  font-family: ${h => h.theme.fonts.bold};
+  color: ${h => h.theme.colors.color_text.dark};
   margin-left: 5px;
 `;
 
@@ -80,6 +80,6 @@ export const Box = styled.TouchableOpacity`
 
 export const TitleSocial = styled.Text`
   font-size: ${RFValue(10)}px;
-  font-family: ${h => h.theme.fonts.regular};
-  color: ${h => h.theme.colors.color_text.ligh};
+  font-family: ${h => h.theme.fonts.medium};
+  color: ${h => h.theme.colors.color_text.dark};
 `;

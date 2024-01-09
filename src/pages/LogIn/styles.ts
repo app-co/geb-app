@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 
 export const Container = styled.KeyboardAvoidingView`
   flex: 1;
-  background-color: ${h => h.theme.colors.focus[1]};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   align-items: center;
   /* padding-bottom: 10px; */
 `;

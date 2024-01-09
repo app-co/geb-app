@@ -6,8 +6,8 @@ interface Props {
 }
 
 export const Container = styled.KeyboardAvoidingView`
-  /* flex: 1; */
-  background-color: ${h => h.theme.colors.primary};
+  flex: 1;
+  background-color: ${h => h.theme.colors.bg_color[1]};
 `;
 
 export const Box = styled.View.attrs({
@@ -23,7 +23,7 @@ export const Box = styled.View.attrs({
 })`
   width: 100%;
   min-height: ${RFPercentage(40)}px;
-  background-color: ${h => h.theme.colors.bg_color[2]};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   align-items: center;
   border-radius: 15px;
   padding: 20px;
@@ -38,7 +38,7 @@ export const BoxInput = styled.View`
 export const Title = styled.Text`
   font-family: ${h => h.theme.fonts.bold};
   font-size: ${RFValue(14)}px;
-  color: ${h => h.theme.colors.focus};
+  color: ${h => h.theme.colors.color_text.dark};
 `;
 
 export const Logo = styled.Image`
@@ -71,13 +71,22 @@ export const ContainerInput = styled.View`
 `;
 
 export const BxPadrinho = styled.TouchableOpacity`
-  width: 60%;
   height: 40px;
 
   border-radius: 12px;
-  background-color: ${h => h.theme.colors.bg_color[2]};
+  background-color: ${h => h.theme.colors.button.bg.approved};
   align-items: center;
   justify-content: center;
   margin-top: 15px;
-  margin-left: ${RFValue(25)}px;
+`;
+
+export const Bxub = styled.TouchableOpacity`
+  /* width: 60%; */
+  height: 40px;
+
+  border-radius: 12px;
+  background-color: ${h => h.theme.colors.button.bg.approved};
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
 `;

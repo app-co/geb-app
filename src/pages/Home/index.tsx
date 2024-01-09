@@ -33,7 +33,7 @@ export function Home() {
 
   const posts = React.useCallback(async () => {
     await api
-      .get('/user/list-all-user')
+      .get('/user/list-all-user/GEB')
       .then(async us => {
         const users = us.data as IUserDtos[];
 

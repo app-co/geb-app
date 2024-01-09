@@ -1,17 +1,9 @@
-import fire from '@react-native-firebase/firestore';
 import { useFocusEffect } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import * as Linkin from 'expo-linking';
 import { Center } from 'native-base';
-import React, { useCallback, useEffect, useState } from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  FlatList,
-  Linking,
-  View,
-} from 'react-native';
-import { useQuery } from 'react-query';
+import React, { useCallback } from 'react';
+import { FlatList, View } from 'react-native';
 
 import { FindMembroComponent } from '../../components/FindMembro';
 import { Header } from '../../components/Header';
@@ -23,7 +15,7 @@ import { Box, Container } from './styles';
 
 export function FindUser() {
   const { user } = useAuth();
-  const { data, refetch, isLoading } = useAllUsers();
+  const { data, refetch, isLoading } = useAllUsers(user.hub);
 
   const [search, setSearch] = React.useState('');
 
@@ -40,13 +32,13 @@ export function FindUser() {
   const users =
     search.length > 0
       ? membros.filter(h => {
-          const up = h.nome.toLocaleUpperCase();
+        const up = h.nome.toLocaleUpperCase();
 
-          if (up.includes(search.toLocaleUpperCase()) && h.id !== user.id) {
-            return h;
-          }
-          return null;
-        })
+        if (up.includes(search.toLocaleUpperCase()) && h.id !== user.id) {
+          return h;
+        }
+        return null;
+      })
       : membros.filter(h => h.id !== user.id);
 
   useFocusEffect(
@@ -90,9 +82,9 @@ export function FindUser() {
               whats={() => {
                 handleNavigateToWatts(h.profile.whats);
               }}
-              face={() => {}}
-              insta={() => {}}
-              maps={() => {}}
+              face={() => { }}
+              insta={() => { }}
+              maps={() => { }}
             />
           </View>
         )}

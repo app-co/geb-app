@@ -3,7 +3,7 @@ import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { Center } from 'native-base';
 import React, { useCallback, useState } from 'react';
-import { ActivityIndicator, FlatList, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Inputs';
@@ -18,7 +18,7 @@ import { Container } from './styles';
 export function B2B() {
   const { navigate } = useNavigation();
   const { user } = useAuth();
-  const { data, refetch, isLoading } = useAllUsers();
+  const { data, refetch, isLoading } = useAllUsers(user.hub);
 
   const [value, setValue] = useState('');
 
@@ -27,13 +27,13 @@ export function B2B() {
   const users =
     value.length > 0
       ? membros.filter(h => {
-          const up = h.nome.toLocaleUpperCase();
+        const up = h.nome.toLocaleUpperCase();
 
-          if (up.includes(value.toLocaleUpperCase()) && h.id !== user.id) {
-            return h;
-          }
-          return null;
-        })
+        if (up.includes(value.toLocaleUpperCase()) && h.id !== user.id) {
+          return h;
+        }
+        return null;
+      })
       : membros.filter(h => h.id !== user.id);
 
   useFocusEffect(
@@ -83,8 +83,8 @@ export function B2B() {
               user_avatar={h.profile.avatar}
               oficio={h.profile.workName}
               imageOfice={h.profile.logo}
-              // inativoPres={h.profile.inativo}
-              // inativo={h.profile.inativo}
+            // inativoPres={h.profile.inativo}
+            // inativo={h.profile.inativo}
             />
           )}
         />

@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { MaterialIcons } from '@expo/vector-icons';
 import { addMonths, format, subMonths } from 'date-fns';
-import { Text, Box, FlatList, HStack, Center } from 'native-base';
+import { Box, Center, FlatList, HStack, Text } from 'native-base';
 import React, { useCallback, useState } from 'react';
 import { Alert, TouchableOpacity } from 'react-native';
 
@@ -26,7 +26,7 @@ export function ListaPresença() {
   const [load, setLoad] = React.useState(true);
 
   const listOrdersPresenca = React.useCallback(async () => {
-    await api.get('/user/list-all-user').then(async user => {
+    await api.get('/user/list-all-user/GEB').then(async user => {
       const membro = user.data as IUserDtos[];
 
       users.data

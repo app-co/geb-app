@@ -3,10 +3,9 @@ import { useQuery } from 'react-query';
 
 import { IStars, IUserDtos } from '../../dtos';
 import { api } from '../../services/api';
-import { routesScheme } from '../../services/schemeRoutes';
 
-export async function getUsers() {
-  const { data } = await api.get(routesScheme.users.list_all_users);
+export async function getUsers(hub: string) {
+  const { data } = await api.get(`/user/list-all-user/${hub}`);
 
   const list = data as IUserDtos[];
 
@@ -30,16 +29,9 @@ export async function getUsers() {
       return data;
     });
 
-  const fil = users.sort((a, b) => {
-    if (a.nome < b.nome) {
-      return -1;
-    }
-    return 1;
-  });
-
-  return fil;
+  return users;
 }
 
-export function useAllUsers() {
-  return useQuery('all-users', getUsers);
+export function useAllUsers(hub: string) {
+  return useQuery('all-users', () => getUsers(hub));
 }

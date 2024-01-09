@@ -5,13 +5,16 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   flex: 1;
-  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 5}px;
+  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 15}px;
   padding-bottom: 50px;
+  background-color: ${h => h.theme.colors.bg_color[2]};
 `;
 
 export const Header = styled.View`
   width: 100%;
   height: ${RFValue(80)}px;
+  padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 45}px;
+
   padding: 20px;
   flex-direction: row;
 
@@ -39,7 +42,7 @@ export const LogOf = styled.TouchableOpacity`
   width: ${RFValue(100)}px;
   height: ${RFValue(35)}px;
   margin-left: ${RFValue(20)}px;
-  background-color: ${h => h.theme.colors.focus[2]};
+  background-color: ${h => h.theme.colors.focus[1]};
 
   align-items: center;
   justify-content: center;

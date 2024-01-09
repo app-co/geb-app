@@ -1,6 +1,5 @@
 /* eslint-disable no-async-promise-executor */
 import axios, { AxiosError, AxiosInstance } from 'axios';
-import soketio from 'socket.io-client';
 
 import { TokenStorage } from '../storage/token-storage';
 import { AppError } from '../utils/AppError';
@@ -11,7 +10,7 @@ type APIInstaceProps = AxiosInstance & {
   registerIntercepTokenManager: (signOut: SignOut) => () => void;
 };
 
-const dev = 'http://192.168.0.64:3333';
+const dev = 'http://192.168.0.105:3333';
 const production = 'https://geb-server.appcom.dev';
 
 type PromiseType = {

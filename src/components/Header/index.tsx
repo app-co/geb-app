@@ -37,7 +37,7 @@ export function Header({ title, orders = 0, openMail, type = 'menu' }: IProps) {
               <MaterialCommunityIcons
                 name="menu"
                 size={40}
-                color={theme.colors.focus[1]}
+                color={theme.colors.color_text.ligh}
               />
             ) : (
               <MaterialCommunityIcons
