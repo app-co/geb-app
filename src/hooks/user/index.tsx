@@ -7,6 +7,7 @@ import { api } from '../../services/api';
 export async function getUsers(hub: string) {
   const { data } = await api.get(`/user/list-all-user/${hub}`);
 
+
   const list = data as IUserDtos[];
 
   const users = list

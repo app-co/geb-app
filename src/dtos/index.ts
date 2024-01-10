@@ -6,6 +6,7 @@ export interface IUserDtos {
   senha: string;
   adm: boolean;
   token: string;
+  hub: 'GEB' | 'CLUB_MENTORIA'
 
   //! ! FK_USERS
   situation: ISituationUser;

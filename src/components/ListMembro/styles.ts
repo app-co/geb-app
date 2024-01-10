@@ -14,7 +14,7 @@ export const AvatarMembro = styled.Image`
   width: ${RFValue(80)}px;
   height: ${RFValue(80)}px;
   border-radius: ${RFValue(40)}px;
-  background-color: ${h => h.theme.colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
 `;
 
 export const Title = styled.Text`

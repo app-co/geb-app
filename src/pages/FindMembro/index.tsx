@@ -15,6 +15,7 @@ import { Box, Container } from './styles';
 
 export function FindUser() {
   const { user } = useAuth();
+  console.log({ hub: user.hub })
   const { data, refetch, isLoading } = useAllUsers(user.hub);
 
   const [search, setSearch] = React.useState('');

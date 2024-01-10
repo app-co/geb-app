@@ -16,7 +16,7 @@ export const ButtonToggle = styled.TouchableOpacity`
   width: 50%;
   height: 35px;
 
-  background-color: ${h => h.theme.colors.focus};
+  background-color: ${h => h.theme.colors.focus[1]};
 `;
 
 export const TitleTogle = styled.Text`

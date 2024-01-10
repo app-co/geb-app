@@ -22,6 +22,7 @@ export default {
     imput: {
       bg: '#303030',
       text: 'rgba(237,241,244, 1)',
+      placeholder: 'rgba(97, 99, 100, 1)',
     },
 
     primary: 'rgba(250,255,255, 1)',

@@ -22,7 +22,7 @@ export const Box = styled.View.attrs({
 })`
   width: 100%;
   height: ${RFValue(200)}px;
-  background-color: ${h => h.theme.colors.bg_color[1]};
+  background-color: ${h => h.theme.colors.bg_color[3]};
   align-items: center;
   padding: 6px;
   border-radius: 16px;
@@ -82,7 +82,7 @@ export const ImageProviderOfice = styled.Image`
   width: ${RFValue(40)}px;
   border-radius: ${RFValue(25)}px;
   height: ${RFValue(40)}px;
-  background-color: ${h => h.theme.colors.focus[2]};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-self: flex-start;
 `;
 
@@ -97,14 +97,15 @@ export const ImageOfice = styled.Image`
   width: ${RFValue(40)}px;
   border-radius: ${RFValue(25)}px;
   height: ${RFValue(40)}px;
-  background-color: ${h => h.theme.colors.focus[2]};
+  background-color: ${h => h.theme.colors.focus[1]};
   align-self: flex-end;
+  opacity: 0.7
 `;
 
 export const Title = styled.Text`
   font-size: ${RFValue(16)}px;
   font-family: ${h => h.theme.fonts.bold};
-  color: ${h => h.theme.colors.color_text.dark};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const BoxInput = styled.View.attrs({
@@ -120,7 +121,7 @@ export const BoxInput = styled.View.attrs({
 })`
   width: 100%;
   height: ${RFValue(250)}px;
-  background-color: ${h => h.theme.colors.bg_color[1]};
+  background-color: ${h => h.theme.colors.bg_color[3]};
   /* flex-direction: row; */
   align-items: center;
   padding: 6px;

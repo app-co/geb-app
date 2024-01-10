@@ -6,7 +6,9 @@ import { useField } from '@unform/core';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { TextInputProps } from 'react-native';
 
-import theme from '../../global/styles/geb';
+import clubMentoria from '../../global/styles/club-mentoria';
+import geb from '../../global/styles/geb';
+import { useAuth } from '../../hooks/useAuth';
 import { Box, Container, Icon } from './styles';
 
 type TText = 'currency';
@@ -21,6 +23,13 @@ interface Reference {
 }
 
 export function Input({ name, icon, ...rest }: Props) {
+  const { user } = useAuth()
+
+  const themeHub = {
+    GEB: geb,
+    CLUB_MENTORIA: clubMentoria
+  }
+
   const [isFocused, setsFocused] = useState(false);
   const [isFilled, setsFilled] = useState(false);
   const [text, setText] = React.useState('');
@@ -62,15 +71,17 @@ export function Input({ name, icon, ...rest }: Props) {
         name={icon}
         size={20}
         color={
-          isFocused || isFilled ? theme.colors.focus[1] : theme.colors.focus[2]
+          isFocused || isFilled ? themeHub.CLUB_MENTORIA.colors.focus[1] : themeHub.CLUB_MENTORIA.colors.focus[2]
         }
       />
+
       <Container
         name={name}
         ref={inputElementRef}
         onFocus={handleInput}
         onBlur={handleBlur}
         defaultValue={defaultValue}
+        placeholderTextColor={themeHub.CLUB_MENTORIA.colors.imput.placeholder}
         onChangeText={form => {
           inpuValueRef.current.value = form;
         }}

@@ -354,7 +354,7 @@ export function Inicio() {
         <HStack space={10} justifyContent="center" my="4" alignItems="center">
           <Avatar size="xl" source={{ uri: user?.profile.avatar }} />
 
-          <Box w="1" bg="black" h="full" />
+          <Box w="1" bg="#bebebe" h="full" />
 
           <Box alignItems="flex-end">
             <S.text>Vendas este ano:</S.text>

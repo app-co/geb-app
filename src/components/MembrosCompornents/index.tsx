@@ -2,8 +2,9 @@
 /* eslint-disable camelcase */
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import React from 'react';
-import { Image, Text } from 'react-native';
+import { Image } from 'react-native';
 
+import { RFValue } from 'react-native-responsive-fontsize';
 import icone from '../../../assets/circulos.png';
 import negociosPng from '../../assets/NEGOCIOS.png';
 import theme from '../../global/styles/geb';
@@ -63,15 +64,16 @@ export function MembrosComponents({
 
         <S.BoxText>
           <S.Title>{userName}</S.Title>
-          <Text
+          <S.Title
             style={{
               fontFamily: theme.fonts.regular,
               textAlign: 'left',
+              fontSize: RFValue(13)
             }}
           >
             {' '}
             {oficio}{' '}
-          </Text>
+          </S.Title>
 
           <S.boxH>
             <S.star name={star >= 1 ? 'star' : 'star-o'} />

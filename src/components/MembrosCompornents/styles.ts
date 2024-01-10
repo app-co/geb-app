@@ -27,7 +27,7 @@ export const boxH = styled.View`
 `;
 
 export const star = styled(FontAwesome)`
-  color: ${h => h.theme.colors.focus[2]};
+  color: ${h => h.theme.colors.focus[1]};
   font-size: ${RFValue(18)}px;
 `;
 

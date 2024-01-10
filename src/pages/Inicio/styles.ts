@@ -80,7 +80,7 @@ export const TitleName = styled.Text`
 `;
 
 export const BoxPrice = styled.View.attrs({
-  shadowColor: theme.colors.focus,
+  shadowColor: theme.colors.focus[1],
   shadowOffset: {
     width: 0,
     height: 3,
@@ -124,7 +124,7 @@ export const Scroll = styled.ScrollView`
 `;
 
 export const Line = styled.View.attrs({
-  shadowColor: theme.colors.focus,
+  shadowColor: theme.colors.focus[1],
   shadowOffset: {
     width: 0,
     height: 3,

@@ -174,6 +174,7 @@ export function OrderB2b() {
               onChangeText={h => setDescription(h)}
               fontFamily={theme.fonts.regular}
               fontSize={14}
+              color='gray.200'
             />
           </S.BoxInput>
 
