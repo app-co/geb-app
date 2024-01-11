@@ -3,8 +3,8 @@
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import React from 'react';
 import { Image } from 'react-native';
-
 import { RFValue } from 'react-native-responsive-fontsize';
+
 import icone from '../../../assets/circulos.png';
 import negociosPng from '../../assets/NEGOCIOS.png';
 import theme from '../../global/styles/geb';
@@ -68,7 +68,7 @@ export function MembrosComponents({
             style={{
               fontFamily: theme.fonts.regular,
               textAlign: 'left',
-              fontSize: RFValue(13)
+              fontSize: RFValue(13),
             }}
           >
             {' '}
@@ -100,7 +100,7 @@ export function MembrosComponents({
             />
           )}
           {icon === 'indicar' && (
-            <AntDesign size={40} name="swap" color={theme.colors.focus[2]} />
+            <AntDesign size={40} name="swap" color={theme.colors.focus[1]} />
           )}
 
           {icon === 'b2b' && (

@@ -1,11 +1,15 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.View``;
+export const Container = styled.View`
+  background-color: ${h => h.theme.colors.bg_color[1]};
+  flex: 1;
+
+`;
 
 export const Title = styled.Text`
   font-family: ${h => h.theme.fonts.bold};
   font-size: 20px;
-  color: ${h => h.theme.colors.color_text.dark};
+  color: ${h => h.theme.colors.color_text.ligh};
 `;
 
 export const Box = styled.View`

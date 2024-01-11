@@ -67,7 +67,7 @@ export const ImageOfice = styled.Image`
   border-radius: ${RFValue(25)}px;
   top: ${RFValue(50)}px;
   right: ${RFValue(35)}px;
-  background-color: ${h => h.theme.colors.focus[1]};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   opacity: 0.8;
 `;
 

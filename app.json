@@ -2,7 +2,7 @@
   "expo": {
     "name": "GEB networking",
     "slug": "aplicativogeb",
-    "version": "3.3.3",
+    "version": "3.3.6",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -59,7 +59,6 @@
           "locationAlwaysAndWhenInUsePermission": "Permita que $(PRODUCT_NAME) acesse sua localizaçõa. Essa função é necessária para que você possa validar sua presença duarante os eventos"
         }
       ],
-
       [
         "expo-local-authentication",
         {
