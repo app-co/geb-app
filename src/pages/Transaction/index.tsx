@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable camelcase */
 /* eslint-disable import/prefer-default-export */
-import { AntDesign } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { Avatar, Box, Center, HStack, TextArea } from 'native-base';
@@ -104,13 +103,13 @@ export function Transaction() {
               space={1}
               flex="1"
             >
-              <AntDesign name="caretright" size={RFValue(18)} />
+              <S.Caretright name="caretright" size={RFValue(18)} />
 
               <Center>
                 <S.Title>{_currency(String(valor))}</S.Title>
               </Center>
 
-              <AntDesign name="caretright" size={RFValue(18)} />
+              <S.Caretright name="caretright" size={RFValue(18)} />
             </HStack>
 
             <Avatar
@@ -138,7 +137,7 @@ export function Transaction() {
             }}
           >
             <View>
-              <Text style={{ alignSelf: 'flex-end' }}>
+              <Text style={{ alignSelf: 'flex-end', color: '#f2f2f2' }}>
                 {description.length}/100
               </Text>
               <TextArea
@@ -149,7 +148,8 @@ export function Transaction() {
                 value={description}
                 onChangeText={h => setDescription(h)}
                 fontFamily={theme.fonts.regular}
-                fontSize={14}
+                fontSize={16}
+                color="gray.100"
               />
             </View>
 

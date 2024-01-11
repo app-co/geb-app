@@ -13,15 +13,12 @@ export const Box = styled.View<Props>`
 
   width: ${RFValue(270)}px;
   height: ${RFValue(40)}px;
-  border-width: 2px;
+  border-width: 1px;
   justify-content: center;
   margin-bottom: 30px;
   flex-direction: row;
   border-radius: ${RFValue(10)}px;
-  border-top-color: transparent;
-  border-left-color: transparent;
-  border-right-color: transparent;
-  border-bottom-color: ${h => h.theme.colors.focus[2]};
+  border-color: ${h => h.theme.colors.bg_color[2]};
 
   ${({ theme, isError }) =>
     isError &&
@@ -32,16 +29,12 @@ export const Box = styled.View<Props>`
       border-bottom-color: ${theme.colors.focus[2]};
       border-width: 2px;
     `}
-
   ${({ theme, isFocus }) =>
     isFocus &&
     css`
-      border-top-color: transparent;
-      border-left-color: transparent;
-      border-right-color: transparent;
-      border-bottom-color: ${theme.colors.focus[2]};
+      border-color: ${h => h.theme.colors.focus[1]}
       border-width: 2px;
-    `}
+    `};
 `;
 
 export const Container = styled(TextInput)`
