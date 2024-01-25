@@ -1,5 +1,5 @@
 export const update = [
   {
-    title: '',
+    title: 'Correções de tema',
   },
 ];
