@@ -7,7 +7,7 @@ export const Container = styled.View`
   flex: 1;
   padding-top: ${Platform.OS === `ios` ? getStatusBarHeight() : 15}px;
   padding-bottom: 50px;
-  background-color: ${h => h.theme.colors.bg_color[2]};
+  background-color: ${h => h.theme.colors.bg_color[3]};
 `;
 
 export const Header = styled.View`
@@ -36,7 +36,10 @@ export const Avatar = styled.Image`
   border-radius: ${RFValue(30)}px;
 `;
 
-export const TitleName = styled.Text``;
+export const TitleName = styled.Text`
+  color: ${h => h.theme.colors.color_text.ligh};
+  font-family: ${h => h.theme.fonts.bold};
+`;
 
 export const LogOf = styled.TouchableOpacity`
   width: ${RFValue(100)}px;

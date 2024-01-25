@@ -27,7 +27,7 @@ import { useRelation } from '../../contexts/relation';
 import { useToken } from '../../contexts/Token';
 import { useData } from '../../contexts/useData';
 import { IRelashionship, ISelfPonts } from '../../dtos';
-import theme from '../../global/styles/geb';
+import theme from '../../global/styles/club-mentoria';
 import { useOrderRelation } from '../../hooks/relations';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
@@ -125,7 +125,6 @@ export function Inicio() {
     }
 
     if (listAllRelation?.data) {
-
       const relation = listAllRelation.data as IRelashionship[];
 
       const validated = relation.filter(
@@ -311,7 +310,7 @@ export function Inicio() {
           transparent
         >
           <Center flex={1}>
-            <Box p="16" bg="dark.600" borderRadius={8}>
+            <Box p="16" bg={theme.colors.bg_color[3]} borderRadius={8}>
               <S.title style={{ textAlign: 'center' }}>
                 Voce tem negócios para aprovar
               </S.title>
@@ -320,11 +319,13 @@ export function Inicio() {
                   onPress={() => setModalSolicitations(false)}
                   style={{
                     padding: 8,
-                    backgroundColor: theme.colors.bg_button[2],
+                    backgroundColor: theme.colors.button.bg.reproved,
                     borderRadius: 8,
                   }}
                 >
-                  <S.text style={{ color: '#fff' }}>APROVAR DEPOIS</S.text>
+                  <S.text style={{ color: theme.colors.color_text.dark }}>
+                    APROVAR DEPOIS
+                  </S.text>
                 </TouchableOpacity>
                 <TouchableOpacity
                   onPress={() => {
@@ -333,11 +334,13 @@ export function Inicio() {
                   }}
                   style={{
                     padding: 8,
-                    backgroundColor: theme.colors.bg_button[1],
+                    backgroundColor: theme.colors.button.bg.approved,
                     borderRadius: 8,
                   }}
                 >
-                  <S.text style={{ color: '#fff' }}>APROVAR AGORA</S.text>
+                  <S.text style={{ color: theme.colors.color_text.dark }}>
+                    APROVAR AGORA
+                  </S.text>
                 </TouchableOpacity>
               </HStack>
             </Box>

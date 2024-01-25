@@ -42,13 +42,13 @@ export function Membros() {
   const users =
     search.length > 0
       ? membros.filter(h => {
-          const up = h.nome.toLocaleUpperCase();
+        const up = h.nome.toLocaleUpperCase();
 
-          if (up.includes(search.toLocaleUpperCase()) && h.id !== user.id) {
-            return h;
-          }
-          return null;
-        })
+        if (up.includes(search.toLocaleUpperCase()) && h.id !== user.id) {
+          return h;
+        }
+        return null;
+      })
       : membros.filter(h => h.id !== user.id);
 
   useFocusEffect(
@@ -92,8 +92,8 @@ export function Membros() {
               user_avatar={h.profile.avatar}
               oficio={h.profile.workName}
               imageOfice={h.profile.logo}
-              // inativoPres={h..inativo}
-              // inativo={h.inativo}
+            // inativoPres={h..inativo}
+            // inativo={h.inativo}
             />
           )}
         />

@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 import { w } from '../../utils/size';
 
 export const Container = styled.View`
-  background-color: ${h => h.theme.colors.bg_modal[1]};
+  background-color: ${h => h.theme.colors.bg_color[1]};
   padding: 20px;
 
   flex: 1;
@@ -16,12 +16,13 @@ export const Container = styled.View`
 export const title = styled.Text`
   margin: 10px;
   color: ${h => h.theme.colors.color_text.ligh};
-  font-size: ${RFValue(18)}px;
+  font-size: ${RFValue(20)}px;
   margin-top: ${w * 0.1}px;
+  font-family: ${h => h.theme.fonts.bold};
 `;
 
 export const star = styled(FontAwesome)`
-  color: ${h => h.theme.colors.focus[2]};
+  color: ${h => h.theme.colors.focus[1]};
   font-size: ${RFValue(30)}px;
 `;
 
@@ -55,10 +56,10 @@ export const button = styled.TouchableOpacity`
   margin-top: 30px;
   border-radius: 5px;
 
-  background-color: ${h => h.theme.colors.bg_button[2]};
+  background-color: ${h => h.theme.colors.button.bg.approved};
 `;
 
 export const txtButon = styled.Text`
-  color: #fff;
-  font-family: ${h => h.theme.fonts.regular};
+  color: ${h => h.theme.colors.color_text.dark};
+  font-family: ${h => h.theme.fonts.bold};
 `;

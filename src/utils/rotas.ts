@@ -1,4 +1,4 @@
-import theme from '../global/styles/geb';
+import theme from '../global/styles/club-mentoria';
 import { Ranking } from '../pages/ADM/Classificacao';
 import { SingUp } from '../pages/ADM/CreateUser';
 import { DeletUser } from '../pages/ADM/DeleteUser';
@@ -22,56 +22,56 @@ import { TabBarApp } from '../routes/TabBarApp';
 export const rotas = [
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'POSTS',
     component: TabBarApp,
     icon: 'camera-retro',
   },
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'PERFIL',
     component: Profile,
     icon: 'user-circle-o',
   },
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'LOCALIZE OS MEMBROS',
     component: FindUser,
     icon: 'map-marker',
   },
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'EXTRATO',
     component: Consumo,
     icon: 'line-chart',
   },
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'VALIDE SUA PRESENÇA',
     component: Valide,
     icon: 'hand-peace-o',
   },
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'LANÇAR CONSUMO',
     component: StacKMembros,
     icon: 'handshake-o',
   },
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'INDICAÇÕES',
     component: Indicacoes,
     icon: 'exchange',
   },
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'B2B',
     component: StackB2b,
     icon: 'coffee',
@@ -79,7 +79,7 @@ export const rotas = [
 
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'CONVIDADOS',
     component: Visitante,
     icon: 'user-plus',
@@ -87,7 +87,7 @@ export const rotas = [
 
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'DONATIVOS',
     component: Donates,
     icon: 'diamond',
@@ -95,7 +95,7 @@ export const rotas = [
 
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'APADRINHAR',
     component: Padrinho,
     icon: 'mortar-board',
@@ -103,7 +103,7 @@ export const rotas = [
 
   {
     focus: theme.colors.focus[1],
-    color: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
     name: 'SOLICITAÇÕES',
     component: Solicitaions,
     icon: 'envelope',
@@ -112,63 +112,63 @@ export const rotas = [
 
 export const rotasAdm = [
   {
-    color: theme.colors.secundary,
+    color: theme.colors.bg_color[2],
     name: 'RANKING',
     component: Ranking,
     icon: '',
   },
   {
-    color: theme.colors.secundary,
+    color: theme.colors.bg_color[2],
     name: 'CADASTRAR MEMBRO',
     component: SingUp,
     icon: '',
   },
   {
-    color: theme.colors.secundary,
+    color: theme.colors.bg_color[2],
     name: 'VALIDAR PRESENÇA',
     component: ListPresenca,
     icon: '',
   },
   // {
-  //   color: theme.colors.secundary,
+  //   color: theme.colors.bg_color[2],
   //   name: 'ALTERAR SENHA DE UM MEMBRO',
   //   component: UpdateSenhaUser,
   //   icon: '',
   // },
   {
-    color: theme.colors.secundary,
+    color: theme.colors.bg_color[2],
     name: 'EXCLUIR MEMBROS',
     component: DeletUser,
     icon: '',
   },
 
   {
-    color: theme.colors.secundary,
+    color: theme.colors.bg_color[2],
     name: 'Carregar Avatar',
     component: UploadAvatar,
     icon: '',
   },
   // {
-  //   color: theme.colors.secundary,
+  //   color: theme.colors.bg_color[2],
   //   name: 'INATIVAR UM MEMBRO',
   //   component: Inativo,
   //   icon: '',
   // },
   // {
-  //   color: theme.colors.secundary,
+  //   color: theme.colors.bg_color[2],
   //   name: 'LISTA DE PRESENÇA',
   //   component: ListaPresença,
   //   icon: '',
   // },
 
   {
-    color: theme.colors.secundary,
+    color: theme.colors.bg_color[2],
     name: 'VALIDAR CONVIDADOS',
     component: ValidateGuest,
     icon: '',
   },
   {
-    color: theme.colors.secundary,
+    color: theme.colors.bg_color[2],
     name: 'VALIDAR DONATIVOS',
     component: ValidateDanates,
     icon: '',

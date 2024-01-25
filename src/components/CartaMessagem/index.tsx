@@ -3,7 +3,7 @@ import { Box, Circle, Text } from 'native-base';
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
 
-import theme from '../../global/styles/geb';
+import theme from '../../global/styles/club-mentoria';
 
 interface Props {
   pres: () => void;

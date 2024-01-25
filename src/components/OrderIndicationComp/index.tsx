@@ -136,9 +136,7 @@ export function OrderIndicationComp({
           <S.boxDescription>
             <S.title>Descrição do cunsumo</S.title>
             <S.text>{item?.objto.description}</S.text>
-            <S.title style={{ color: theme.colors.focus[1] }}>
-              {item?.objto?.valor}
-            </S.title>
+            <S.textfocus>{item?.objto?.valor}</S.textfocus>
           </S.boxDescription>
         </HStack>
       )}
@@ -159,11 +157,15 @@ export function OrderIndicationComp({
 
       <S.flexButton>
         <S.buttonRe disabled={load} onPress={reject}>
-          {load ? <ActivityIndicator /> : <S.text>REJEITAR</S.text>}
+          {load ? <ActivityIndicator /> : <S.textButton>REJEITAR</S.textButton>}
         </S.buttonRe>
 
         <S.buttonOk disabled={load} onPress={confirmation}>
-          {load ? <ActivityIndicator /> : <S.text>CONFIRMAR</S.text>}
+          {load ? (
+            <ActivityIndicator />
+          ) : (
+            <S.textButton>CONFIRMAR</S.textButton>
+          )}
         </S.buttonOk>
       </S.flexButton>
     </S.Container>

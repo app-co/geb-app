@@ -4,7 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react';
 
 import { DrawerContent } from '../components/DrawerComponent';
-import theme from '../global/styles/geb';
+import theme from '../global/styles/club-mentoria';
 import { useAuth } from '../hooks/useAuth';
 import { Inicio } from '../pages/Inicio';
 import { rotas, rotasAdm } from '../utils/rotas';
@@ -13,7 +13,6 @@ const { Navigator, Screen } = createDrawerNavigator();
 
 export function DrawerApp() {
   const { user } = useAuth();
-
 
   // const { adm } = user.user;
   return (
@@ -29,7 +28,7 @@ export function DrawerApp() {
             <FontAwesome
               name="home"
               size={size}
-              color={focused ? theme.colors.focus[1] : theme.colors.focus[2]}
+              color={focused ? theme.colors.focus[1] : theme.colors.bg_color[2]}
             />
           ),
         }}
@@ -40,6 +39,9 @@ export function DrawerApp() {
         <Screen
           key={h.name}
           options={{
+            drawerActiveBackgroundColor: theme.colors.bg_color[1],
+            drawerActiveTintColor: theme.colors.focus[1],
+            drawerInactiveTintColor: theme.colors.color_text.ligh,
             drawerIcon: ({ focused, size }) => (
               <FontAwesome
                 name={h.icon}

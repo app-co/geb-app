@@ -16,7 +16,7 @@ export function StarModal({ submit, prestador, setStars, star = 0 }: Props) {
     <S.Container>
       <S.logo source={logo} />
 
-      <S.title>Como foi sua experiência com {prestador}?</S.title>
+      <S.title>Como foi sua experiência?</S.title>
       <S.boxH>
         <S.touchStar onPress={() => setStars(1)}>
           <S.star name={star >= 1 ? 'star' : 'star-o'} />

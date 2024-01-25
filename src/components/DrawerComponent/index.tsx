@@ -8,7 +8,7 @@ import React from 'react';
 import { ScrollView, Text } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import theme from '../../global/styles/geb';
+import theme from '../../global/styles/club-mentoria';
 import { useAuth } from '../../hooks/useAuth';
 import { Avatar, Container, Header, LogOf, Title, TitleName } from './styles';
 

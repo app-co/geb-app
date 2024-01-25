@@ -7,7 +7,7 @@ const w = Dimensions.get('screen').width;
 
 export const Container = styled.View`
   /* height: 200px; */
-  background-color: ${h => h.theme.colors.focus[2]};
+  background-color: ${h => h.theme.colors.bg_color[3]};
   border-radius: 8px;
 
   width: 100%;
@@ -33,6 +33,18 @@ export const text = styled.Text`
   font-size: ${_text}px;
 `;
 
+export const textButton = styled.Text`
+  color: ${h => h.theme.colors.color_text.dark};
+  font-family: ${h => h.theme.fonts.regular};
+  font-size: ${_text}px;
+`;
+
+export const textfocus = styled.Text`
+  color: ${h => h.theme.colors.focus[1]};
+  font-family: ${h => h.theme.fonts.bold};
+  font-size: ${_text}px;
+`;
+
 export const flexButton = styled.View`
   flex-direction: row;
   align-items: center;
@@ -46,7 +58,7 @@ export const buttonOk = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  background-color: ${h => h.theme.colors.bg_button[1]};
+  background-color: ${h => h.theme.colors.button.bg.approved};
   border-radius: 8px;
 `;
 export const buttonRe = styled.TouchableOpacity`
@@ -56,7 +68,7 @@ export const buttonRe = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
-  background-color: ${h => h.theme.colors.bg_button[2]};
+  background-color: ${h => h.theme.colors.button.bg.reproved};
 `;
 
 export const boxDescription = styled.View`

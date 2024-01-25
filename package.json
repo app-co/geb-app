@@ -35,6 +35,7 @@
     "expo-dev-launcher": "2.4.8",
     "expo-device": "^5.4.0",
     "expo-font": "^11.4.0",
+    "expo-image": "~1.3.2",
     "expo-image-picker": "^14.3.2",
     "expo-linking": "^5.0.2",
     "expo-local-authentication": "~13.4.1",
@@ -48,6 +49,7 @@
     "intl": "^1.2.5",
     "native-base": "^3.4.28",
     "nookies": "2.5.2",
+    "phosphor-react-native": "2.0.0",
     "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-native": "0.72.3",
@@ -65,8 +67,7 @@
     "socket.io-client": "^4.7.2",
     "styled-components": "^5.3.11",
     "updates": "^14.3.4",
-    "yup": "^1.2.0",
-    "expo-image": "~1.3.2"
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

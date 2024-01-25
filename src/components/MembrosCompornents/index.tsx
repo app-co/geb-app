@@ -1,13 +1,12 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable camelcase */
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons';
+import { CurrencyCircleDollar } from 'phosphor-react-native';
 import React from 'react';
-import { Image } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import icone from '../../../assets/circulos.png';
-import negociosPng from '../../assets/NEGOCIOS.png';
-import theme from '../../global/styles/geb';
+import icone from '../../../assets/circles.png';
+import theme from '../../global/styles/club-mentoria';
 import * as S from './styles';
 
 interface Props {
@@ -90,14 +89,7 @@ export function MembrosComponents({
 
         <S.ContainerIcon>
           {icon === 'necociar' && (
-            <Image
-              style={{
-                width: 60,
-                height: 60,
-                marginTop: 10,
-              }}
-              source={negociosPng}
-            />
+            <CurrencyCircleDollar color={theme.colors.focus[1]} size={45} />
           )}
           {icon === 'indicar' && (
             <AntDesign size={40} name="swap" color={theme.colors.focus[1]} />

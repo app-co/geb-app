@@ -156,6 +156,8 @@ export function Solicitaions() {
     <S.Container>
       <Header type="goback" />
 
+      {orders?.length === 0 && <S.title>Não há negócios para validar</S.title>}
+
       <S.box>
         <FlatList
           contentContainerStyle={{
