@@ -28,7 +28,7 @@ import { useToken } from '../../contexts/Token';
 import { useData } from '../../contexts/useData';
 import { IRelashionship, ISelfPonts } from '../../dtos';
 import theme from '../../global/styles/club-mentoria';
-import { useOrderRelation } from '../../hooks/relations';
+import { useMetric, useOrderRelation } from '../../hooks/relations';
 import { useAuth } from '../../hooks/useAuth';
 import { api } from '../../services/api';
 import { IsActiveFingerTokenStorage } from '../../storage/acitve-finger-token';
@@ -55,6 +55,7 @@ const variationPresensa: any = {
 export function Inicio() {
   const ref = useRef<FormHandles>(null);
   const toast = useToast();
+  const metric = useMetric();
 
   const { user, login, logOut, updateUser } = useAuth();
   const { navigate } = useNavigation();
@@ -67,7 +68,6 @@ export function Inicio() {
   const [permissionFingerprint, setPermissionFingerprinte] =
     React.useState(false);
   const [load, setLoad] = React.useState(false);
-  const [loadingInterface, setLoadInterface] = React.useState(true);
 
   const [showModalSolicitations, setModalSolicitations] = React.useState(true);
   const [modalPresenca, setModalPresenca] = React.useState(false);
@@ -97,6 +97,8 @@ export function Inicio() {
   const version = Contants.default.expoConfig?.version;
 
   const resumo = React.useMemo(() => {
+    const lastAmount = metric.data?.amount_accumulated ?? 0;
+
     let pontos = 0;
     let currency = 'R$ 00,00';
     const ponts = (pontosListMe.data as ISelfPonts) || ({} as ISelfPonts);
@@ -131,9 +133,10 @@ export function Inicio() {
         h => h.situation === true && h.type === 'CONSUMO_OUT',
       );
 
-      const total = validated.reduce((ac, i) => {
-        return ac + i.objto.valor;
-      }, 0);
+      const total =
+        validated.reduce((ac, i) => {
+          return ac + i.objto.valor;
+        }, 0) + lastAmount;
 
       currency = (total / 100).toLocaleString('pt-BR', {
         style: 'currency',
