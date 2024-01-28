@@ -9,23 +9,28 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#232020"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.app-c.appGeb",
       "googleServicesFile": "google-ios.plist",
-      "bundleIdentifier": "com.app-c.appGeb"
+      "buildNumber": "46"
     },
     "android": {
-      "googleServicesFile": "google-android.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#232020"
       },
-      "package": "com.appc.gebtraining"
+      "versionCode": 46,
+      "package": "com.appc.gebtraining",
+      "googleServicesFile": "google-android.json",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       "@react-native-firebase/app",
