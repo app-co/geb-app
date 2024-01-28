@@ -13,7 +13,7 @@ import { Input } from '../../components/Inputs';
 import { useRelation } from '../../contexts/relation';
 import { useToken } from '../../contexts/Token';
 import { IInviteRelation } from '../../dtos';
-import theme from '../../global/styles/geb';
+import theme from '../../global/styles/club-mentoria';
 import { useAuth } from '../../hooks/useAuth';
 import { useAllUsers } from '../../hooks/user';
 import { api } from '../../services/api';
@@ -24,7 +24,7 @@ export function Visitante() {
   const { user } = useAuth();
   const { mytoken, sendMessage } = useToken();
   const { listAllRelation } = useRelation();
-  const { data, isLoading, refetch } = useAllUsers();
+  const { data, isLoading, refetch } = useAllUsers(user.hub);
   const adms = data || [];
   const [selected, setSelected] = React.useState('approveded');
   const [showModal, setShowModa] = React.useState(false);
@@ -72,7 +72,7 @@ export function Visitante() {
           listAllRelation.refetch();
         });
     } catch (err: any) {
-      console.log(err?.response);
+      console.log(err?.response.data);
     }
   }, [adms, listAllRelation, name_convidado, sendMessage]);
 
@@ -213,7 +213,7 @@ export function Visitante() {
 
       <Box pb={5}>
         <Center>
-          <Button pres={() => setShowModa(true)} title="ADICIONAR CONVIDADO" />
+          <Button  pres={() => setShowModa(true)} title="ADICIONAR CONVIDADO" />
         </Center>
       </Box>
     </S.Container>

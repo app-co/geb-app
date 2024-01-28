@@ -1,36 +1,31 @@
 {
   "expo": {
-    "name": "GEB networking",
+    "name": "Geb networking",
     "slug": "aplicativogeb",
-    "version": "3.3.8",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#232020"
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.app-c.appGeb",
       "googleServicesFile": "google-ios.plist",
-      "buildNumber": "46"
+      "bundleIdentifier": "com.app-c.appGeb"
     },
     "android": {
+      "googleServicesFile": "google-android.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#232020"
+        "backgroundColor": "#ffffff"
       },
-      "versionCode": 46,
-      "package": "com.appc.gebtraining",
-      "googleServicesFile": "google-android.json",
-      "permissions": [
-        "android.permission.RECORD_AUDIO"
-      ]
+      "package": "com.appc.gebtraining"
     },
     "plugins": [
       "@react-native-firebase/app",
@@ -59,6 +54,7 @@
           "locationAlwaysAndWhenInUsePermission": "Permita que $(PRODUCT_NAME) acesse sua localizaçõa. Essa função é necessária para que você possa validar sua presença duarante os eventos"
         }
       ],
+
       [
         "expo-local-authentication",
         {

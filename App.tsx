@@ -5,11 +5,11 @@ import 'intl';
 import 'intl/locale-data/jsonp/pt-BR';
 
 import {
-  BarlowCondensed_700Bold as bold,
-  BarlowCondensed_500Medium as medium,
-  BarlowCondensed_400Regular as regular,
+  Roboto_900Black as bold,
+  Roboto_500Medium as medium,
+  Roboto_400Regular as regular,
   useFonts,
-} from '@expo-google-fonts/barlow-condensed';
+} from '@expo-google-fonts/roboto';
 
 import * as Device from 'expo-device';
 import 'react-native-gesture-handler';

@@ -5,7 +5,7 @@ import { CurrencyCircleDollar } from 'phosphor-react-native';
 import React from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
 
-import icone from '../../../assets/circles.png';
+import icone from '../../assets/circulos.png';
 import theme from '../../global/styles/club-mentoria';
 import * as S from './styles';
 

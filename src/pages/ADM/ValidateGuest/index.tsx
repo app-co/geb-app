@@ -9,7 +9,7 @@ import { Header } from '../../../components/Header';
 import { useRelation } from '../../../contexts/relation';
 import { useData } from '../../../contexts/useData';
 import { IInviteRelation, IRelashionship, IUserDtos } from '../../../dtos';
-import theme from '../../../global/styles/geb';
+import theme from '../../../global/styles/club-mentoria';
 import { api } from '../../../services/api';
 import * as S from './styles';
 
@@ -23,6 +23,8 @@ export function ValidateGuest() {
     const gues = guestL.filter(
       h => h.type === 'INVIT' && h.situation === false,
     );
+
+    console.log(gues)
     const usersL = (users.data as IUserDtos[]) || [];
     const li: IInviteRelation[] = [];
 
