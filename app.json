@@ -59,7 +59,6 @@
           "locationAlwaysAndWhenInUsePermission": "Permita que $(PRODUCT_NAME) acesse sua localizaçõa. Essa função é necessária para que você possa validar sua presença duarante os eventos"
         }
       ],
-
       [
         "expo-local-authentication",
         {
