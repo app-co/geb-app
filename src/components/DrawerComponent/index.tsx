@@ -31,7 +31,7 @@ export function DrawerContent({ ...props }: Props) {
             >
               Olá
             </Text>
-            <TitleName>{user.nome} </TitleName>
+            <TitleName>{user?.nome}</TitleName>
           </VStack>
         </HStack>
       </Header>

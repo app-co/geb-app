@@ -6,7 +6,6 @@ import React from 'react';
 import { DrawerContent } from '../components/DrawerComponent';
 import theme from '../global/styles/club-mentoria';
 import { useAuth } from '../hooks/useAuth';
-import { Inicio } from '../pages/Inicio';
 import { rotas, rotasAdm } from '../utils/rotas';
 
 const { Navigator, Screen } = createDrawerNavigator();
@@ -22,19 +21,7 @@ export function DrawerApp() {
         headerShown: false,
       }}
     >
-      <Screen
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <FontAwesome
-              name="home"
-              size={size}
-              color={focused ? theme.colors.focus[1] : theme.colors.bg_color[2]}
-            />
-          ),
-        }}
-        name="INÍCIO"
-        component={Inicio}
-      />
+
       {rotas.map(h => (
         <Screen
           key={h.name}

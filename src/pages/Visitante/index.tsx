@@ -30,6 +30,7 @@ export function Visitante() {
   const [showModal, setShowModa] = React.useState(false);
   const [name_convidado, setNameConvidado] = React.useState('');
 
+
   const relation = (listAllRelation.data as IInviteRelation[]) || [];
   const invitPending = relation.filter(
     h =>
@@ -95,7 +96,7 @@ export function Visitante() {
     <S.Container>
       <Header />
       <Modal visible={showModal}>
-        <Center flex="1">
+        <Center bg={theme.colors.bg_color[1]} flex="1">
           <Form>
             <Input
               onChangeText={setNameConvidado}
@@ -213,7 +214,7 @@ export function Visitante() {
 
       <Box pb={5}>
         <Center>
-          <Button  pres={() => setShowModa(true)} title="ADICIONAR CONVIDADO" />
+          <Button pres={() => setShowModa(true)} title="ADICIONAR CONVIDADO" />
         </Center>
       </Box>
     </S.Container>
