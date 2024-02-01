@@ -22,19 +22,6 @@ export function DrawerApp() {
         headerShown: false,
       }}
     >
-      <Screen
-        options={{
-          drawerIcon: ({ focused, size }) => (
-            <FontAwesome
-              name="home"
-              size={size}
-              color={focused ? theme.colors.focus[1] : theme.colors.bg_color[2]}
-            />
-          ),
-        }}
-        name="INÍCIO"
-        component={Inicio}
-      />
       {rotas.map(h => (
         <Screen
           key={h.name}

@@ -95,7 +95,7 @@ export function Visitante() {
     <S.Container>
       <Header />
       <Modal visible={showModal}>
-        <Center flex="1">
+        <Center bg={theme.colors.bg_color[1]} flex="1">
           <Form>
             <Input
               onChangeText={setNameConvidado}

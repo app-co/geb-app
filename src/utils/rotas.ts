@@ -10,6 +10,7 @@ import { Consumo } from '../pages/Consumo';
 import { Donates } from '../pages/Donates';
 import { FindUser } from '../pages/FindMembro';
 import { Indicacoes } from '../pages/Indicacoes';
+import { Inicio } from '../pages/Inicio';
 import { Padrinho } from '../pages/Padrinho';
 import { Profile } from '../pages/Profile';
 import { Solicitaions } from '../pages/Solicitaions';
@@ -20,6 +21,13 @@ import { StacKMembros } from '../routes/StackMembros';
 import { TabBarApp } from '../routes/TabBarApp';
 
 export const rotas = [
+  {
+    focus: theme.colors.focus[1],
+    color: theme.colors.bg_color[2],
+    name: 'Inicio',
+    component: Inicio,
+    icon: 'home',
+  },
   {
     focus: theme.colors.focus[1],
     color: theme.colors.bg_color[2],
